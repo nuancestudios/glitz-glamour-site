@@ -2,6 +2,12 @@
 
 This folder contains the static website files for GitHub Pages. It uses relative asset paths, so it works at a GitHub Pages project URL such as `https://YOUR-USERNAME.github.io/glitz-glamour-site/`.
 
+## Pages
+
+Home · Academy · Services · **Testimonials** · Contact. (The old `#/portfolio` link still works — it now opens the Testimonials page.)
+
+The Testimonials page is built from the 103 public Google reviews of *Glitz & Glamour Academy and Boutique Salon* (4.9 ★). Quotes are reproduced as written (trimmed with an ellipsis where a review continues), grouped by topic — bridal, salon & hair, Academy & students, long-standing clients — with the reviewer names and dates shown on Google. The full review text lives on Google; the page links out to the listing. Nothing on the page is invented copy, and no review ratings or names were altered.
+
 ## Publish it (no coding needed)
 1. Sign in or create an account at https://github.com.
 2. Click **+** (top right) → **New repository**.
