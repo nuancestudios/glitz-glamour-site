@@ -12,19 +12,21 @@ let prefillValue = '';
 let toastTimer;
 
 const paths = {
-  home: '/', academy: '/academy', services: '/services', portfolio: '/portfolio', contact: '/contact'
+  home: '/', academy: '/academy', services: '/services', testimonials: '/testimonials', contact: '/contact'
 };
 const titles = {
   home: 'Glitz & Glamour — Kakoli Sengupta',
   academy: 'The Academy — Glitz & Glamour',
   services: 'Beauty & Hair Services — Glitz & Glamour',
-  portfolio: 'Portfolio — Glitz & Glamour',
+  testimonials: 'Google Reviews & Testimonials — Glitz & Glamour',
   contact: 'Contact & Booking — Glitz & Glamour'
 };
+const googlePlace = 'https://www.google.com/maps/place/Glitz+%26+Glamour+Academy+and+Boutique+Salon/@22.4878514,88.3908825,19z/data=!4m8!3m7!1s0x3a02719f99561d63:0x5b1f914edb357939!8m2!3d22.4880456!4d88.3908439!9m1!1b1!16s%2Fg%2F11gnp6df1l';
 
 function route(){
   const key = (location.hash.replace(/^#\/?/, '').split('?')[0] || 'home').toLowerCase();
-  return ['home','academy','services','portfolio','contact'].includes(key) ? key : 'home';
+  if(key==='portfolio') return 'testimonials';
+  return ['home','academy','services','testimonials','contact'].includes(key) ? key : 'home';
 }
 function goContact(category, value=''){
   currentCategory = category || 'Bridal';
@@ -93,16 +95,109 @@ function servicesPage(){return `<div class="page-wrap"><section class="page-hero
   <div class="service-list" style="margin-top:42px">${services.map(s=>`<div class="service-row-wrap"><div class="service-row"><span class="row-no">${s.num}</span><h3>${s.title}</h3><p>${s.desc}</p><button class="circle-arrow service-toggle" aria-label="More about ${s.title}" data-service="${s.num}">↗</button></div><div class="service-extra" data-extra="${s.num}">${s.detail} <button type="button" class="text-link" style="margin-left:9px;border:0;background:none;padding:0" data-enquire="${s.title}" data-category="${s.cat}">Enquire about this service ↗</button></div></div>`).join('')}</div>
   <div class="service-bottom"><div><h3>Your date, your plans.</h3><p>For bridal, salon and makeup bookings, begin with a short enquiry.</p></div><a href="#/contact" class="button" data-category-link="Bridal">Book / enquire <span class="arrow">↗</span></a></div></section></div>`}
 
-const gallery = [
- {name:'A Bengali bridal story',cat:'Bridal',img:'./public/images/bridal-editorial.png',shape:'Bride, in vermilion'},
- {name:'The quiet details',cat:'Makeup',img:'./public/images/bridal-editorial.png',shape:'Skin, light & detail'},
- {name:'A lesson in finish',cat:'Academy',img:'./public/images/academy-class.png',shape:'Learning by doing'},
- {name:'Soft waves, soft light',cat:'Hair',img:'./public/images/salon-styling.png',shape:'An occasion-ready finish'},
- {name:'Practice makes artistry',cat:'Academy',img:'./public/images/academy-class.png',shape:'Technique in progress'},
- {name:'Salon, in the moment',cat:'Salon',img:'./public/images/salon-styling.png',shape:'A little time for you'}
+const reviewGroups = ['All','Bridal &amp; occasion','Salon &amp; hair','Academy &amp; students','Long-standing clients'];
+
+const reviewTags = [
+  ['15','makeup artist'],['10','hair styling'],['6','bridal makeup'],['4','skin care'],['4','hair colour'],
+  ['4','attention to detail'],['4','polite staff'],['3','dedicated staff'],['2','career guidance'],['2','party makeup']
 ];
-function portfolio(){return `<div class="page-wrap"><section class="page-hero"><div class="breadcrumb">Home <span>/</span> Portfolio</div><div class="eyebrow">A visual diary</div><h1>Craft, captured<br><em>in the details.</em></h1><p>Bridal artistry, makeup, hair, salon moments and work in the making at the Academy.</p></section>
-<section class="section"><div class="portfolio-tools"><div class="filter-row">${['All','Bridal','Makeup','Hair','Salon','Academy'].map((x,i)=>`<button class="filter-btn ${i===0?'active':''}" data-filter="${x}">${x}</button>`).join('')}</div><div class="portfolio-note">Browse by chapter. Tap any frame to take a closer look.</div></div><div class="gallery-grid">${gallery.map((g,i)=>`<button class="gallery-card" data-category="${g.cat}" data-image="${g.img}" data-caption="${g.name}">${image(g.img,g.shape)}<span class="concept">Visual direction</span><span class="gallery-label"><small>${g.cat} / 0${i+1}</small><b>${g.name}</b></span></button>`).join('')}</div><div class="gallery-disclaimer"><b>Portfolio imagery note.</b> The photographs here are generated art-direction placeholders, not Kakoli Sengupta’s client or student work. Replace with client-approved, rights-cleared images before launch; captions and categories are layout examples.</div></section></div>`}
+
+const reviews = [
+  {
+    name:'Amanda Bent', when:'6 months ago', group:'Bridal &amp; occasion', featured:true,
+    text:'Kakoli Aunty and her team are absolutely phenomenal!! They took excellent care of me during all my bridal events and made me feel happy and relaxed. Kakoli Aunty in particular took time to get to know me and my style.'
+  },
+  {
+    name:'Sweety Roychowdhury', when:'6 months ago', group:'Salon &amp; hair',
+    text:'I had an absolutely wonderful experience! The staff is well-mannered, and the salon is clean and well-organized. Kakoli Ma’am was very knowledgeable and listened exactly to what I wanted. I left feeling like I was in heaven! Highly recommended!'
+  },
+  {
+    name:'sohagk kanungo', when:'7 months ago', group:'Salon &amp; hair',
+    text:'I have seen an amazing change in my skin and hair after I have started going to Glitz and Glamour Academy and boutique. Kakoli is a magician who knows which wand to wave around you to improve or maintain your beauty regime.'
+  },
+  {
+    name:'ANAMIKA BASU', when:'4 months ago', group:'Salon &amp; hair',
+    text:'My experience at Glitz &amp; Glamour Beauty Parlour was nothing short of wonderful. From the moment I walked in, I was welcomed with warmth, professionalism, and genuine care.'
+  },
+  {
+    name:'Debarati Ghosh', when:'8 months ago', group:'Salon &amp; hair',
+    text:'The Glitz and Glamour Academy and Boutique salon delivers exceptional service with skilled stylists, a clean and welcoming environment, and consistently high-quality results. Their attention to detail and professionalism…'
+  },
+  {
+    name:'Uttamzzz', when:'9 months ago', group:'Academy &amp; students',
+    text:'Gltz n glamour academy n Butique salon is truly amazing. I completed my training in Hair Dressing, Beauty Therapy, and Fashion Makeup from this academy, and I have been a pass-out since 2008.'
+  },
+  {
+    name:'Swagata Chatterjee', when:'7 months ago', group:'Academy &amp; students',
+    text:'A big thanks to Glitz and Glamour Academy and Boutique Saloon for their amazing services and encouragement. The team is extremely skilled, friendly, and always ready to guide and support.'
+  },
+  {
+    name:'Rituparna Chandra', when:'6 months ago', group:'Long-standing clients',
+    text:'It’s a relationship of trust and gratitude from 2003 to 2026. More than a decade. Kakoli Sengupta’s Glitz and glamour Academy and Boutique salon wins my heart every single day I visit there.'
+  }
+];
+
+function reviewCard(r){
+  const initials = r.name.replace(/[^A-Za-z ]/g,'').trim().split(/\s+/).map(w=>w[0]).join('').slice(0,2).toUpperCase();
+  return `<article class="review-card${r.featured?' featured':''}" data-group="${r.group}">
+    <div class="review-top"><span class="stars" role="img" aria-label="Rated 5 out of 5 stars on Google">★★★★★</span><span class="review-topic">${r.group}</span></div>
+    <blockquote>${r.text}</blockquote>
+    <footer class="review-who"><span class="review-avatar" aria-hidden="true">${initials}</span><div><b>${r.name}</b><small>Google review · ${r.when}</small></div></footer>
+  </article>`;
+}
+
+function testimonials(){return `<div class="page-wrap">
+  <section class="page-hero">
+    <div class="breadcrumb">Home <span>/</span> Testimonials</div>
+    <div class="eyebrow">In their words · Google reviews</div>
+    <h1>What people say<br><em>when they leave the chair.</em></h1>
+    <p>Glitz &amp; Glamour holds a 4.9-star rating from 103 Google reviews — written by brides, salon regulars and students who now work in the industry. Everything below is quoted as written, with names and dates exactly as they appear on Google.</p>
+    <div class="rating-badge"><span class="stars" role="img" aria-label="4.9 out of 5 stars on Google">★★★★★</span><b>4.9</b><small>103 Google reviews</small></div>
+    <div class="hero-actions"><a class="button" href="#/contact">Book / enquire <span class="arrow">↗</span></a><a class="text-link" href="${googlePlace}" target="_blank" rel="noreferrer">Read all 103 reviews on Google <span>↗</span></a></div>
+  </section>
+  <div class="stat-strip"><div><strong>4.9</strong><span>average Google rating</span></div><div><strong>103</strong><span>reviews and counting</span></div><div><strong>Three worlds</strong><span>bridal · salon · academy</span></div><div><strong>2003</strong><span>clients still with us since</span></div></div>
+  <section class="section"><div class="story-band">
+    <div class="story-photo">${image('./public/images/bridal-editorial.png','Art direction: a Bengali bride in red and gold')}<div class="caption">Bridal · art direction</div></div>
+    <div class="story-text">
+      <div class="eyebrow">Where the reviews begin</div>
+      <h2>The bridal chair.<br><span class="script">The calm morning.</span></h2>
+      <p>Bridal work is the heart of Glitz &amp; Glamour — makeup and hair planned around the ceremony, the outfit, the photographs and the person wearing it all. Brides are usually the first to write, and they tend to remember two things: the look holding up through a long day, and how calm it felt getting there.</p>
+      <div class="pullquote">“It was truly an honour to be a part of your special journey and to style you for such important moments of your wedding.”</div>
+      <p class="quote-credit">Kakoli Sengupta, replying to a bride’s Google review</p>
+      <a class="text-link" href="#/contact" data-category-link="Bridal">Plan your bridal look <span>↗</span></a>
+    </div>
+  </div></section>
+  <section class="section">
+    <div class="section-heading"><div><div class="eyebrow">The reviews</div><h2>Read the ones<br><span class="script">we didn’t have to write.</span></h2></div><p>Filter by the kind of work you’re here for. Every quote is an excerpt from a public Google review — nothing added, nothing polished.</p></div>
+    <div class="tools-row">
+      <div class="filter-row" role="group" aria-label="Filter reviews by topic">${reviewGroups.map((g,i)=>`<button class="filter-btn ${i===0?'active':''}" data-review-filter="${g}">${g}</button>`).join('')}</div>
+      <div class="tools-note">Showing 9 of 103 reviews. The rest — including the ones written in Bengali — are on Google.</div>
+    </div>
+    <div class="review-wall">${reviews.map(reviewCard).join('')}</div>
+    <div class="note-box"><b>How these are published.</b> Quotes are reproduced from public Google reviews of Glitz &amp; Glamour Academy and Boutique Salon, trimmed with an ellipsis where a review continues, and grouped by topic for reading. Names, star ratings and dates are unchanged. <a class="text-link" href="${googlePlace}" target="_blank" rel="noreferrer">Read the full reviews on Google <span>↗</span></a></div>
+  </section>
+  <section class="section themes-section">
+    <div class="section-heading"><div><div class="eyebrow">What gets mentioned most</div><h2>The words that<br>keep <span class="script">coming up.</span></h2></div><p>Google groups our reviews into topics. Each number is how many reviews mention it.</p></div>
+    <div class="theme-cloud">${reviewTags.map(([n,t])=>`<span class="theme-chip"><b>${n}</b><span>${t}</span></span>`).join('')}</div>
+  </section>
+  <section class="academy-feature">
+    <div class="feature-image">${image('./public/images/academy-class.png','Concept image of a makeup educator demonstrating a technique')}<span class="image-credit">Academy · visual direction</span></div>
+    <div class="feature-copy">
+      <div class="eyebrow">From the Academy</div>
+      <h2>Some students write<br>back <i>years later.</i></h2>
+      <blockquote class="academy-quote">“At Guild and Glamour Academy, I learned makeup and hairdressing, but beyond the skills, I gained something even more precious. Whenever we found ourselves stuck in life’s challenges, Kakoli Di was always there with her wise advice…”</blockquote>
+      <cite>Kaberi D. · Google review · a year ago</cite>
+      <p>Glitz &amp; Glamour Academy teaches makeup artistry, hairdressing and beauty therapy hands-on, in small groups, with a working artist at the front of the room. Graduates have gone on to salon floors, bridal teams and businesses of their own — and a few of them come back to write about it.</p>
+      <a class="button" href="#/academy">Explore the Academy <span class="arrow">↗</span></a>
+    </div>
+  </section>
+  <section class="section">
+    <div class="section-heading"><div><div class="eyebrow">Your turn</div><h2>Come for the work.<br><span class="script">Leave your own review.</span></h2></div><a class="button" href="#/contact">Start a conversation <span class="arrow">↗</span></a></div>
+    <p style="max-width:620px;color:var(--muted);font-size:13px;line-height:1.8">Bridal, salon or Academy — tell us what you have in mind and we’ll point you to the right conversation. After your appointment, you’re welcome to add your voice on Google.</p>
+    <div class="cta-links"><a class="text-link" href="${googlePlace}" target="_blank" rel="noreferrer">Read all 103 Google reviews <span>↗</span></a><a class="text-link" href="${googlePlace}" target="_blank" rel="noreferrer">Write your review on Google <span>↗</span></a></div>
+    <p class="fine-print" style="margin-top:34px">Review quotes above are excerpts from public Google reviews of Glitz &amp; Glamour Academy and Boutique Salon, published with the reviewer names shown on Google. Confirm with the client that quoting these reviews on the website is approved before launch. Imagery is art-direction placeholder, not client photography.</p>
+  </section>
+</div>`}
 
 const categoryOptions={
   Bridal:['Bridal makeup & hair','Party / occasion makeup','Engagement makeup','Fashion / session makeup','Other bridal enquiry'],
@@ -117,13 +212,13 @@ function contact(){return `<div class="page-wrap"><div class="contact-hero"><sec
 
 function render(){
   const page = route();
-  const views={home,academy,services:servicesPage,portfolio,contact};
+  const views={home,academy,services:servicesPage,testimonials,contact};
   app.innerHTML=views[page]();
   document.title=titles[page];
   document.querySelectorAll('.main-nav a').forEach(a=>a.classList.toggle('active',a.dataset.route===page));
   menu.classList.remove('open');menuToggle.setAttribute('aria-expanded','false');
   if(page==='contact') setupContact();
-  if(page==='portfolio') setupPortfolio();
+  if(page==='testimonials') setupTestimonials();
   setupReveal();setupTilt();
   window.scrollTo({top:0,behavior:'smooth'});
 }
@@ -136,11 +231,11 @@ function setupContact(){
   if(prefillValue){const matched=[...select.options].find(o=>o.text.toLowerCase().includes(prefillValue.toLowerCase()));if(matched)select.value=matched.value;else{const opt=document.createElement('option');opt.textContent=prefillValue;select.add(opt);select.value=prefillValue}form.querySelector('#message').value=`I'm interested in ${prefillValue}. `;prefillValue='';}
   const date=document.querySelector('#date'); if(date)date.min=new Date().toISOString().slice(0,10);
 }
-function setupPortfolio(){
-  document.querySelectorAll('.filter-btn').forEach(btn=>btn.addEventListener('click',()=>{
-    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.toggle('active',b===btn));
-    const filter=btn.dataset.filter;
-    document.querySelectorAll('.gallery-card').forEach(card=>card.classList.toggle('hidden',filter!=='All'&&card.dataset.category!==filter));
+function setupTestimonials(){
+  document.querySelectorAll('[data-review-filter]').forEach(btn=>btn.addEventListener('click',()=>{
+    document.querySelectorAll('[data-review-filter]').forEach(b=>b.classList.toggle('active',b===btn));
+    const filter=btn.dataset.reviewFilter;
+    document.querySelectorAll('.review-card').forEach(card=>card.classList.toggle('hidden',filter!=='All'&&card.dataset.group!==filter));
   }));
 }
 function setupReveal(){
