@@ -1,27 +1,46 @@
+/* ==========================================================================
+   Glitz & Glamour Academy & Boutique Salon
+   All business copy derived from the client's Brand & Website Discovery
+   response (Q1, Q2, Q8–Q13, 20 Oct 2026). Do not add service, course or
+   credential claims that are not in that response.
+   ========================================================================== */
+
 const app = document.querySelector('#app');
 const toast = document.querySelector('.toast');
 const menu = document.querySelector('.main-nav');
 const menuToggle = document.querySelector('.menu-toggle');
-const phone = '+91 98363 81831';
-const phoneDigits = '919836381831';
-const email = 'glitzndglamour22@gmail.com';
-const address = 'C-15, Sammilani Park Rd, Survey Park, Santoshpur, Kolkata, West Bengal 700075';
-const insta = 'https://www.instagram.com/ikakolisengupta/';
+
+/* ---- Client-confirmed details ------------------------------------------- */
+const brand        = 'Glitz & Glamour Academy & Boutique Salon';
+const phone        = '+91 98363 81831';            // Q13 · WhatsApp
+const phoneDigits  = '919836381831';
+const landline     = '+91 98352 31831';            // Q13 · business telephone
+const phone2Digits = '919835231831';
+const email        = 'kakolina2002@gmail.com';     // Q13
+const insta        = 'https://www.instagram.com/ikakolysengupta/';  // Q14
+const address      = 'C-15, Sammilani Park, Santoshpur, Kolkata, West Bengal 700075';
+const landmark     = 'Near Suryodaya School';
+const mapsLink     = 'https://maps.app.goo.gl/gtsrktuJtRh5kzcH6?g_st=ac';  // Q12
+const googlePlace  = 'https://www.google.com/maps/place/Glitz+%26+Glamour+Academy+and+Boutique+Salon/@22.4878514,88.3908825,19z/data=!4m8!3m7!1s0x3a02719f99561d63:0x5b1f914edb357939!8m2!3d22.4880456!4d88.3908439!9m1!1b1!16s%2Fg%2F11gnp6df1l';
+
 let currentCategory = 'Bridal';
 let prefillValue = '';
 let toastTimer;
 
-const paths = {
-  home: '/', academy: '/academy', services: '/services', testimonials: '/testimonials', contact: '/contact'
-};
 const titles = {
-  home: 'Glitz & Glamour — Kakoli Sengupta',
-  academy: 'The Academy — Glitz & Glamour',
-  services: 'Beauty & Hair Services — Glitz & Glamour',
-  testimonials: 'Google Reviews & Testimonials — Glitz & Glamour',
-  contact: 'Contact & Booking — Glitz & Glamour'
+  home: 'Glitz & Glamour Academy & Boutique Salon — Kakoly Sengupta',
+  academy: 'The Academy — Glitz & Glamour Academy & Boutique Salon',
+  services: 'Boutique Salon Services — Glitz & Glamour Academy & Boutique Salon',
+  testimonials: 'Google Reviews — Glitz & Glamour Academy & Boutique Salon',
+  contact: 'Contact & Enquiries — Glitz & Glamour Academy & Boutique Salon'
 };
-const googlePlace = 'https://www.google.com/maps/place/Glitz+%26+Glamour+Academy+and+Boutique+Salon/@22.4878514,88.3908825,19z/data=!4m8!3m7!1s0x3a02719f99561d63:0x5b1f914edb357939!8m2!3d22.4880456!4d88.3908439!9m1!1b1!16s%2Fg%2F11gnp6df1l';
+const descriptions = {
+  home: 'Glitz & Glamour Academy & Boutique Salon is a premium beauty and professional education destination in Kolkata — luxury services, expert training, by appointment.',
+  academy: 'Professional beauty education in Kolkata: makeup artistry, hairdressing, hair colour theory and professional beauty techniques, taught by Kakoly Sengupta.',
+  services: 'Bridal makeup, bridal hairstyling, occasion makeup, hairstyling and Dermalogica and Davines salon services in Santoshpur, Kolkata. By appointment.',
+  testimonials: '4.9 stars from 103 Google reviews of Glitz & Glamour Academy & Boutique Salon — brides, salon regulars and Academy students, in their own words.',
+  contact: 'Book a salon appointment or enquire about a course. WhatsApp, telephone and email for Glitz & Glamour Academy & Boutique Salon, Santoshpur, Kolkata.'
+};
 
 function route(){
   const key = (location.hash.replace(/^#\/?/, '').split('?')[0] || 'home').toLowerCase();
@@ -35,66 +54,111 @@ function goContact(category, value=''){
   if(route()==='contact') render();
 }
 function image(src, alt, cls=''){ return `<img class="${cls}" src="${src}" alt="${alt}" loading="lazy">`; }
+
+/* ==========================================================================
+   HOME
+   ========================================================================== */
 function home(){return `
 <div class="page-wrap">
   <section class="home-hero">
     <div class="hero-copy">
-      <div class="eyebrow">Glitz & Glamour · Kolkata · Est. 2006</div>
-      <h1><span>Beauty with</span><span class="script">a point of view.</span></h1>
-      <p>Makeup artist, hairstylist and educator Kakoli Sengupta brings 30+ years of experience to the moments that matter — and to the next generation of artists.</p>
-      <div class="hero-actions"><a class="button" href="#/contact">Start a conversation <span class="arrow">↗</span></a><a class="text-link" href="#/academy">Meet the Academy <span>↗</span></a></div>
-      <div class="hero-facts"><div class="fact"><strong>30+</strong><small>years in beauty</small></div><div class="fact"><strong>Level 4</strong><small>City & Guilds · UK</small></div><div class="fact"><strong>3 ways</strong><small>to work with us</small></div></div>
+      <div class="eyebrow">Kolkata · By appointment</div>
+      <h1><span>Luxury services.</span><span class="script">Expert training.</span></h1>
+      <p>A premium beauty and professional education destination in Kolkata — bringing together the artistry of beauty, the science of skin and hair, and the excellence of professional training.</p>
+      <div class="hero-actions"><a class="button" href="#/contact" data-category-link="Salon">Book a salon appointment <span class="arrow">↗</span></a><a class="text-link" href="#/academy">Explore the Academy <span>↗</span></a></div>
+      <div class="hero-facts"><div class="fact"><strong>30+</strong><small>years in beauty</small></div><div class="fact"><strong>Level 4</strong><small>City &amp; Guilds · London</small></div><div class="fact"><strong>Dermalogica</strong><small>specialist</small></div></div>
     </div>
-    <div class="hero-art" data-tilt>${image('./public/images/bridal-editorial.png','Editorial art direction: a Bengali bride in red and gold')}<div class="art-label">Campaign visual · art direction</div><div class="art-index">01 — THE BRIDAL EDIT</div><div class="seal">Beauty that<br>still feels like<br><i>you</i></div></div>
+    <div class="hero-art" data-tilt>${image('./public/images/bridal-editorial.png','Bridal makeup and hair by Glitz & Glamour')}<div class="art-label">Bridal artistry</div><div class="art-index">01 — THE BRIDAL EDIT</div><div class="seal">True luxury<br>lies in<br><i>expertise</i></div></div>
   </section>
-  <div class="hero-marquee"><div class="marquee-track"><span>Bridal artistry <i>✳</i> Salon rituals <i>✳</i> Beauty education <i>✳</i> Made with intention <i>✳</i> Bridal artistry <i>✳</i> Salon rituals <i>✳</i> Beauty education <i>✳</i> Made with intention <i>✳</i></span><span aria-hidden="true">Bridal artistry <i>✳</i> Salon rituals <i>✳</i> Beauty education <i>✳</i> Made with intention <i>✳</i> Bridal artistry <i>✳</i> Salon rituals <i>✳</i> Beauty education <i>✳</i> Made with intention <i>✳</i></span></div></div>
+  <div class="hero-marquee"><div class="marquee-track"><span>Bridal artistry <i>✳</i> Dermalogica skincare <i>✳</i> Davines haircare <i>✳</i> Professional education <i>✳</i> Bridal artistry <i>✳</i> Dermalogica skincare <i>✳</i> Davines haircare <i>✳</i> Professional education <i>✳</i></span><span aria-hidden="true">Bridal artistry <i>✳</i> Dermalogica skincare <i>✳</i> Davines haircare <i>✳</i> Professional education <i>✳</i> Bridal artistry <i>✳</i> Dermalogica skincare <i>✳</i> Davines haircare <i>✳</i> Professional education <i>✳</i></span></div></div>
+
   <section class="section offers">
-    <div class="section-heading"><div><div class="eyebrow">One studio. Three ways in.</div><h2>Find your <span class="script">kind of glow.</span></h2></div><p>A wedding look, a little time for yourself, or the skills to make beauty your work. Start wherever you are.</p></div>
-    <div class="offer-grid">
-      <a href="#/contact" class="offer-card" data-category-link="Bridal"><div class="card-top"><div class="num">01 / For your day</div></div><div class="card-bottom"><div><h3>Bridal &amp; occasion</h3><p>Thoughtful makeup and hair, shaped around your features, your outfit and your day.</p><span class="text-link" style="color:inherit">Plan your look <span>↗</span></span></div><span class="circle-arrow">↗</span></div></a>
-      <a href="#/contact" class="offer-card" data-category-link="Salon"><div class="card-top"><div class="num">02 / For yourself</div></div><div class="card-bottom"><div><h3>The boutique salon</h3><p>Hair, makeup and beauty appointments with a personal touch in Santoshpur.</p><span class="text-link" style="color:inherit">Explore salon services <span>↗</span></span></div><span class="circle-arrow">↗</span></div></a>
-      <a href="#/contact" class="offer-card" data-category-link="Academy"><div class="card-top"><div class="num">03 / For your next chapter</div></div><div class="card-bottom"><div><h3>Glitz &amp; Glamour Academy</h3><p>Learn the craft hands-on, with an educator who's spent decades doing the work.</p><span class="text-link" style="color:inherit">Ask about courses <span>↗</span></span></div><span class="circle-arrow">↗</span></div></a>
+    <div class="section-heading"><div><div class="eyebrow">One destination. Two expressions of excellence.</div><h2>Two ways in.<br><span class="script">One standard.</span></h2></div><p>A boutique salon and a professional academy, under one roof in Santoshpur. Both built on personalised attention, technical expertise and understated luxury.</p></div>
+    <div class="offer-grid offer-grid--two">
+      <a href="#/services" class="offer-card"><div class="card-top"><div class="num">01 / For yourself</div></div><div class="card-bottom"><div><h3>Boutique Salon</h3><p>A thoughtfully curated range of premium skin, hair and makeup services — advanced Dermalogica skincare treatments, Davines professional haircare and colour, customised hair transformations and sophisticated makeup artistry.</p><span class="text-link" style="color:inherit">Explore salon services <span>↗</span></span></div><span class="circle-arrow">↗</span></div></a>
+      <a href="#/academy" class="offer-card"><div class="card-top"><div class="num">02 / For your next chapter</div></div><div class="card-bottom"><div><h3>The Academy</h3><p>Structured education, practical demonstrations, personalised mentoring and industry-focused training in makeup artistry, hairdressing, hair colour theory and professional beauty techniques.</p><span class="text-link" style="color:inherit">Explore the Academy <span>↗</span></span></div><span class="circle-arrow">↗</span></div></a>
     </div>
+    <p class="section-note">Bridal makeup and bridal hairstyling sit at the heart of the boutique salon. <a class="text-link" href="#/contact" data-category-link="Bridal">Plan your bridal look <span>↗</span></a></p>
   </section>
-  <section class="section"><div class="story-band"><div class="story-photo">${image('./public/images/academy-class.png','Art direction for a one-to-one makeup training session')}<div class="caption">A practice built on passing craft forward</div></div><div class="story-text"><div class="eyebrow">The artist behind the artistry</div><h2>Experience in her hands.<br><span class="script">Room for your vision.</span></h2><p>Kakoli Sengupta is a makeup artist, hairstylist and educator with more than three decades in the beauty industry. Her work spans bridal artistry, salon services and professional education — with a steady belief that technique matters most when it brings out the person in the chair.</p><div class="pullquote">“Good beauty work doesn't hide you. It helps you arrive as yourself.”</div><a class="text-link" href="#/academy">Discover Kakoli’s story <span>↗</span></a></div></div></section>
-  <section class="academy-feature"><div class="feature-image">${image('./public/images/academy-class.png','Concept image of a makeup educator demonstrating a technique')}<span class="image-credit">Academy · visual direction</span></div><div class="feature-copy"><div class="eyebrow">A place to learn the doing</div><h2>Good artists are made<br>one <i>good practice</i> at a time.</h2><p>At Glitz &amp; Glamour Academy, students learn through practical training in hair, makeup and beauty. Kakoli’s City &amp; Guilds Level 4 Licentiateship grounds a teaching practice shaped by decades in the industry.</p><a class="button" href="#/academy">Explore the Academy <span class="arrow">↗</span></a></div></section>
-  <div class="stat-strip"><div><strong>30+</strong><span>years of experience</span></div><div><strong>Level 4</strong><span>City &amp; Guilds · UK</span></div><div><strong>2006</strong><span>Academy established*</span></div><div><strong>Kolkata</strong><span>based in Santoshpur</span></div></div>
-  <section class="section"><div class="section-heading"><div><div class="eyebrow">A small note before the big day</div><h2>Let’s make a plan<br><span class="script">that feels like you.</span></h2></div><a class="button" href="#/contact">Choose your enquiry <span class="arrow">↗</span></a></div><p style="max-width:560px;color:var(--muted);font-size:13px;line-height:1.8">Tell us if you’re planning a bridal look, booking the salon, or exploring a course. We’ll point you to the right conversation.</p></section>
-  <p class="fine-print" style="padding:0 24px 28px;margin:0 auto;max-width:1240px;color:#8b7a72">*Academy establishment year appears in a public academy listing; please reconfirm before launch.</p>
+
+  <section class="section"><div class="story-band"><div class="story-photo">${image('./public/images/academy-class.png','Kakoly Sengupta teaching a makeup technique')}<div class="caption">The founder</div></div><div class="story-text"><div class="eyebrow">The founder</div><h2>Technical excellence.<br><span class="script">Individual attention.</span></h2><p>Kakoly Sengupta is an experienced beauty professional, makeup artist and educator with over 30 years of experience in the beauty and wellness industry. Her professional credentials include a City &amp; Guilds Level 4 Licentiateship in Hairdressing (City &amp; Guilds, London), Teacher’s Training from Vidal Sassoon, London; and specialist expertise in professional makeup artistry from London Makeup Academy, London.</p><p>As a Dermalogica Specialist, she brings a science-based approach to professional skincare, combining technical knowledge with personalised treatment protocols. Her experience spans luxury salon services, bridal and editorial-inspired makeup artistry, professional hair colour techniques, beauty education and individual mentoring.</p><div class="pullquote">“True luxury lies in expertise, individuality and attention to detail.”</div><a class="text-link" href="#/academy">Read her credentials <span>↗</span></a></div></div></section>
+
+  <section class="academy-feature"><div class="feature-image">${image('./public/images/academy-class.png','A makeup educator demonstrating a technique')}<span class="image-credit">The Academy</span></div><div class="feature-copy"><div class="eyebrow">Glitz &amp; Glamour Academy</div><h2>Not just <i>how.</i><br>Also <i>why.</i></h2><p>Our academy is dedicated to nurturing aspiring and practising beauty professionals through structured education, practical demonstrations, personalised mentoring and industry-focused training. The teaching approach combines scientific understanding, technical precision and individual mentoring — so students develop confidence in their own professional abilities.</p><a class="button" href="#/academy">Explore the Academy <span class="arrow">↗</span></a></div></section>
+
+  <div class="stat-strip"><div><strong>30+</strong><span>years of experience</span></div><div><strong>Level 4</strong><span>City &amp; Guilds · London</span></div><div><strong>Dermalogica</strong><span>specialist</span></div><div><strong>Kolkata</strong><span>Santoshpur, by appointment</span></div></div>
+
+  <section class="section"><div class="section-heading"><div><div class="eyebrow">Appointments &amp; admissions</div><h2>Tell us what you<br><span class="script">have in mind.</span></h2></div><a class="button" href="#/contact">Start an enquiry <span class="arrow">↗</span></a></div><p style="max-width:600px;color:var(--muted);font-size:13px;line-height:1.8">Salon visits and academy consultations are preferably arranged by prior appointment. All enquiries are handled personally by our team, who will confirm availability, fees and the next step with you directly.</p></section>
 </div>`}
 
-const courses = [
-  ['01','Hairdressing','Build a foundation in professional hairdressing, styling and salon-ready technique.','Hairdressing'],
-  ['02','Beauty therapy','Study beauty therapy fundamentals and practical treatment skills.','Beauty Therapy'],
-  ['03','Professional makeup artistry','Develop makeup technique for fashion, occasion and client work.','Professional Makeup Artistry'],
-  ['04','Bridal exclusive','Explore the planning and artistry behind complete bridal looks.','Bridal Exclusive'],
-  ['05','Long hair styling','Practise structure, finish and occasion styling for long hair.','Long Hair Styling'],
-  ['06','Haircut & colour','Ask about focused learning in haircutting and hair colour.','Haircut & Hair Colour'],
-  ['07','Advanced beauty therapy','Ask about advanced beauty therapy training and current entry requirements.','Advanced Beauty Therapy'],
-  ['08','Salon management','Learn the practical foundations of managing a beauty business.','Salon Management'],
-  ['09','Teacher training','A listed training pathway for City & Guilds qualifiers; confirm current eligibility and schedule.','Teacher Training'],
-  ['10','Advanced & in-house workshops','Selected PMU, airbrush, HydraFacial and related topics may be available; ask for the current calendar.','Advanced / in-house workshop']
+/* ==========================================================================
+   ACADEMY  (Q2, Q10, Q11, Q12, Q9)
+   ========================================================================== */
+const courseAreas = [
+  ['01','Makeup artistry','Professional makeup artistry, taught through practical demonstration and hands-on practice rather than theory alone.'],
+  ['02','Hairdressing','Professional hairdressing technique, built from the fundamentals up to salon-ready practice.'],
+  ['03','Hair colour theory','The theory behind professional hair colour, with individual mentoring on application.'],
+  ['04','Professional beauty techniques','Industry-focused beauty techniques, with the scientific understanding behind each one.']
 ];
+
 function academy(){return `<div class="page-wrap">
-  <section class="page-hero"><div class="breadcrumb">Home <span>/</span> Academy</div><div class="eyebrow">Learn with Glitz &amp; Glamour</div><h1>A craft worth learning.<br><em>A career worth building.</em></h1><p>Practical beauty education led by Kakoli Sengupta — artist, hairstylist and educator with 30+ years in the industry.</p></section>
-  <section class="section"><div class="academy-intro"><div><div class="eyebrow">The Academy · est. 2006*</div><h2>Technique, patience<br>and <span class="script">a little courage.</span></h2><p>Glitz &amp; Glamour Academy is built around hands-on learning in hair, makeup and beauty. The goal is not just to finish a course: it’s to build the confidence, discipline and practical skill to keep growing in the industry.</p><p>Founder and trainer Kakoli Sengupta holds a City &amp; Guilds (UK) Level 4 Licentiateship in Hairdressing. Students learn with the guidance of a working artist and an educator who understands the craft from both sides of the mirror.</p><div class="credential-stack"><div class="credential"><b>30+</b><span>years of professional experience</span></div><div class="credential"><b>Level 4</b><span>City &amp; Guilds Licentiateship · UK</span></div><div class="credential"><b>2006*</b><span>Academy establishment year, listed online</span></div></div></div><div class="academy-image">${image('./public/images/academy-class.png','Art direction image of a beauty educator training a student')}<div class="image-stamp">Learning, by doing · concept visual</div></div></div></section>
-  <section class="section course-section"><div class="section-heading"><div><div class="eyebrow">Choose your starting point</div><h2>Courses that meet you<br><span class="script">at the mirror.</span></h2></div><p>Course names and formats reflect publicly listed programme categories. Current batches, eligibility, fees and certification should be confirmed directly with the Academy.</p></div><div class="course-grid">${courses.map(c=>`<article class="course-card"><span class="course-num">${c[0]} / COURSE</span><h3>${c[1]}</h3><p>${c[2]}</p><button type="button" data-enquire="${c[3]}">Ask about this course ↗</button></article>`).join('')}</div><p class="course-footnote">Public listings have described 3-month certificate and 6–12-month diploma formats. Please ask the Academy to confirm current duration and availability. Advanced/in-house workshop topics are subject to current scheduling.</p></section>
-  <section class="section" style="padding-top:0"><div class="course-enquire"><div><h3>Not sure which course fits?</h3><p>Tell us what you want to learn. We’ll help you find the right starting point.</p></div><a class="button" href="#/contact" data-category-link="Academy">Enquire about a course <span class="arrow">↗</span></a></div></section>
+  <section class="page-hero"><div class="breadcrumb">Home <span>/</span> Academy</div><div class="eyebrow">Glitz &amp; Glamour Academy</div><h1>A craft worth learning.<br><em>A career worth building.</em></h1><p>Structured education, practical demonstrations, personalised mentoring and industry-focused training — led by Kakoly Sengupta, with over 30 years in the beauty and wellness industry.</p></section>
+
+  <section class="section"><div class="academy-intro"><div><div class="eyebrow">The Academy</div><h2>Professional education,<br>built on <span class="script">practice.</span></h2><p>Glitz &amp; Glamour Academy is dedicated to nurturing aspiring and practising beauty professionals through structured education, practical demonstrations, personalised mentoring and industry-focused training in makeup artistry, hairdressing, hair colour theory and professional beauty techniques.</p><p>Founder and educator Kakoly Sengupta holds a City &amp; Guilds Level 4 Licentiateship in Hairdressing (City &amp; Guilds, London) and Teacher’s Training from Vidal Sassoon, London. Her teaching combines scientific understanding, technical precision, practical demonstration and individual mentoring.</p><div class="credential-stack"><div class="credential"><b>30+</b><span>years of professional experience</span></div><div class="credential"><b>Level 4</b><span>City &amp; Guilds Licentiateship · London</span></div><div class="credential"><b>Vidal Sassoon</b><span>Teacher’s Training · London</span></div><div class="credential"><b>Dermalogica</b><span>Specialist · science-based skincare</span></div></div></div><div class="academy-image">${image('./public/images/academy-class.png','Kakoly Sengupta demonstrating a technique to a student')}<div class="image-stamp">Learning, by doing</div></div></div></section>
+
+  <section class="section course-section"><div class="section-heading"><div><div class="eyebrow">What you learn</div><h2>Four disciplines.<br><span class="script">One standard.</span></h2></div><p>Training across the core disciplines of professional beauty. Current batches, eligibility, fees and certification are confirmed directly with the Academy.</p></div><div class="course-grid">${courseAreas.map(c=>`<article class="course-card"><span class="course-num">${c[0]} / DISCIPLINE</span><h3>${c[1]}</h3><p>${c[2]}</p><button type="button" data-enquire="${c[1]}">Ask about this course ↗</button></article>`).join('')}</div></section>
+
+  <section class="section" style="padding-top:0"><div class="two-col">
+    <div class="col-card"><div class="eyebrow">Who it is for</div><h3>Aspiring and practising professionals</h3><p>Our academy welcomes aspiring and practising beauty professionals from Kolkata, across West Bengal and other parts of India. We offer in-person professional training as well as selected online educational programmes.</p></div>
+    <div class="col-card"><div class="eyebrow">How we teach</div><h3>Understanding, not imitation</h3><p>The aim is to help students understand not just how a technique works, but why it works — so they leave as independent, knowledgeable and confident professionals rather than people who simply reproduce techniques.</p></div>
+  </div></section>
+
+  <section class="section" style="padding-top:0"><div class="section-heading"><div><div class="eyebrow">Admissions</div><h2>How a course<br><span class="script">becomes a place.</span></h2></div><p>All admissions are handled personally by the Academy. There is no automated enrolment.</p></div>
+    <div class="steps">${[
+      ['01','Enquire','Reach us by WhatsApp, telephone or the enquiry form. Tell us which discipline interests you and what you would like to know.'],
+      ['02','Talk it through','Course information, syllabus, duration, fees, training format and upcoming batch availability are explained personally. Students may speak directly with the academy educator for guidance on course suitability and professional development.'],
+      ['03','Confirm your place','Admission is confirmed once you select the course, complete the required registration or payment formalities, and receive confirmation from the Academy.']
+    ].map(s=>`<div class="step"><span class="step-num">${s[0]}</span><h3>${s[1]}</h3><p>${s[2]}</p></div>`).join('')}</div>
+  </section>
+
+  <section class="section" style="padding-top:0"><div class="course-enquire"><div><h3>Not sure which discipline fits?</h3><p>Tell us what you want to learn. We’ll help you find the right starting point.</p></div><a class="button" href="#/contact" data-category-link="Academy">Enquire about a course <span class="arrow">↗</span></a></div></section>
 </div>`}
 
+/* ==========================================================================
+   SERVICES  (Q3, Q2, Q9, Q12, Q13)
+   ========================================================================== */
 const services = [
-  {num:'01',title:'Bridal makeup & hair',cat:'Bridal',desc:'A complete bridal look shaped around your features, outfit, ceremony and personal style.',detail:'Start with the date, venue and the look you have in mind. For an enquiry, share your event date, getting-ready location, number of people and whether you need makeup, hair or both. Travel and final availability are confirmed directly.'},
-  {num:'02',title:'Party & occasion makeup',cat:'Bridal',desc:'Makeup for engagements, celebrations, festive occasions and the days worth dressing up for.',detail:'A polished, personal look for your event. Tell us the occasion, date, start time and whether you would like makeup, hair styling or both.'},
-  {num:'03',title:'Hair styling',cat:'Salon',desc:'From a fresh everyday finish to occasion styling, with an eye for shape and detail.',detail:'Ask about styling options, hair length and finish. Appointment time and service suitability are confirmed after a quick consultation.'},
-  {num:'04',title:'Haircut & colour',cat:'Salon',desc:'Salon hair services in a welcoming boutique setting in Santoshpur, Kolkata.',detail:'Share your current hair length, desired change and any reference images when you enquire. A consultation helps the team advise on time, process and upkeep.'},
-  {num:'05',title:'Beauty & skin services',cat:'Salon',desc:'Personal beauty-care appointments and pre-bridal planning, tailored to your needs.',detail:'Let us know your timeline and what you would like to focus on. The salon will guide you on available treatments and suitable appointment slots.'},
-  {num:'06',title:'Fashion & session artistry',cat:'Bridal',desc:'Makeup and hair for shoots, fashion, performance and other creative briefs.',detail:'For a session brief, include the date, call time, location, creative references and the size of the team. Travel and production details are confirmed directly.'}
+  {num:'01',title:'Bridal makeup',cat:'Bridal',
+   desc:'Sophisticated makeup artistry for your wedding day, shaped around your features, your outfit and your ceremony.',
+   detail:'Bridal enquiries should include your name, event date, location and the services you need. A consultation may be recommended before the booking is confirmed. Bridal and special-event work outside the salon is considered on prior consultation, subject to availability, location and applicable travel charges.'},
+  {num:'02',title:'Bridal hairstyling',cat:'Bridal',
+   desc:'Bridal hair planned alongside your makeup, so the whole look holds together from the first photograph to the last.',
+   detail:'Booked with bridal makeup or on its own. Share your event date, getting-ready location and the hair look you have in mind, and we will confirm availability and timing directly.'},
+  {num:'03',title:'Occasion & party makeup',cat:'Bridal',
+   desc:'Makeup for engagements, celebrations, festive occasions and the days worth dressing up for.',
+   detail:'A polished, personal look for your event. Tell us the occasion, date and start time, and whether you would like makeup, hairstyling or both.'},
+  {num:'04',title:'Hairstyling',cat:'Salon',
+   desc:'Styling from a fresh everyday finish to occasion hair, with customised hair transformations in the salon chair.',
+   detail:'Appointment time and service suitability are confirmed after a short consultation, so the finish suits your hair and the occasion.'},
+  {num:'05',title:'Dermalogica skin treatments',cat:'Salon',
+   desc:'Advanced Dermalogica skincare treatments, bringing a science-based approach to professional skincare.',
+   detail:'Kakoly is a Dermalogica Specialist, combining technical knowledge with personalised treatment protocols. Tell us what you would like to address and the salon will advise on suitable treatments and appointment slots.'},
+  {num:'06',title:'Davines haircare &amp; colour',cat:'Salon',
+   desc:'Davines professional haircare and colour services, including customised hair transformations.',
+   detail:'For a colour transformation, a consultation is recommended before the service is confirmed. Share your current hair length, the change you have in mind and any reference images.'}
 ];
-function servicesPage(){return `<div class="page-wrap"><section class="page-hero"><div class="breadcrumb">Home <span>/</span> Services</div><div class="eyebrow">Bridal · Salon · Artistry</div><h1>Beauty work, with<br><em>the person in mind.</em></h1><p>From wedding mornings to the salon chair, every service begins with listening. Choose a starting point below, then tell us what you need.</p></section>
-  <section class="section"><div class="service-intro"><div><div class="eyebrow">Services at Glitz &amp; Glamour</div><h2>Made for the moment.<br><span class="script">Made for you.</span></h2></div><div class="service-note">“The best look isn't the loudest one. It's the one you recognise yourself in.”</div></div>
-  <div class="service-list" style="margin-top:42px">${services.map(s=>`<div class="service-row-wrap"><div class="service-row"><span class="row-no">${s.num}</span><h3>${s.title}</h3><p>${s.desc}</p><button class="circle-arrow service-toggle" aria-label="More about ${s.title}" data-service="${s.num}">↗</button></div><div class="service-extra" data-extra="${s.num}">${s.detail} <button type="button" class="text-link" style="margin-left:9px;border:0;background:none;padding:0" data-enquire="${s.title}" data-category="${s.cat}">Enquire about this service ↗</button></div></div>`).join('')}</div>
-  <div class="service-bottom"><div><h3>Your date, your plans.</h3><p>For bridal, salon and makeup bookings, begin with a short enquiry.</p></div><a href="#/contact" class="button" data-category-link="Bridal">Book / enquire <span class="arrow">↗</span></a></div></section></div>`}
+function servicesPage(){return `<div class="page-wrap">
+  <section class="page-hero"><div class="breadcrumb">Home <span>/</span> Services</div><div class="eyebrow">Boutique Salon</div><h1>Luxury services,<br><em>by appointment.</em></h1><p>A thoughtfully curated range of premium skin, hair and makeup services. Every service is designed around individual beauty needs, with a commitment to quality, precision and an exceptional client experience.</p></section>
 
+  <section class="section"><div class="service-intro"><div><div class="eyebrow">Services at Glitz &amp; Glamour</div><h2>Made for the moment.<br><span class="script">Made for you.</span></h2></div><div class="service-note">“We focus on enhancing individual beauty rather than following trends blindly. Attention to detail and maintaining the integrity of skin and hair are central to our work.”</div></div>
+  <div class="service-list" style="margin-top:42px">${services.map(s=>`<div class="service-row-wrap"><div class="service-row"><span class="row-no">${s.num}</span><h3>${s.title}</h3><p>${s.desc}</p><button class="circle-arrow service-toggle" aria-label="More about ${s.title}" data-service="${s.num}">↗</button></div><div class="service-extra" data-extra="${s.num}">${s.detail} <button type="button" class="text-link" style="margin-left:9px;border:0;background:none;padding:0" data-enquire="${s.title}" data-category="${s.cat}">Enquire about this service ↗</button></div></div>`).join('')}</div>
+  <div class="service-bottom"><div><h3>Your date, your plans.</h3><p>For bridal, salon and makeup bookings, begin with a short enquiry. We’ll confirm pricing and availability with you personally.</p></div><a href="#/contact" class="button" data-category-link="Salon">Enquire about a service <span class="arrow">↗</span></a></div></section>
+
+  <section class="section" style="padding-top:0"><div class="course-enquire"><div><h3>Thinking about the Academy?</h3><p>Professional training in makeup artistry, hairdressing, hair colour theory and beauty techniques.</p></div><a class="button" href="#/academy">Explore the Academy <span class="arrow">↗</span></a></div></section>
+</div>`}
+
+/* ==========================================================================
+   TESTIMONIALS
+   ========================================================================== */
 const reviewGroups = ['All','Bridal &amp; occasion','Salon &amp; hair','Academy &amp; students','Long-standing clients'];
 
 const reviewTags = [
@@ -117,7 +181,7 @@ const reviews = [
   },
   {
     name:'ANAMIKA BASU', when:'4 months ago', group:'Salon &amp; hair',
-    text:'My experience at Glitz &amp; Glamour Beauty Parlour was nothing short of wonderful. From the moment I walked in, I was welcomed with warmth, professionalism, and genuine care.'
+    text:'My experience at Glitz & Glamour Beauty Parlour was nothing short of wonderful. From the moment I walked in, I was welcomed with warmth, professionalism, and genuine care.'
   },
   {
     name:'Debarati Ghosh', when:'8 months ago', group:'Salon &amp; hair',
@@ -153,17 +217,17 @@ function testimonials(){return `<div class="page-wrap">
     <h1>What people say<br><em>when they leave the chair.</em></h1>
     <p>Glitz &amp; Glamour holds a 4.9-star rating from 103 Google reviews — written by brides, salon regulars and students who now work in the industry. Everything below is quoted as written, with names and dates exactly as they appear on Google.</p>
     <div class="rating-badge"><span class="stars" role="img" aria-label="4.9 out of 5 stars on Google">★★★★★</span><b>4.9</b><small>103 Google reviews</small></div>
-    <div class="hero-actions"><a class="button" href="#/contact">Book / enquire <span class="arrow">↗</span></a><a class="text-link" href="${googlePlace}" target="_blank" rel="noreferrer">Read all 103 reviews on Google <span>↗</span></a></div>
+    <div class="hero-actions"><a class="button" href="#/contact">Start an enquiry <span class="arrow">↗</span></a><a class="text-link" href="${googlePlace}" target="_blank" rel="noreferrer">Read all 103 reviews on Google <span>↗</span></a></div>
   </section>
-  <div class="stat-strip"><div><strong>4.9</strong><span>average Google rating</span></div><div><strong>103</strong><span>reviews and counting</span></div><div><strong>Three worlds</strong><span>bridal · salon · academy</span></div><div><strong>2003</strong><span>clients still with us since</span></div></div>
+  <div class="stat-strip"><div><strong>4.9</strong><span>average Google rating</span></div><div><strong>103</strong><span>reviews and counting</span></div><div><strong>Two expressions</strong><span>salon · academy</span></div><div><strong>30+</strong><span>years of experience</span></div></div>
   <section class="section"><div class="story-band">
-    <div class="story-photo">${image('./public/images/bridal-editorial.png','Art direction: a Bengali bride in red and gold')}<div class="caption">Bridal · art direction</div></div>
+    <div class="story-photo">${image('./public/images/bridal-editorial.png','Bridal makeup and hairstyling')}<div class="caption">Bridal artistry</div></div>
     <div class="story-text">
       <div class="eyebrow">Where the reviews begin</div>
       <h2>The bridal chair.<br><span class="script">The calm morning.</span></h2>
-      <p>Bridal work is the heart of Glitz &amp; Glamour — makeup and hair planned around the ceremony, the outfit, the photographs and the person wearing it all. Brides are usually the first to write, and they tend to remember two things: the look holding up through a long day, and how calm it felt getting there.</p>
+      <p>Bridal work is the heart of the boutique salon — makeup and hair planned around the ceremony, the outfit, the photographs and the person wearing it all. Brides are usually the first to write, and they tend to remember two things: the look holding up through a long day, and how calm it felt getting there.</p>
       <div class="pullquote">“It was truly an honour to be a part of your special journey and to style you for such important moments of your wedding.”</div>
-      <p class="quote-credit">Kakoli Sengupta, replying to a bride’s Google review</p>
+      <p class="quote-credit">Kakoly Sengupta, replying to a bride’s Google review</p>
       <a class="text-link" href="#/contact" data-category-link="Bridal">Plan your bridal look <span>↗</span></a>
     </div>
   </div></section>
@@ -171,50 +235,67 @@ function testimonials(){return `<div class="page-wrap">
     <div class="section-heading"><div><div class="eyebrow">The reviews</div><h2>Read the ones<br><span class="script">we didn’t have to write.</span></h2></div><p>Filter by the kind of work you’re here for. Every quote is an excerpt from a public Google review — nothing added, nothing polished.</p></div>
     <div class="tools-row">
       <div class="filter-row" role="group" aria-label="Filter reviews by topic">${reviewGroups.map((g,i)=>`<button class="filter-btn ${i===0?'active':''}" data-review-filter="${g}">${g}</button>`).join('')}</div>
-      <div class="tools-note">Showing 9 of 103 reviews. The rest — including the ones written in Bengali — are on Google.</div>
+      <div class="tools-note">Showing 8 of 103 reviews. The rest — including the ones written in Bengali — are on Google.</div>
     </div>
     <div class="review-wall">${reviews.map(reviewCard).join('')}</div>
-    <div class="note-box"><b>How these are published.</b> Quotes are reproduced from public Google reviews of Glitz &amp; Glamour Academy and Boutique Salon, trimmed with an ellipsis where a review continues, and grouped by topic for reading. Names, star ratings and dates are unchanged. <a class="text-link" href="${googlePlace}" target="_blank" rel="noreferrer">Read the full reviews on Google <span>↗</span></a></div>
+    <div class="note-box"><b>How these are published.</b> Quotes are reproduced from public Google reviews of Glitz &amp; Glamour Academy &amp; Boutique Salon, trimmed with an ellipsis where a review continues, and grouped by topic for reading. Names, star ratings and dates are unchanged. <a class="text-link" href="${googlePlace}" target="_blank" rel="noreferrer">Read the full reviews on Google <span>↗</span></a></div>
   </section>
   <section class="section themes-section">
     <div class="section-heading"><div><div class="eyebrow">What gets mentioned most</div><h2>The words that<br>keep <span class="script">coming up.</span></h2></div><p>Google groups our reviews into topics. Each number is how many reviews mention it.</p></div>
     <div class="theme-cloud">${reviewTags.map(([n,t])=>`<span class="theme-chip"><b>${n}</b><span>${t}</span></span>`).join('')}</div>
   </section>
   <section class="academy-feature">
-    <div class="feature-image">${image('./public/images/academy-class.png','Concept image of a makeup educator demonstrating a technique')}<span class="image-credit">Academy · visual direction</span></div>
+    <div class="feature-image">${image('./public/images/academy-class.png','An educator demonstrating a technique to a student')}<span class="image-credit">The Academy</span></div>
     <div class="feature-copy">
       <div class="eyebrow">From the Academy</div>
       <h2>Some students write<br>back <i>years later.</i></h2>
-      <blockquote class="academy-quote">“At Guild and Glamour Academy, I learned makeup and hairdressing, but beyond the skills, I gained something even more precious. Whenever we found ourselves stuck in life’s challenges, Kakoli Di was always there with her wise advice…”</blockquote>
+      <blockquote class="academy-quote">“At Guild and Glamour Academy [sic], I learned makeup and hairdressing, but beyond the skills, I gained something even more precious. Whenever we found ourselves stuck in life’s challenges, Kakoli Di was always there with her wise advice…”</blockquote>
       <cite>Kaberi D. · Google review · a year ago</cite>
-      <p>Glitz &amp; Glamour Academy teaches makeup artistry, hairdressing and beauty therapy hands-on, in small groups, with a working artist at the front of the room. Graduates have gone on to salon floors, bridal teams and businesses of their own — and a few of them come back to write about it.</p>
+      <p>Glitz &amp; Glamour Academy trains aspiring and practising beauty professionals through structured education, practical demonstration, personalised mentoring and industry-focused training — in small groups, with a working educator at the front of the room.</p>
       <a class="button" href="#/academy">Explore the Academy <span class="arrow">↗</span></a>
     </div>
   </section>
   <section class="section">
-    <div class="section-heading"><div><div class="eyebrow">Your turn</div><h2>Come for the work.<br><span class="script">Leave your own review.</span></h2></div><a class="button" href="#/contact">Start a conversation <span class="arrow">↗</span></a></div>
+    <div class="section-heading"><div><div class="eyebrow">Your turn</div><h2>Come for the work.<br><span class="script">Leave your own review.</span></h2></div><a class="button" href="#/contact">Start an enquiry <span class="arrow">↗</span></a></div>
     <p style="max-width:620px;color:var(--muted);font-size:13px;line-height:1.8">Bridal, salon or Academy — tell us what you have in mind and we’ll point you to the right conversation. After your appointment, you’re welcome to add your voice on Google.</p>
     <div class="cta-links"><a class="text-link" href="${googlePlace}" target="_blank" rel="noreferrer">Read all 103 Google reviews <span>↗</span></a><a class="text-link" href="${googlePlace}" target="_blank" rel="noreferrer">Write your review on Google <span>↗</span></a></div>
-    <p class="fine-print" style="margin-top:34px">Review quotes above are excerpts from public Google reviews of Glitz &amp; Glamour Academy and Boutique Salon, published with the reviewer names shown on Google. Confirm with the client that quoting these reviews on the website is approved before launch. Imagery is art-direction placeholder, not client photography.</p>
+    <p class="fine-print" style="margin-top:34px">Review quotes are excerpts from public Google reviews of Glitz &amp; Glamour Academy and Boutique Salon, published with the reviewer names shown on Google.</p>
   </section>
 </div>`}
 
-const categoryOptions={
-  Bridal:['Bridal makeup & hair','Party / occasion makeup','Engagement makeup','Fashion / session makeup','Other bridal enquiry'],
-  Salon:['Hair styling','Haircut','Hair colour','Beauty / skin appointment','Pre-bridal consultation','Other salon service'],
-  Academy:['Professional makeup artistry','Hairdressing','Beauty therapy','Bridal exclusive','Long hair styling','Haircut & hair colour','Salon management','Advanced / in-house workshop','Other course enquiry']
+/* ==========================================================================
+   CONTACT  (Q9, Q12, Q13)
+   ========================================================================== */
+const categoryOptions = {
+  Bridal:['Bridal makeup','Bridal hairstyling','Bridal makeup & hairstyling','Occasion / party makeup','Other bridal enquiry'],
+  Salon:['Dermalogica skin treatment','Davines haircare & colour','Haircut & styling','Hair transformation','Occasion hairstyling','Other salon service'],
+  Academy:['Makeup artistry','Hairdressing','Hair colour theory','Professional beauty techniques','Online programme','Other course enquiry']
 };
-function contact(){return `<div class="page-wrap"><div class="contact-hero"><section class="page-hero"><div class="breadcrumb" style="color:#c5aca6">Home <span>/</span> Contact &amp; Booking</div><div class="eyebrow">Your next step starts here</div><h1>One enquiry.<br><em>Three ways forward.</em></h1><p>Tell us if you’re here for bridal, salon or the Academy. We’ll make sure your question finds the right person.</p></section></div>
-  <section class="section"><div class="booking-layout"><aside class="booking-aside"><div class="eyebrow">Come say hello</div><h2>Good things start<br>with a <span class="script">conversation.</span></h2><p>Share a few details and the Glitz &amp; Glamour team can follow up about availability, fees and the next step. Submitting the form opens a pre-filled WhatsApp message — it is not stored on this website.</p><div class="contact-card"><div class="contact-line"><b>↗</b><div><a href="tel:+919836381831">${phone}</a><small>Call or WhatsApp</small></div></div><div class="contact-line"><b>✉</b><div><a href="mailto:${email}">${email}</a><small>Email the studio</small></div></div><div class="contact-line"><b>◎</b><div><a href="${insta}" target="_blank" rel="noreferrer">@ikakolisengupta ↗</a><small>Instagram · please confirm spelling</small></div></div></div></aside>
-    <form class="booking-form" id="booking-form"><h2>What can we help with?</h2><p>Choose a path, then tell us a little more. All fields marked * are required.</p><div class="booking-choices" role="group" aria-label="Enquiry type"><button type="button" class="choice selected" data-choice="Bridal"><span>01 / Occasion</span><b>Bridal</b></button><button type="button" class="choice" data-choice="Salon"><span>02 / For you</span><b>Salon</b></button><button type="button" class="choice" data-choice="Academy"><span>03 / Learn</span><b>Academy</b></button></div><input type="hidden" name="category" value="Bridal"><div class="form-grid"><div class="field"><label for="name">Your name *</label><input id="name" name="name" required autocomplete="name" placeholder="Name" /></div><div class="field"><label for="phone">Phone / WhatsApp *</label><input id="phone" name="phone" required autocomplete="tel" type="tel" placeholder="+91 ..." /></div><div class="field"><label for="interest">I'm interested in *</label><select id="interest" name="interest" required>${categoryOptions['Bridal'].map(x=>`<option>${x}</option>`).join('')}</select></div><div class="field"><label for="date" id="date-label">Preferred date *</label><input id="date" name="date" required type="date" /></div><div class="field full"><label for="message">A few details</label><textarea id="message" name="message" placeholder="Event date and location, the salon service you have in mind, or what you’d love to learn..."></textarea></div></div><div class="form-actions"><button class="button" type="submit">Continue on WhatsApp <span class="arrow">↗</span></button><span class="form-hint">The team will confirm availability and fees directly.<br>No payment is collected on this site.</span></div><div class="success-message" role="status">Your enquiry is ready. WhatsApp will open with your details — please press Send there to share it.</div></form></div>
-    <div class="map-panel"><div><h3>Find us in Santoshpur.</h3><p>${address}</p></div><a class="button light" target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}">Get directions <span class="arrow">↗</span></a></div>
+
+function contact(){return `<div class="page-wrap"><div class="contact-hero"><section class="page-hero"><div class="breadcrumb" style="color:#c5aca6">Home <span>/</span> Contact &amp; Enquiries</div><div class="eyebrow">One destination. Two expressions of excellence.</div><h1>One enquiry.<br><em>Handled personally.</em></h1><p>Tell us whether you are booking the boutique salon or enquiring about a course. All enquiries are handled personally by our team.</p></section></div>
+  <section class="section"><div class="booking-layout"><aside class="booking-aside"><div class="eyebrow">Come say hello</div><h2>Good things start<br>with a <span class="script">conversation.</span></h2><p>Share a few details and we can follow up about availability, fees and the next step. Submitting the form opens a pre-filled WhatsApp message — it is not stored on this website.</p><div class="contact-card">
+    <div class="contact-line"><b>✆</b><div><a href="https://wa.me/${phoneDigits}" target="_blank" rel="noreferrer">${phone}</a><small>WhatsApp</small></div></div>
+    <div class="contact-line"><b>↗</b><div><a href="tel:+${phone2Digits}">${landline}</a><small>Call the salon</small></div></div>
+    <div class="contact-line"><b>✉</b><div><a href="mailto:${email}">${email}</a><small>Email</small></div></div>
+    <div class="contact-line"><b>◎</b><div><a href="${insta}" target="_blank" rel="noreferrer">@ikakolysengupta ↗</a><small>Instagram</small></div></div>
+  </div></aside>
+    <form class="booking-form" id="booking-form"><h2>What can we help with?</h2><p>Choose salon services, bridal makeup or the Academy, then tell us a little more. All fields marked * are required.</p><div class="booking-choices" role="group" aria-label="Enquiry type"><button type="button" class="choice selected" data-choice="Bridal"><span>01 / Occasion</span><b>Bridal</b></button><button type="button" class="choice" data-choice="Salon"><span>02 / For you</span><b>Salon</b></button><button type="button" class="choice" data-choice="Academy"><span>03 / Learn</span><b>Academy</b></button></div><input type="hidden" name="category" value="Bridal"><div class="form-grid"><div class="field"><label for="name">Your name *</label><input id="name" name="name" required autocomplete="name" placeholder="Name" /></div><div class="field"><label for="phone">Phone / WhatsApp *</label><input id="phone" name="phone" required autocomplete="tel" type="tel" placeholder="+91 ..." /></div><div class="field"><label for="interest">I'm interested in *</label><select id="interest" name="interest" required>${categoryOptions['Bridal'].map(x=>`<option>${x}</option>`).join('')}</select></div><div class="field"><label for="date" id="date-label">Event date *</label><input id="date" name="date" required type="date" /></div><div class="field hidden" id="location-field"><label for="location">Event location</label><input id="location" name="location" placeholder="Venue and area" /></div><div class="field full"><label for="message">A few details</label><textarea id="message" name="message" placeholder="Event date and location, the salon service you have in mind, or what you’d love to learn..."></textarea></div></div><div class="form-actions"><button class="button" type="submit">Continue on WhatsApp <span class="arrow">↗</span></button><span class="form-hint">We will confirm availability and fees directly.<br>No payment is collected on this site.</span></div><div class="success-message" role="status">Your enquiry is ready. WhatsApp will open with your details — please press Send there to share it.</div></form></div>
+
+    <div class="process-grid"><div class="process-col"><div class="eyebrow">Boutique Salon Services</div><h3>How an enquiry becomes an appointment</h3><ol><li>You contact us through WhatsApp, telephone, social media or a direct enquiry.</li><li>Our team responds, understands your requirements and provides information about suitable services, pricing and availability.</li><li>For specialised treatments, hair colour transformations and bridal makeup, a consultation may be recommended before confirming the service.</li><li>Appointments are confirmed after mutually agreeing the date, time and service requirements. Advance payments may be requested for selected services or bookings.</li></ol></div><div class="process-col"><div class="eyebrow">Academy Admissions</div><h3>How an enquiry becomes a place</h3><ol><li>Prospective students enquire through WhatsApp, telephone, social media or direct communication.</li><li>Course information, syllabus, duration, fees, training format and upcoming batch availability are explained personally.</li><li>Students may speak directly with the academy educator for guidance regarding course suitability and professional development.</li><li>Admission is confirmed once the student selects the course, completes the required registration or payment formalities and receives confirmation from the Academy.</li></ol></div></div>
+
+    <div class="map-panel"><div><h3>Find us in Santoshpur.</h3><p>${address}<br>${landmark}</p><p class="map-note">All salon visits and academy consultations are preferably arranged by prior appointment.</p></div><a class="button light" target="_blank" rel="noreferrer" href="${mapsLink}">Get directions <span class="arrow">↗</span></a></div>
   </section></div>`}
 
+/* ==========================================================================
+   RENDER
+   ========================================================================== */
 function render(){
   const page = route();
   const views={home,academy,services:servicesPage,testimonials,contact};
   app.innerHTML=views[page]();
   document.title=titles[page];
+  const meta=document.querySelector('meta[name="description"]');
+  if(meta)meta.setAttribute('content',descriptions[page]);
   document.querySelectorAll('.main-nav a').forEach(a=>a.classList.toggle('active',a.dataset.route===page));
   menu.classList.remove('open');menuToggle.setAttribute('aria-expanded','false');
   if(page==='contact') setupContact();
@@ -222,15 +303,41 @@ function render(){
   setupReveal();setupTilt();
   window.scrollTo({top:0,behavior:'smooth'});
 }
+
+function syncForm(cat){
+  const form=document.querySelector('#booking-form'); if(!form)return;
+  form.querySelector('[name="category"]').value=cat;
+  const select=form.querySelector('#interest');
+  select.innerHTML=categoryOptions[cat].map(x=>`<option>${x}</option>`).join('');
+  const dateInput=form.querySelector('#date'), dateLabel=form.querySelector('#date-label');
+  const locField=form.querySelector('#location-field'), locInput=form.querySelector('#location');
+  if(cat==='Bridal'){
+    dateLabel.textContent='Event date *'; dateInput.required=true;
+    locField.classList.remove('hidden'); locInput.required=true;
+  }else if(cat==='Academy'){
+    dateLabel.textContent='Preferred batch / start date *'; dateInput.required=true;
+    locField.classList.add('hidden'); locInput.required=false;
+  }else{
+    dateLabel.textContent='Preferred date'; dateInput.required=false;
+    locField.classList.add('hidden'); locInput.required=false;
+  }
+}
+
 function setupContact(){
   const form=document.querySelector('#booking-form'); if(!form)return;
   document.querySelectorAll('.choice').forEach(btn=>btn.classList.toggle('selected',btn.dataset.choice===currentCategory));
-  form.querySelector('[name="category"]').value=currentCategory;
+  syncForm(currentCategory);
   const select=form.querySelector('#interest');
-  select.innerHTML=categoryOptions[currentCategory].map(x=>`<option>${x}</option>`).join('');
-  if(prefillValue){const matched=[...select.options].find(o=>o.text.toLowerCase().includes(prefillValue.toLowerCase()));if(matched)select.value=matched.value;else{const opt=document.createElement('option');opt.textContent=prefillValue;select.add(opt);select.value=prefillValue}form.querySelector('#message').value=`I'm interested in ${prefillValue}. `;prefillValue='';}
+  if(prefillValue){
+    const matched=[...select.options].find(o=>o.text.toLowerCase().includes(prefillValue.toLowerCase()));
+    if(matched)select.value=matched.value;
+    else{const opt=document.createElement('option');opt.textContent=prefillValue;select.add(opt);select.value=prefillValue}
+    form.querySelector('#message').value=`I'm interested in ${prefillValue}. `;
+    prefillValue='';
+  }
   const date=document.querySelector('#date'); if(date)date.min=new Date().toISOString().slice(0,10);
 }
+
 function setupTestimonials(){
   document.querySelectorAll('[data-review-filter]').forEach(btn=>btn.addEventListener('click',()=>{
     document.querySelectorAll('[data-review-filter]').forEach(b=>b.classList.toggle('active',b===btn));
@@ -239,11 +346,21 @@ function setupTestimonials(){
   }));
 }
 function setupReveal(){
-  const items=document.querySelectorAll('.section-heading,.story-band,.academy-intro,.course-card,.service-row-wrap,.gallery-card,.booking-form,.booking-aside,.map-panel');
+  const items=document.querySelectorAll('.section-heading,.story-band,.academy-intro,.course-card,.service-row-wrap,.booking-form,.booking-aside,.map-panel,.step,.col-card,.process-col');
   if(!('IntersectionObserver' in window)){items.forEach(x=>x.classList.add('visible'));return;}
-  const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}}),{threshold:.08});items.forEach((el,i)=>{el.classList.add('reveal');el.style.transitionDelay=(i%4)*55+'ms';obs.observe(el)});
+  const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}}),{threshold:.08});
+  items.forEach((el,i)=>{el.classList.add('reveal');el.style.transitionDelay=(i%4)*55+'ms';obs.observe(el)});
 }
-function setupTilt(){const el=document.querySelector('[data-tilt]');if(!el||matchMedia('(prefers-reduced-motion: reduce)').matches)return;el.addEventListener('pointermove',e=>{if(e.pointerType==='touch')return;const r=el.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5;const y=(e.clientY-r.top)/r.height-.5;const img=el.querySelector('img');img.style.transform=`perspective(950px) rotateY(${x*4}deg) rotateX(${-y*3}deg) scale(1.015)`});el.addEventListener('pointerleave',()=>{const img=el.querySelector('img');img.style.transform=''})}
+function setupTilt(){
+  const el=document.querySelector('[data-tilt]');
+  if(!el||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  el.addEventListener('pointermove',e=>{
+    if(e.pointerType==='touch')return;
+    const r=el.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5;const y=(e.clientY-r.top)/r.height-.5;
+    const img=el.querySelector('img');img.style.transform=`perspective(950px) rotateY(${x*4}deg) rotateX(${-y*3}deg) scale(1.015)`;
+  });
+  el.addEventListener('pointerleave',()=>{const img=el.querySelector('img');img.style.transform=''});
+}
 function showToast(text){toast.textContent=text;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),2600)}
 
 window.addEventListener('hashchange',render);
@@ -258,11 +375,9 @@ document.addEventListener('click',e=>{
   const enquire=e.target.closest('[data-enquire]');
   if(enquire){const category=enquire.dataset.category||'Academy';goContact(category,enquire.dataset.enquire);return;}
   const choice=e.target.closest('[data-choice]');
-  if(choice){currentCategory=choice.dataset.choice;document.querySelectorAll('.choice').forEach(b=>b.classList.toggle('selected',b===choice));const f=document.querySelector('#booking-form');if(f){f.querySelector('[name="category"]').value=currentCategory;const s=f.querySelector('#interest');s.innerHTML=categoryOptions[currentCategory].map(x=>`<option>${x}</option>`).join('');}return;}
+  if(choice){currentCategory=choice.dataset.choice;document.querySelectorAll('.choice').forEach(b=>b.classList.toggle('selected',b===choice));syncForm(currentCategory);return;}
   const toggle=e.target.closest('.service-toggle');
   if(toggle){const detail=document.querySelector(`[data-extra="${toggle.dataset.service}"]`);detail.classList.toggle('open');toggle.textContent=detail.classList.contains('open')?'−':'↗';return;}
-  const card=e.target.closest('.gallery-card');
-  if(card){const modal=document.createElement('div');modal.className='modal open';modal.innerHTML=`<div class="modal-box"><button class="modal-close" aria-label="Close">×</button><img src="${card.dataset.image}" alt="${card.dataset.caption}"><div class="modal-caption"><span>${card.dataset.caption}</span><small style="font:9px var(--sans);letter-spacing:.13em;text-transform:uppercase">Visual direction · concept</small></div></div>`;document.body.append(modal);modal.addEventListener('click',ev=>{if(ev.target===modal||ev.target.closest('.modal-close'))modal.remove()});document.addEventListener('keydown',function esc(ev){if(ev.key==='Escape'){modal.remove();document.removeEventListener('keydown',esc)}},{once:true});return;}
 });
 
 document.addEventListener('submit',e=>{
@@ -270,7 +385,16 @@ document.addEventListener('submit',e=>{
   e.preventDefault();
   const fd=new FormData(e.target);
   const data=Object.fromEntries(fd.entries());
-  const body=[`Hello Glitz & Glamour, I'd like to enquire about ${data.category}.`,`Name: ${data.name}`,`Phone: ${data.phone}`,`Interested in: ${data.interest}`,`${data.category==='Academy'?'Preferred batch / start date':'Preferred date'}: ${data.date}`,data.message?`A few details: ${data.message}`:''].filter(Boolean).join('\n');
+  const dateLabel=data.category==='Academy'?'Preferred batch / start date':'Preferred date';
+  const body=[
+    `Hello Glitz & Glamour, I'd like to enquire about ${data.category}.`,
+    `Name: ${data.name}`,
+    `Phone: ${data.phone}`,
+    `Interested in: ${data.interest}`,
+    data.date?`${dateLabel}: ${data.date}`:'',
+    data.location?`Event location: ${data.location}`:'',
+    data.message?`A few details: ${data.message}`:''
+  ].filter(Boolean).join('\n');
   const url=`https://wa.me/${phoneDigits}?text=${encodeURIComponent(body)}`;
   const win=window.open(url,'_blank','noopener,noreferrer');
   document.querySelector('.success-message').classList.add('show');
