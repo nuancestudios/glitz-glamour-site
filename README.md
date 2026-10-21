@@ -34,9 +34,16 @@ names and dates shown on Google. The full review text lives on Google; the page 
 Nothing on the page is invented, and no review ratings or names were altered. Some quotes contain the
 spelling "Kakoli"; this is how the reviewer wrote it and has deliberately been left untouched.
 
+## Brand mark
+
+`public/images/logo-mark-96.png` is the client-supplied emblem (gold profile and botanical crest on burgundy),
+cropped to a circle and used beside the wordmark in the header and footer. `public/images/logo-mark.png` is the
+larger master copy (used for `og:image` and the Apple touch icon); `public/favicon.png` is the 64 px favicon.
+The source is a square 1024 px PNG. Ask the client for a vector (SVG/AI/EPS) before any print or signage use.
+
 ## Housekeeping
 
-- Images in `public/images/` are **art-direction placeholders**, not client photography. Replace them with
+- Images in `public/images/` other than the brand mark are **art-direction placeholders**, not client photography. Replace them with
   Kakoly-approved images before the site is promoted publicly.
 - `index.html` uses relative `./` paths throughout. Keep `index.html`, `styles.css`, `app.js` and the `public`
   folder at the top level of the repository.
