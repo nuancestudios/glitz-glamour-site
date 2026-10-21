@@ -155,3 +155,9 @@
   .toast{bottom:62px}
   .footer-credit{margin-top:16px}
 }
+
+/* Home · Academy band ("Not just how. Also why.") — client photography.
+   The frame is low-key and dimly lit, so it skips the .78 wash used for the
+   brighter placeholder shots and keeps a clean bottom fade for the caption. */
+.academy-feature--photo img{opacity:1;filter:brightness(1.05) contrast(1.02) saturate(1.03)}
+.academy-feature--photo .feature-image:after{background:linear-gradient(0deg,#30101ec9,#30101e14 58%,transparent 76%)}
