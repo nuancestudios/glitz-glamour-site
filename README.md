@@ -43,7 +43,14 @@ The source is a square 1024 px PNG. Ask the client for a vector (SVG/AI/EPS) bef
 
 ## Housekeeping
 
-- Images in `public/images/` other than the brand mark are **art-direction placeholders**, not client photography. Replace them with
+- `public/images/academy-class.jpg` is **client-supplied photography** (a live masterclass demonstration) and replaces
+  the earlier placeholder. `academy-class-square.jpg` is a square crop of the same frame, used in the founder band on
+  Home, where the slot is taller than wide. The untouched upload is kept as `academy-class-original.jpeg` for re-crops.
+- `public/images/academy-touchup.jpg` is also client-supplied — a make-up touch-up at a lit dressing table. It is used
+  for the Home page's Academy band ("Not just *how.* Also *why.*") **only**, and carries the
+  `.academy-feature--photo` modifier in `styles.css` because the frame is low-key and needs far less of the dark
+  overlay than the brighter placeholder shots. Untouched upload: `academy-touchup-original.jpeg`.
+- `bridal-editorial.png` and the unused `salon-styling.png` remain **art-direction placeholders** — replace them with
   Kakoly-approved images before the site is promoted publicly.
 - `index.html` uses relative `./` paths throughout. Keep `index.html`, `styles.css`, `app.js` and the `public`
   folder at the top level of the repository.
