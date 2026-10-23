@@ -41,6 +41,23 @@ cropped to a circle and used beside the wordmark in the header and footer. `publ
 larger master copy (used for `og:image` and the Apple touch icon); `public/favicon.png` is the 64 px favicon.
 The source is a square 1024 px PNG. Ask the client for a vector (SVG/AI/EPS) before any print or signage use.
 
+## Icons and mobile
+
+- **Icons are inline SVG, never characters.** The decorative glyphs the design uses (the ↗ arrow, the ✳ asterisk,
+  the ✆ / ✉ / ◎ contact marks, the ★ review stars) are drawn from the `<svg class="icon-sprite">` block at the top
+  of `index.html` and referenced with `ic('arrow')` etc. in `app.js`. This is not a style preference: iOS has no
+  glyph for these characters in the webfonts, so it substitutes colour **emoji** — the asterisk arrived as a green
+  emoji disc and the arrows as blue Apple glyphs. Do not reintroduce them as text.
+- **Mobile breakpoints** are `720px` (layout collapses, menu becomes a drawer, 16px form fields so iOS does not zoom
+  on focus, quick-contact bar pinned with `env(safe-area-inset-bottom)`) and `420px` / `380px` (small-phone type and
+  header tuning). There is also a short-landscape rule so the hero does not fill a rotated iPhone.
+- **Touch targets** are 44px minimum for buttons, filters, nav rows and the menu toggle; text links carry a 28px
+  tap area.
+- **Contrast** — `--gold-ink` (#755427) is the gold used for _text_; `--gold` (#b58c5c) stays for rules and borders
+  only. `--muted` was darkened to #665552 so body copy passes WCAG AA on every cream panel.
+- `prefers-reduced-motion` stops the marquee and reveals; hover-only effects are gated behind `@media(hover:hover)`
+  equivalents so they do not "stick" after a tap.
+
 ## Housekeeping
 
 - `public/images/academy-class.jpg` is **client-supplied photography** (a live masterclass demonstration) and replaces
@@ -50,8 +67,10 @@ The source is a square 1024 px PNG. Ask the client for a vector (SVG/AI/EPS) bef
   for the Home page's Academy band ("Not just *how.* Also *why.*") **only**, and carries the
   `.academy-feature--photo` modifier in `styles.css` because the frame is low-key and needs far less of the dark
   overlay than the brighter placeholder shots. Untouched upload: `academy-touchup-original.jpeg`.
-- `bridal-editorial.png` and the unused `salon-styling.png` remain **art-direction placeholders** — replace them with
-  Kakoly-approved images before the site is promoted publicly.
+- `bridal-editorial.jpg` (928 × 1152) and the unused `salon-styling.png` remain **art-direction placeholders** —
+  replace them with Kakoly-approved images before the site is promoted publicly. The bridal image was 2.3 MB as a
+  PNG; the JPEG is 140 KB and is used at `./public/images/bridal-editorial.jpg`. The untouched original is kept as
+  `bridal-editorial-original.png` for re-crops.
 - `index.html` uses relative `./` paths throughout. Keep `index.html`, `styles.css`, `app.js` and the `public`
   folder at the top level of the repository.
 

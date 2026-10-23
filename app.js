@@ -53,7 +53,26 @@ function goContact(category, value=''){
   location.hash = '/contact';
   if(route()==='contact') render();
 }
-function image(src, alt, cls=''){ return `<img class="${cls}" src="${src}" alt="${alt}" loading="lazy">`; }
+/* Intrinsic sizes, so the browser reserves space before an image loads.
+   Without width/height every late image shifts the page under the reader's
+   thumb — the usual cause of mistaps on a phone. */
+const imageSizes = {
+  'bridal-editorial.jpg':[928,1152],
+  'academy-class.jpg':[1280,960],
+  'academy-class-square.jpg':[900,900],
+  'academy-touchup.jpg':[1600,1066]
+};
+function image(src, alt, cls='', opts={}){
+  const key = src.split('/').pop();
+  const [w,h] = opts.w&&opts.h ? [opts.w,opts.h] : (imageSizes[key] || []);
+  const dims = w&&h ? ` width="${w}" height="${h}"` : '';
+  const eager = opts.eager===true;
+  return `<img class="${cls}" src="${src}" alt="${alt}"${dims} loading="${eager?'eager':'lazy'}" decoding="async"${eager?' fetchpriority="high"':''}>`;
+}
+/* Inline-SVG icon. Never use ↗ ✳ ✆ ✉ ★ as text: iOS substitutes colour
+   emoji for any glyph the webfonts lack, which breaks the gold/wine palette. */
+function ic(name,cls=''){ return `<svg class="icon ${cls}" aria-hidden="true" focusable="false"><use href="#i-${name}"></use></svg>`; }
+const stars=n=>Array.from({length:n},()=>ic('star','icon--star')).join('');
 
 /* ==========================================================================
    HOME
@@ -65,29 +84,29 @@ function home(){return `
       <div class="eyebrow">Kolkata · By appointment</div>
       <h1><span>Luxury services.</span><span class="script">Expert training.</span></h1>
       <p>A premium beauty and professional education destination in Kolkata — bringing together the artistry of beauty, the science of skin and hair, and the excellence of professional training.</p>
-      <div class="hero-actions"><a class="button" href="#/contact" data-category-link="Salon">Book a salon appointment <span class="arrow">↗</span></a><a class="text-link" href="#/academy">Explore the Academy <span>↗</span></a></div>
+      <div class="hero-actions"><a class="button" href="#/contact" data-category-link="Salon">Book a salon appointment <span class="arrow">${ic('arrow')}</span></a><a class="text-link" href="#/academy">Explore the Academy <span>${ic('arrow')}</span></a></div>
       <div class="hero-facts"><div class="fact"><strong>30+</strong><small>years in beauty</small></div><div class="fact"><strong>Level 4</strong><small>City &amp; Guilds · London</small></div><div class="fact"><strong>Dermalogica</strong><small>specialist</small></div></div>
     </div>
-    <div class="hero-art" data-tilt>${image('./public/images/bridal-editorial.png','Bridal makeup and hair by Glitz & Glamour')}<div class="art-label">Bridal artistry</div><div class="art-index">01 — THE BRIDAL EDIT</div><div class="seal">True luxury<br>lies in<br><i>expertise</i></div></div>
+    <div class="hero-art" data-tilt>${image('./public/images/bridal-editorial.jpg','Bridal makeup and hair by Glitz & Glamour','',{w:928,h:1152,eager:true})}<div class="art-label">Bridal artistry</div><div class="art-index">01 — THE BRIDAL EDIT</div><div class="seal">${ic('aster','seal-mark')}<span>True luxury<br>lies in<br><i>expertise</i></span></div></div>
   </section>
-  <div class="hero-marquee"><div class="marquee-track"><span>Bridal artistry <i>✳</i> Dermalogica skincare <i>✳</i> Davines haircare <i>✳</i> Professional education <i>✳</i> Bridal artistry <i>✳</i> Dermalogica skincare <i>✳</i> Davines haircare <i>✳</i> Professional education <i>✳</i></span><span aria-hidden="true">Bridal artistry <i>✳</i> Dermalogica skincare <i>✳</i> Davines haircare <i>✳</i> Professional education <i>✳</i> Bridal artistry <i>✳</i> Dermalogica skincare <i>✳</i> Davines haircare <i>✳</i> Professional education <i>✳</i></span></div></div>
+  <div class="hero-marquee"><div class="marquee-track"><span>Bridal artistry <i>${ic('aster')}</i> Dermalogica skincare <i>${ic('aster')}</i> Davines haircare <i>${ic('aster')}</i> Professional education <i>${ic('aster')}</i> Bridal artistry <i>${ic('aster')}</i> Dermalogica skincare <i>${ic('aster')}</i> Davines haircare <i>${ic('aster')}</i> Professional education <i>${ic('aster')}</i></span><span aria-hidden="true">Bridal artistry <i>${ic('aster')}</i> Dermalogica skincare <i>${ic('aster')}</i> Davines haircare <i>${ic('aster')}</i> Professional education <i>${ic('aster')}</i> Bridal artistry <i>${ic('aster')}</i> Dermalogica skincare <i>${ic('aster')}</i> Davines haircare <i>${ic('aster')}</i> Professional education <i>${ic('aster')}</i></span></div></div>
 
   <section class="section offers">
     <div class="section-heading"><div><div class="eyebrow">One destination. Two expressions of excellence.</div><h2>Two ways in.<br><span class="script">One standard.</span></h2></div><p>A boutique salon and a professional academy, under one roof in Santoshpur. Both built on personalised attention, technical expertise and understated luxury.</p></div>
     <div class="offer-grid offer-grid--two">
-      <a href="#/services" class="offer-card"><div class="card-top"><div class="num">01 / For yourself</div></div><div class="card-bottom"><div><h3>Boutique Salon</h3><p>A thoughtfully curated range of premium skin, hair and makeup services — advanced Dermalogica skincare treatments, Davines professional haircare and colour, customised hair transformations and sophisticated makeup artistry.</p><span class="text-link" style="color:inherit">Explore salon services <span>↗</span></span></div><span class="circle-arrow">↗</span></div></a>
-      <a href="#/academy" class="offer-card"><div class="card-top"><div class="num">02 / For your next chapter</div></div><div class="card-bottom"><div><h3>The Academy</h3><p>Structured education, practical demonstrations, personalised mentoring and industry-focused training in makeup artistry, hairdressing, hair colour theory and professional beauty techniques.</p><span class="text-link" style="color:inherit">Explore the Academy <span>↗</span></span></div><span class="circle-arrow">↗</span></div></a>
+      <a href="#/services" class="offer-card"><div class="card-top"><div class="num">01 / For yourself</div></div><div class="card-bottom"><div><h3>Boutique Salon</h3><p>A thoughtfully curated range of premium skin, hair and makeup services — advanced Dermalogica skincare treatments, Davines professional haircare and colour, customised hair transformations and sophisticated makeup artistry.</p><span class="text-link text-link--plain">Explore salon services <span>${ic('arrow')}</span></span></div><span class="circle-arrow">${ic('arrow')}</span></div></a>
+      <a href="#/academy" class="offer-card"><div class="card-top"><div class="num">02 / For your next chapter</div></div><div class="card-bottom"><div><h3>The Academy</h3><p>Structured education, practical demonstrations, personalised mentoring and industry-focused training in makeup artistry, hairdressing, hair colour theory and professional beauty techniques.</p><span class="text-link text-link--plain">Explore the Academy <span>${ic('arrow')}</span></span></div><span class="circle-arrow">${ic('arrow')}</span></div></a>
     </div>
-    <p class="section-note">Bridal makeup and bridal hairstyling sit at the heart of the boutique salon. <a class="text-link" href="#/contact" data-category-link="Bridal">Plan your bridal look <span>↗</span></a></p>
+    <p class="section-note">Bridal makeup and bridal hairstyling sit at the heart of the boutique salon. <a class="text-link" href="#/contact" data-category-link="Bridal">Plan your bridal look <span>${ic('arrow')}</span></a></p>
   </section>
 
-  <section class="section"><div class="story-band"><div class="story-photo">${image('./public/images/academy-class-square.jpg','A makeup educator demonstrating a technique on a model')}<div class="caption">The founder</div></div><div class="story-text"><div class="eyebrow">The founder</div><h2>Technical excellence.<br><span class="script">Individual attention.</span></h2><p>Kakoly Sengupta is an experienced beauty professional, makeup artist and educator with over 30 years of experience in the beauty and wellness industry. Her professional credentials include a City &amp; Guilds Level 4 Licentiateship in Hairdressing (City &amp; Guilds, London), Teacher’s Training from Vidal Sassoon, London; and specialist expertise in professional makeup artistry from London Makeup Academy, London.</p><p>As a Dermalogica Specialist, she brings a science-based approach to professional skincare, combining technical knowledge with personalised treatment protocols. Her experience spans luxury salon services, bridal and editorial-inspired makeup artistry, professional hair colour techniques, beauty education and individual mentoring.</p><div class="pullquote">“True luxury lies in expertise, individuality and attention to detail.”</div><a class="text-link" href="#/academy">Read her credentials <span>↗</span></a></div></div></section>
+  <section class="section"><div class="story-band"><div class="story-photo">${image('./public/images/academy-class-square.jpg','A makeup educator demonstrating a technique on a model')}<div class="caption">The founder</div></div><div class="story-text"><div class="eyebrow">The founder</div><h2>Technical excellence.<br><span class="script">Individual attention.</span></h2><p>Kakoly Sengupta is an experienced beauty professional, makeup artist and educator with over 30 years of experience in the beauty and wellness industry. Her professional credentials include a City &amp; Guilds Level 4 Licentiateship in Hairdressing (City &amp; Guilds, London), Teacher’s Training from Vidal Sassoon, London; and specialist expertise in professional makeup artistry from London Makeup Academy, London.</p><p>As a Dermalogica Specialist, she brings a science-based approach to professional skincare, combining technical knowledge with personalised treatment protocols. Her experience spans luxury salon services, bridal and editorial-inspired makeup artistry, professional hair colour techniques, beauty education and individual mentoring.</p><div class="pullquote">“True luxury lies in expertise, individuality and attention to detail.”</div><a class="text-link" href="#/academy">Read her credentials <span>${ic('arrow')}</span></a></div></div></section>
 
-  <section class="academy-feature academy-feature--photo"><div class="feature-image">${image('./public/images/academy-touchup.jpg','A makeup artist working on a client by hand at a dressing table, lit from behind')}<span class="image-credit">The Academy</span></div><div class="feature-copy"><div class="eyebrow">Glitz &amp; Glamour Academy</div><h2>Not just <i>how.</i><br>Also <i>why.</i></h2><p>Our academy is dedicated to nurturing aspiring and practising beauty professionals through structured education, practical demonstrations, personalised mentoring and industry-focused training. The teaching approach combines scientific understanding, technical precision and individual mentoring — so students develop confidence in their own professional abilities.</p><a class="button" href="#/academy">Explore the Academy <span class="arrow">↗</span></a></div></section>
+  <section class="academy-feature academy-feature--photo"><div class="feature-image">${image('./public/images/academy-touchup.jpg','A makeup artist working on a client by hand at a dressing table, lit from behind')}<span class="image-credit">The Academy</span></div><div class="feature-copy"><div class="eyebrow">Glitz &amp; Glamour Academy</div><h2>Not just <i>how.</i><br>Also <i>why.</i></h2><p>Our academy is dedicated to nurturing aspiring and practising beauty professionals through structured education, practical demonstrations, personalised mentoring and industry-focused training. The teaching approach combines scientific understanding, technical precision and individual mentoring — so students develop confidence in their own professional abilities.</p><a class="button" href="#/academy">Explore the Academy <span class="arrow">${ic('arrow')}</span></a></div></section>
 
   <div class="stat-strip"><div><strong>30+</strong><span>years of experience</span></div><div><strong>Level 4</strong><span>City &amp; Guilds · London</span></div><div><strong>Dermalogica</strong><span>specialist</span></div><div><strong>Kolkata</strong><span>Santoshpur, by appointment</span></div></div>
 
-  <section class="section"><div class="section-heading"><div><div class="eyebrow">Appointments &amp; admissions</div><h2>Tell us what you<br><span class="script">have in mind.</span></h2></div><a class="button" href="#/contact">Start an enquiry <span class="arrow">↗</span></a></div><p style="max-width:600px;color:var(--muted);font-size:13px;line-height:1.8">Salon visits and academy consultations are preferably arranged by prior appointment. All enquiries are handled personally by our team, who will confirm availability, fees and the next step with you directly.</p></section>
+  <section class="section"><div class="section-heading"><div><div class="eyebrow">Appointments &amp; admissions</div><h2>Tell us what you<br><span class="script">have in mind.</span></h2></div><a class="button" href="#/contact">Start an enquiry <span class="arrow">${ic('arrow')}</span></a></div><p class="prose">Salon visits and academy consultations are preferably arranged by prior appointment. All enquiries are handled personally by our team, who will confirm availability, fees and the next step with you directly.</p></section>
 </div>`}
 
 /* ==========================================================================
@@ -105,14 +124,14 @@ function academy(){return `<div class="page-wrap">
 
   <section class="section"><div class="academy-intro"><div><div class="eyebrow">The Academy</div><h2>Professional education,<br>built on <span class="script">practice.</span></h2><p>Glitz &amp; Glamour Academy is dedicated to nurturing aspiring and practising beauty professionals through structured education, practical demonstrations, personalised mentoring and industry-focused training in makeup artistry, hairdressing, hair colour theory and professional beauty techniques.</p><p>Founder and educator Kakoly Sengupta holds a City &amp; Guilds Level 4 Licentiateship in Hairdressing (City &amp; Guilds, London) and Teacher’s Training from Vidal Sassoon, London. Her teaching combines scientific understanding, technical precision, practical demonstration and individual mentoring.</p><div class="credential-stack"><div class="credential"><b>30+</b><span>years of professional experience</span></div><div class="credential"><b>Level 4</b><span>City &amp; Guilds Licentiateship · London</span></div><div class="credential"><b>Vidal Sassoon</b><span>Teacher’s Training · London</span></div><div class="credential"><b>Dermalogica</b><span>Specialist · science-based skincare</span></div></div></div><div class="academy-image">${image('./public/images/academy-class.jpg','A makeup educator demonstrating a technique on a model')}<div class="image-stamp">Learning, by doing</div></div></div></section>
 
-  <section class="section course-section"><div class="section-heading"><div><div class="eyebrow">What you learn</div><h2>Four disciplines.<br><span class="script">One standard.</span></h2></div><p>Training across the core disciplines of professional beauty. Current batches, eligibility, fees and certification are confirmed directly with the Academy.</p></div><div class="course-grid">${courseAreas.map(c=>`<article class="course-card"><span class="course-num">${c[0]} / DISCIPLINE</span><h3>${c[1]}</h3><p>${c[2]}</p><button type="button" data-enquire="${c[1]}">Ask about this course ↗</button></article>`).join('')}</div></section>
+  <section class="section course-section"><div class="section-heading"><div><div class="eyebrow">What you learn</div><h2>Four disciplines.<br><span class="script">One standard.</span></h2></div><p>Training across the core disciplines of professional beauty. Current batches, eligibility, fees and certification are confirmed directly with the Academy.</p></div><div class="course-grid">${courseAreas.map(c=>`<article class="course-card"><span class="course-num">${c[0]} / DISCIPLINE</span><h3>${c[1]}</h3><p>${c[2]}</p><button type="button" data-enquire="${c[1]}">Ask about this course ${ic('arrow')}</button></article>`).join('')}</div></section>
 
-  <section class="section" style="padding-top:0"><div class="two-col">
+  <section class="section section--tight"><div class="two-col">
     <div class="col-card"><div class="eyebrow">Who it is for</div><h3>Aspiring and practising professionals</h3><p>Our academy welcomes aspiring and practising beauty professionals from Kolkata, across West Bengal and other parts of India. We offer in-person professional training as well as selected online educational programmes.</p></div>
     <div class="col-card"><div class="eyebrow">How we teach</div><h3>Understanding, not imitation</h3><p>The aim is to help students understand not just how a technique works, but why it works — so they leave as independent, knowledgeable and confident professionals rather than people who simply reproduce techniques.</p></div>
   </div></section>
 
-  <section class="section" style="padding-top:0"><div class="section-heading"><div><div class="eyebrow">Admissions</div><h2>How a course<br><span class="script">becomes a place.</span></h2></div><p>All admissions are handled personally by the Academy. There is no automated enrolment.</p></div>
+  <section class="section section--tight"><div class="section-heading"><div><div class="eyebrow">Admissions</div><h2>How a course<br><span class="script">becomes a place.</span></h2></div><p>All admissions are handled personally by the Academy. There is no automated enrolment.</p></div>
     <div class="steps">${[
       ['01','Enquire','Reach us by WhatsApp, telephone or the enquiry form. Tell us which discipline interests you and what you would like to know.'],
       ['02','Talk it through','Course information, syllabus, duration, fees, training format and upcoming batch availability are explained personally. Students may speak directly with the academy educator for guidance on course suitability and professional development.'],
@@ -120,7 +139,7 @@ function academy(){return `<div class="page-wrap">
     ].map(s=>`<div class="step"><span class="step-num">${s[0]}</span><h3>${s[1]}</h3><p>${s[2]}</p></div>`).join('')}</div>
   </section>
 
-  <section class="section" style="padding-top:0"><div class="course-enquire"><div><h3>Not sure which discipline fits?</h3><p>Tell us what you want to learn. We’ll help you find the right starting point.</p></div><a class="button" href="#/contact" data-category-link="Academy">Enquire about a course <span class="arrow">↗</span></a></div></section>
+  <section class="section section--tight"><div class="course-enquire"><div><h3>Not sure which discipline fits?</h3><p>Tell us what you want to learn. We’ll help you find the right starting point.</p></div><a class="button" href="#/contact" data-category-link="Academy">Enquire about a course <span class="arrow">${ic('arrow')}</span></a></div></section>
 </div>`}
 
 /* ==========================================================================
@@ -150,10 +169,10 @@ function servicesPage(){return `<div class="page-wrap">
   <section class="page-hero"><div class="breadcrumb">Home <span>/</span> Services</div><div class="eyebrow">Boutique Salon</div><h1>Luxury services,<br><em>by appointment.</em></h1><p>A thoughtfully curated range of premium skin, hair and makeup services. Every service is designed around individual beauty needs, with a commitment to quality, precision and an exceptional client experience.</p></section>
 
   <section class="section"><div class="service-intro"><div><div class="eyebrow">Services at Glitz &amp; Glamour</div><h2>Made for the moment.<br><span class="script">Made for you.</span></h2></div><div class="service-note">“We focus on enhancing individual beauty rather than following trends blindly. Attention to detail and maintaining the integrity of skin and hair are central to our work.”</div></div>
-  <div class="service-list" style="margin-top:42px">${services.map(s=>`<div class="service-row-wrap"><div class="service-row"><span class="row-no">${s.num}</span><h3>${s.title}</h3><p>${s.desc}</p><button class="circle-arrow service-toggle" aria-label="More about ${s.title}" data-service="${s.num}">↗</button></div><div class="service-extra" data-extra="${s.num}">${s.detail} <button type="button" class="text-link" style="margin-left:9px;border:0;background:none;padding:0" data-enquire="${s.title}" data-category="${s.cat}">Enquire about this service ↗</button></div></div>`).join('')}</div>
-  <div class="service-bottom"><div><h3>Your date, your plans.</h3><p>For bridal, salon and makeup bookings, begin with a short enquiry. We’ll confirm pricing and availability with you personally.</p></div><a href="#/contact" class="button" data-category-link="Salon">Enquire about a service <span class="arrow">↗</span></a></div></section>
+  <div class="service-list">${services.map(s=>`<div class="service-row-wrap"><div class="service-row"><span class="row-no">${s.num}</span><h3>${s.title}</h3><p>${s.desc}</p><button type="button" class="circle-arrow service-toggle" aria-label="More about ${s.title}" data-service="${s.num}" aria-expanded="false" aria-controls="extra-${s.num}">${ic('arrow','icon-open')}${ic('minus','icon-close')}</button></div><div class="service-extra" id="extra-${s.num}" data-extra="${s.num}">${s.detail} <button type="button" class="text-link service-extra-link" data-enquire="${s.title}" data-category="${s.cat}">Enquire about this service ${ic('arrow')}</button></div></div>`).join('')}</div>
+  <div class="service-bottom"><div><h3>Your date, your plans.</h3><p>For bridal, salon and makeup bookings, begin with a short enquiry. We’ll confirm pricing and availability with you personally.</p></div><a href="#/contact" class="button" data-category-link="Salon">Enquire about a service <span class="arrow">${ic('arrow')}</span></a></div></section>
 
-  <section class="section" style="padding-top:0"><div class="course-enquire"><div><h3>Thinking about the Academy?</h3><p>Professional training in makeup artistry, hairdressing, hair colour theory and beauty techniques.</p></div><a class="button" href="#/academy">Explore the Academy <span class="arrow">↗</span></a></div></section>
+  <section class="section section--tight"><div class="course-enquire"><div><h3>Thinking about the Academy?</h3><p>Professional training in makeup artistry, hairdressing, hair colour theory and beauty techniques.</p></div><a class="button" href="#/academy">Explore the Academy <span class="arrow">${ic('arrow')}</span></a></div></section>
 </div>`}
 
 /* ==========================================================================
@@ -204,7 +223,7 @@ const reviews = [
 function reviewCard(r){
   const initials = r.name.replace(/[^A-Za-z ]/g,'').trim().split(/\s+/).map(w=>w[0]).join('').slice(0,2).toUpperCase();
   return `<article class="review-card${r.featured?' featured':''}" data-group="${r.group}">
-    <div class="review-top"><span class="stars" role="img" aria-label="Rated 5 out of 5 stars on Google">★★★★★</span><span class="review-topic">${r.group}</span></div>
+    <div class="review-top"><span class="stars" role="img" aria-label="Rated 5 out of 5 stars on Google">${stars(5)}</span><span class="review-topic">${r.group}</span></div>
     <blockquote>${r.text}</blockquote>
     <footer class="review-who"><span class="review-avatar" aria-hidden="true">${initials}</span><div><b>${r.name}</b><small>Google review · ${r.when}</small></div></footer>
   </article>`;
@@ -216,29 +235,29 @@ function testimonials(){return `<div class="page-wrap">
     <div class="eyebrow">In their words · Google reviews</div>
     <h1>What people say<br><em>when they leave the chair.</em></h1>
     <p>Glitz &amp; Glamour holds a 4.9-star rating from 103 Google reviews — written by brides, salon regulars and students who now work in the industry. Everything below is quoted as written, with names and dates exactly as they appear on Google.</p>
-    <div class="rating-badge"><span class="stars" role="img" aria-label="4.9 out of 5 stars on Google">★★★★★</span><b>4.9</b><small>103 Google reviews</small></div>
-    <div class="hero-actions"><a class="button" href="#/contact">Start an enquiry <span class="arrow">↗</span></a><a class="text-link" href="${googlePlace}" target="_blank" rel="noreferrer">Read all 103 reviews on Google <span>↗</span></a></div>
+    <div class="rating-badge"><span class="stars" role="img" aria-label="4.9 out of 5 stars on Google">${stars(5)}</span><b>4.9</b><small>103 Google reviews</small></div>
+    <div class="hero-actions"><a class="button" href="#/contact">Start an enquiry <span class="arrow">${ic('arrow')}</span></a><a class="text-link" href="${googlePlace}" target="_blank" rel="noreferrer">Read all 103 reviews on Google <span>${ic('arrow')}</span></a></div>
   </section>
   <div class="stat-strip"><div><strong>4.9</strong><span>average Google rating</span></div><div><strong>103</strong><span>reviews and counting</span></div><div><strong>Two expressions</strong><span>salon · academy</span></div><div><strong>30+</strong><span>years of experience</span></div></div>
   <section class="section"><div class="story-band">
-    <div class="story-photo">${image('./public/images/bridal-editorial.png','Bridal makeup and hairstyling')}<div class="caption">Bridal artistry</div></div>
+    <div class="story-photo">${image('./public/images/bridal-editorial.jpg','Bridal makeup and hairstyling','',{w:928,h:1152})}<div class="caption">Bridal artistry</div></div>
     <div class="story-text">
       <div class="eyebrow">Where the reviews begin</div>
       <h2>The bridal chair.<br><span class="script">The calm morning.</span></h2>
       <p>Bridal work is the heart of the boutique salon — makeup and hair planned around the ceremony, the outfit, the photographs and the person wearing it all. Brides are usually the first to write, and they tend to remember two things: the look holding up through a long day, and how calm it felt getting there.</p>
       <div class="pullquote">“It was truly an honour to be a part of your special journey and to style you for such important moments of your wedding.”</div>
       <p class="quote-credit">Kakoly Sengupta, replying to a bride’s Google review</p>
-      <a class="text-link" href="#/contact" data-category-link="Bridal">Plan your bridal look <span>↗</span></a>
+      <a class="text-link" href="#/contact" data-category-link="Bridal">Plan your bridal look <span>${ic('arrow')}</span></a>
     </div>
   </div></section>
   <section class="section">
     <div class="section-heading"><div><div class="eyebrow">The reviews</div><h2>Read the ones<br><span class="script">we didn’t have to write.</span></h2></div><p>Filter by the kind of work you’re here for. Every quote is an excerpt from a public Google review — nothing added, nothing polished.</p></div>
     <div class="tools-row">
-      <div class="filter-row" role="group" aria-label="Filter reviews by topic">${reviewGroups.map((g,i)=>`<button class="filter-btn ${i===0?'active':''}" data-review-filter="${g}">${g}</button>`).join('')}</div>
+      <div class="filter-row" role="group" aria-label="Filter reviews by topic">${reviewGroups.map((g,i)=>`<button type="button" class="filter-btn ${i===0?'active':''}" data-review-filter="${g}">${g}</button>`).join('')}</div>
       <div class="tools-note">Showing 8 of 103 reviews. The rest — including the ones written in Bengali — are on Google.</div>
     </div>
     <div class="review-wall">${reviews.map(reviewCard).join('')}</div>
-    <div class="note-box"><b>How these are published.</b> Quotes are reproduced from public Google reviews of Glitz &amp; Glamour Academy &amp; Boutique Salon, trimmed with an ellipsis where a review continues, and grouped by topic for reading. Names, star ratings and dates are unchanged. <a class="text-link" href="${googlePlace}" target="_blank" rel="noreferrer">Read the full reviews on Google <span>↗</span></a></div>
+    <div class="note-box"><b>How these are published.</b> Quotes are reproduced from public Google reviews of Glitz &amp; Glamour Academy &amp; Boutique Salon, trimmed with an ellipsis where a review continues, and grouped by topic for reading. Names, star ratings and dates are unchanged. <a class="text-link" href="${googlePlace}" target="_blank" rel="noreferrer">Read the full reviews on Google <span>${ic('arrow')}</span></a></div>
   </section>
   <section class="section themes-section">
     <div class="section-heading"><div><div class="eyebrow">What gets mentioned most</div><h2>The words that<br>keep <span class="script">coming up.</span></h2></div><p>Google groups our reviews into topics. Each number is how many reviews mention it.</p></div>
@@ -252,14 +271,14 @@ function testimonials(){return `<div class="page-wrap">
       <blockquote class="academy-quote">“At Guild and Glamour Academy [sic], I learned makeup and hairdressing, but beyond the skills, I gained something even more precious. Whenever we found ourselves stuck in life’s challenges, Kakoli Di was always there with her wise advice…”</blockquote>
       <cite>Kaberi D. · Google review · a year ago</cite>
       <p>Glitz &amp; Glamour Academy trains aspiring and practising beauty professionals through structured education, practical demonstration, personalised mentoring and industry-focused training — in small groups, with a working educator at the front of the room.</p>
-      <a class="button" href="#/academy">Explore the Academy <span class="arrow">↗</span></a>
+      <a class="button" href="#/academy">Explore the Academy <span class="arrow">${ic('arrow')}</span></a>
     </div>
   </section>
   <section class="section">
-    <div class="section-heading"><div><div class="eyebrow">Your turn</div><h2>Come for the work.<br><span class="script">Leave your own review.</span></h2></div><a class="button" href="#/contact">Start an enquiry <span class="arrow">↗</span></a></div>
-    <p style="max-width:620px;color:var(--muted);font-size:13px;line-height:1.8">Bridal, salon or Academy — tell us what you have in mind and we’ll point you to the right conversation. After your appointment, you’re welcome to add your voice on Google.</p>
-    <div class="cta-links"><a class="text-link" href="${googlePlace}" target="_blank" rel="noreferrer">Read all 103 Google reviews <span>↗</span></a><a class="text-link" href="${googlePlace}" target="_blank" rel="noreferrer">Write your review on Google <span>↗</span></a></div>
-    <p class="fine-print" style="margin-top:34px">Review quotes are excerpts from public Google reviews of Glitz &amp; Glamour Academy and Boutique Salon, published with the reviewer names shown on Google.</p>
+    <div class="section-heading"><div><div class="eyebrow">Your turn</div><h2>Come for the work.<br><span class="script">Leave your own review.</span></h2></div><a class="button" href="#/contact">Start an enquiry <span class="arrow">${ic('arrow')}</span></a></div>
+    <p class="prose">Bridal, salon or Academy — tell us what you have in mind and we’ll point you to the right conversation. After your appointment, you’re welcome to add your voice on Google.</p>
+    <div class="cta-links"><a class="text-link" href="${googlePlace}" target="_blank" rel="noreferrer">Read all 103 Google reviews <span>${ic('arrow')}</span></a><a class="text-link" href="${googlePlace}" target="_blank" rel="noreferrer">Write your review on Google <span>${ic('arrow')}</span></a></div>
+    <p class="fine-print">Review quotes are excerpts from public Google reviews of Glitz &amp; Glamour Academy and Boutique Salon, published with the reviewer names shown on Google.</p>
   </section>
 </div>`}
 
@@ -272,18 +291,18 @@ const categoryOptions = {
   Academy:['Makeup artistry','Hairdressing','Hair colour theory','Professional beauty techniques','Online programme','Other course enquiry']
 };
 
-function contact(){return `<div class="page-wrap"><div class="contact-hero"><section class="page-hero"><div class="breadcrumb" style="color:#c5aca6">Home <span>/</span> Contact &amp; Enquiries</div><div class="eyebrow">One destination. Two expressions of excellence.</div><h1>One enquiry.<br><em>Handled personally.</em></h1><p>Tell us whether you are booking the boutique salon or enquiring about a course. All enquiries are handled personally by our team.</p></section></div>
+function contact(){return `<div class="page-wrap"><div class="contact-hero"><section class="page-hero"><div class="breadcrumb breadcrumb--light">Home <span>/</span> Contact &amp; Enquiries</div><div class="eyebrow">One destination. Two expressions of excellence.</div><h1>One enquiry.<br><em>Handled personally.</em></h1><p>Tell us whether you are booking the boutique salon or enquiring about a course. All enquiries are handled personally by our team.</p></section></div>
   <section class="section"><div class="booking-layout"><aside class="booking-aside"><div class="eyebrow">Come say hello</div><h2>Good things start<br>with a <span class="script">conversation.</span></h2><p>Share a few details and we can follow up about availability, fees and the next step. Submitting the form opens a pre-filled WhatsApp message — it is not stored on this website.</p><div class="contact-card">
-    <div class="contact-line"><b>✆</b><div><a href="https://wa.me/${phoneDigits}" target="_blank" rel="noreferrer">${phone}</a><small>WhatsApp</small></div></div>
-    <div class="contact-line"><b>↗</b><div><a href="tel:+${phone2Digits}">${landline}</a><small>Call the salon</small></div></div>
-    <div class="contact-line"><b>✉</b><div><a href="mailto:${email}">${email}</a><small>Email</small></div></div>
-    <div class="contact-line"><b>◎</b><div><a href="${insta}" target="_blank" rel="noreferrer">@ikakolysengupta ↗</a><small>Instagram</small></div></div>
+    <div class="contact-line"><b>${ic('chat')}</b><div><a href="https://wa.me/${phoneDigits}" target="_blank" rel="noreferrer">${phone}</a><small>WhatsApp</small></div></div>
+    <div class="contact-line"><b>${ic('phone')}</b><div><a href="tel:+${phone2Digits}">${landline}</a><small>Call the salon</small></div></div>
+    <div class="contact-line"><b>${ic('mail')}</b><div><a href="mailto:${email}">${email}</a><small>Email</small></div></div>
+    <div class="contact-line"><b>${ic('insta')}</b><div><a href="${insta}" target="_blank" rel="noreferrer">@ikakolysengupta ${ic('arrow')}</a><small>Instagram</small></div></div>
   </div></aside>
-    <form class="booking-form" id="booking-form"><h2>What can we help with?</h2><p>Choose salon services, bridal makeup or the Academy, then tell us a little more. All fields marked * are required.</p><div class="booking-choices" role="group" aria-label="Enquiry type"><button type="button" class="choice selected" data-choice="Bridal"><span>01 / Occasion</span><b>Bridal</b></button><button type="button" class="choice" data-choice="Salon"><span>02 / For you</span><b>Salon</b></button><button type="button" class="choice" data-choice="Academy"><span>03 / Learn</span><b>Academy</b></button></div><input type="hidden" name="category" value="Bridal"><div class="form-grid"><div class="field"><label for="name">Your name *</label><input id="name" name="name" required autocomplete="name" placeholder="Name" /></div><div class="field"><label for="phone">Phone / WhatsApp *</label><input id="phone" name="phone" required autocomplete="tel" type="tel" placeholder="+91 ..." /></div><div class="field"><label for="interest">I'm interested in *</label><select id="interest" name="interest" required>${categoryOptions['Bridal'].map(x=>`<option>${x}</option>`).join('')}</select></div><div class="field"><label for="date" id="date-label">Event date *</label><input id="date" name="date" required type="date" /></div><div class="field hidden" id="location-field"><label for="location">Event location</label><input id="location" name="location" placeholder="Venue and area" /></div><div class="field full"><label for="message">A few details</label><textarea id="message" name="message" placeholder="Event date and location, the salon service you have in mind, or what you’d love to learn..."></textarea></div></div><div class="form-actions"><button class="button" type="submit">Continue on WhatsApp <span class="arrow">↗</span></button><span class="form-hint">We will confirm availability and fees directly.<br>No payment is collected on this site.</span></div><div class="success-message" role="status">Your enquiry is ready. WhatsApp will open with your details — please press Send there to share it.</div></form></div>
+    <form class="booking-form" id="booking-form"><h2>What can we help with?</h2><p>Choose salon services, bridal makeup or the Academy, then tell us a little more. All fields marked * are required.</p><div class="booking-choices" role="group" aria-label="Enquiry type"><button type="button" class="choice selected" data-choice="Bridal"><span>01 / Occasion</span><b>Bridal</b></button><button type="button" class="choice" data-choice="Salon"><span>02 / For you</span><b>Salon</b></button><button type="button" class="choice" data-choice="Academy"><span>03 / Learn</span><b>Academy</b></button></div><input type="hidden" name="category" value="Bridal"><div class="form-grid"><div class="field"><label for="name">Your name *</label><input id="name" name="name" type="text" required autocomplete="name" placeholder="Name" /></div><div class="field"><label for="phone">Phone / WhatsApp *</label><input id="phone" name="phone" required autocomplete="tel" type="tel" placeholder="+91 ..." /></div><div class="field"><label for="interest">I'm interested in *</label><select id="interest" name="interest" required>${categoryOptions['Bridal'].map(x=>`<option>${x}</option>`).join('')}</select></div><div class="field"><label for="date" id="date-label">Event date *</label><input id="date" name="date" required type="date" /></div><div class="field hidden" id="location-field"><label for="location">Event location</label><input id="location" name="location" type="text" placeholder="Venue and area" /></div><div class="field full"><label for="message">A few details</label><textarea id="message" name="message" placeholder="Event date and location, the salon service you have in mind, or what you’d love to learn..."></textarea></div></div><div class="form-actions"><button class="button" type="submit">Continue on WhatsApp <span class="arrow">${ic('arrow')}</span></button><span class="form-hint">We will confirm availability and fees directly.<br>No payment is collected on this site.</span></div><div class="success-message" role="status">Your enquiry is ready. WhatsApp will open with your details — please press Send there to share it.</div></form></div>
 
     <div class="process-grid"><div class="process-col"><div class="eyebrow">Boutique Salon Services</div><h3>How an enquiry becomes an appointment</h3><ol><li>You contact us through WhatsApp, telephone, social media or a direct enquiry.</li><li>Our team responds, understands your requirements and provides information about suitable services, pricing and availability.</li><li>For specialised treatments, hair colour transformations and bridal makeup, a consultation may be recommended before confirming the service.</li><li>Appointments are confirmed after mutually agreeing the date, time and service requirements. Advance payments may be requested for selected services or bookings.</li></ol></div><div class="process-col"><div class="eyebrow">Academy Admissions</div><h3>How an enquiry becomes a place</h3><ol><li>Prospective students enquire through WhatsApp, telephone, social media or direct communication.</li><li>Course information, syllabus, duration, fees, training format and upcoming batch availability are explained personally.</li><li>Students may speak directly with the academy educator for guidance regarding course suitability and professional development.</li><li>Admission is confirmed once the student selects the course, completes the required registration or payment formalities and receives confirmation from the Academy.</li></ol></div></div>
 
-    <div class="map-panel"><div><h3>Find us in Santoshpur.</h3><p>${address}<br>${landmark}</p><p class="map-note">All salon visits and academy consultations are preferably arranged by prior appointment.</p></div><a class="button light" target="_blank" rel="noreferrer" href="${mapsLink}">Get directions <span class="arrow">↗</span></a></div>
+    <div class="map-panel"><div><h3>Find us in Santoshpur.</h3><p>${address}<br>${landmark}</p><p class="map-note">All salon visits and academy consultations are preferably arranged by prior appointment.</p></div><a class="button light" target="_blank" rel="noreferrer" href="${mapsLink}">Get directions <span class="arrow">${ic('arrow')}</span></a></div>
   </section></div>`}
 
 /* ==========================================================================
@@ -297,7 +316,7 @@ function render(){
   const meta=document.querySelector('meta[name="description"]');
   if(meta)meta.setAttribute('content',descriptions[page]);
   document.querySelectorAll('.main-nav a').forEach(a=>a.classList.toggle('active',a.dataset.route===page));
-  menu.classList.remove('open');menuToggle.setAttribute('aria-expanded','false');
+  menu.classList.remove('open');menuToggle.setAttribute('aria-expanded','false');menuToggle.setAttribute('aria-label','Open menu');
   if(page==='contact') setupContact();
   if(page==='testimonials') setupTestimonials();
   setupReveal();setupTilt();
@@ -366,7 +385,22 @@ function showToast(text){toast.textContent=text;toast.classList.add('show');clea
 window.addEventListener('hashchange',render);
 if(!location.hash)location.hash='/home';else render();
 document.querySelector('#year').textContent=new Date().getFullYear();
-menuToggle.addEventListener('click',()=>{const open=menu.classList.toggle('open');menuToggle.setAttribute('aria-expanded',String(open));});
+menuToggle.addEventListener('click',()=>{const open=menu.classList.toggle('open');menuToggle.setAttribute('aria-expanded',String(open));menuToggle.setAttribute('aria-label',open?'Close menu':'Open menu');});
+/* Close the mobile menu on an outside tap, Escape, or a rotation to desktop. */
+document.addEventListener('click',e=>{
+  if(!menu.classList.contains('open'))return;
+  if(e.target.closest('.main-nav')||e.target.closest('.menu-toggle'))return;
+  menu.classList.remove('open');menuToggle.setAttribute('aria-expanded','false');menuToggle.setAttribute('aria-label','Open menu');
+});
+document.addEventListener('keydown',e=>{
+  if(e.key!=='Escape'||!menu.classList.contains('open'))return;
+  menu.classList.remove('open');menuToggle.setAttribute('aria-expanded','false');menuToggle.setAttribute('aria-label','Open menu');
+  menuToggle.focus();
+});
+matchMedia('(min-width:721px)').addEventListener('change',e=>{
+  if(!e.matches)return;
+  menu.classList.remove('open');menuToggle.setAttribute('aria-expanded','false');menuToggle.setAttribute('aria-label','Open menu');
+});
 window.addEventListener('scroll',()=>{const max=document.documentElement.scrollHeight-window.innerHeight;document.querySelector('.scroll-progress span').style.width=(max?window.scrollY/max*100:0)+'%'});
 
 document.addEventListener('click',e=>{
@@ -377,7 +411,12 @@ document.addEventListener('click',e=>{
   const choice=e.target.closest('[data-choice]');
   if(choice){currentCategory=choice.dataset.choice;document.querySelectorAll('.choice').forEach(b=>b.classList.toggle('selected',b===choice));syncForm(currentCategory);return;}
   const toggle=e.target.closest('.service-toggle');
-  if(toggle){const detail=document.querySelector(`[data-extra="${toggle.dataset.service}"]`);detail.classList.toggle('open');toggle.textContent=detail.classList.contains('open')?'−':'↗';return;}
+  if(toggle){
+    const detail=document.querySelector(`[data-extra="${toggle.dataset.service}"]`);
+    detail.classList.toggle('open');toggle.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded',String(detail.classList.contains('open')));
+    return;
+  }
 });
 
 document.addEventListener('submit',e=>{
@@ -396,7 +435,12 @@ document.addEventListener('submit',e=>{
     data.message?`A few details: ${data.message}`:''
   ].filter(Boolean).join('\n');
   const url=`https://wa.me/${phoneDigits}?text=${encodeURIComponent(body)}`;
-  const win=window.open(url,'_blank','noopener,noreferrer');
+  /* A synthetic anchor click is the reliable way to hand a URL to another app
+     on iOS Safari — window.open() returns null there when noreferrer is set,
+     and the old null-check produced a false "did it open?" warning on iPhone. */
+  const link=document.createElement('a');
+  link.href=url;link.target='_blank';link.rel='noopener noreferrer';link.style.display='none';
+  document.body.appendChild(link);link.click();link.remove();
   document.querySelector('.success-message').classList.add('show');
-  if(!win)showToast('WhatsApp is ready. If it did not open, use the WhatsApp contact link below.');
+  showToast('Opening WhatsApp with your enquiry…');
 });
