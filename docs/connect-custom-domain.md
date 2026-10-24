@@ -103,7 +103,7 @@ What the fields mean, since they are the "random things" being asked:
 | **Type** | What *kind* of note this is | `A` or `CNAME` (see table below) |
 | **Name** / **Host** | Which door of your building. `@` = the main front door (`yourdomain.com`). `www` = the `www.` door | `@` or `www` |
 | **IP Address** / **Data** | Where to send the visitor | the GitHub value below |
-| **TTL** | How long the internet memorises the note (in seconds) | leave at default |
+| **TTL** | How long the internet memorises the note (in seconds) | **5 minutes** while setting up — see below |
 
 **Add these four `A` records** (Type = `A`, Name = `@`), one at a time:
 
@@ -130,6 +130,23 @@ Notes:
 - **Do not add a wildcard `*` record.** GitHub explicitly warns that wildcards are a takeover risk.
 
 When done, Custom Records should show **4 × A** and **1 × CNAME**, and Squarespace Defaults should be **gone**.
+
+### 2c. About the TTL ("4 hrs")
+
+`4 hrs` is Squarespace's default (14400 seconds) and it's a perfectly fine everyday value — it does **not** slow
+your site down. It only means *"the internet may remember this answer for up to 4 hours."*
+
+But while you're setting up, set it to **5 minutes** (300 seconds) on all five records. Squarespace has a TTL
+dropdown with presets plus a *custom value in seconds* box. Reason: if you typo an IP address, the wrong answer
+gets stuck in caches for four hours and you'll be debugging a mistake you already fixed. At 5 minutes, you fix it
+and re-test in minutes.
+
+Once the site is live on the domain, HTTPS is enforced and everything has been stable for a few days, raise the
+TTL back to `4 hrs` (or `1 hr`). Don't go below 300 seconds — resolvers clamp it anyway and you just add query load.
+
+One thing this does **not** fix: lowering the TTL now can't un-cache answers that are already out there. The
+Squarespace Defaults you deleted had their own 4-hour TTL, so a device that looked up the domain earlier can
+still show the parking page for up to 4 hours. Test in a private window or on mobile data to dodge that.
 
 ---
 
@@ -174,6 +191,7 @@ So the moment DNS resolves, the site appears — no deploy, no rebuild, nothing 
 | GitHub: *"CNAME already taken"* | That domain is already attached to some other GitHub Pages site | Check your other repos' Pages settings and remove it there first |
 | GitHub: *"Domain does not appear to be properly configured"* after hours | Typo in an IP, or you edited a record instead of deleting it | Re-enter the four IPs exactly; `dig`/dns.google check |
 | Site loads on `http://` but not `https://` | Certificate not issued yet | Wait up to 24h, then tick **Enforce HTTPS** |
+| You fix a typo but *nothing* changes for hours | TTL was left at 4 hrs, so the wrong answer is cached | Drop TTL to 5 min on all records, retest in a private window / on mobile data |
 | Squarespace keeps emailing *"your domain isn't connected to a site"* | True — it's connected to GitHub, not Squarespace | Ignore the emails. Do **not** click "connect to a site" |
 | Your site breaks after you delete defaults | You deleted the defaults *before* Step 1, so nothing was claimed in GitHub | Redo Step 1, or re-add records |
 
