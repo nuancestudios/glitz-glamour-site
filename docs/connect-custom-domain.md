@@ -191,6 +191,7 @@ So the moment DNS resolves, the site appears — no deploy, no rebuild, nothing 
 | GitHub: *"CNAME already taken"* | That domain is already attached to some other GitHub Pages site | Check your other repos' Pages settings and remove it there first |
 | GitHub: *"Domain does not appear to be properly configured"* after hours | Typo in an IP, or you edited a record instead of deleting it | Re-enter the four IPs exactly; `dig`/dns.google check |
 | Site loads on `http://` but not `https://` | Certificate not issued yet | Wait up to 24h, then tick **Enforce HTTPS** |
+| Banner: *"Both `yourdomain.com` and its alternate name are improperly configured" (NotServedByPagesError)* **while the site actually loads** | GitHub's DNS check is cached from before your records propagated. The check is a separate background job from the actual serving path — the site can be live while the banner is stale | Do **not** remove and re-add the domain. Click **Check again** once, then leave it; it clears within a few hours. Verify independently at <https://dnschecker.org> and by loading the site yourself |
 | You fix a typo but *nothing* changes for hours | TTL was left at 4 hrs, so the wrong answer is cached | Drop TTL to 5 min on all records, retest in a private window / on mobile data |
 | Squarespace keeps emailing *"your domain isn't connected to a site"* | True — it's connected to GitHub, not Squarespace | Ignore the emails. Do **not** click "connect to a site" |
 | Your site breaks after you delete defaults | You deleted the defaults *before* Step 1, so nothing was claimed in GitHub | Redo Step 1, or re-add records |
@@ -206,3 +207,25 @@ So the moment DNS resolves, the site appears — no deploy, no rebuild, nothing 
   added *alongside* the ones above. Currently the site publishes a `gmail.com` address, so this is optional.
 - **`robots.txt` / `sitemap.xml`:** small courtesy files for Google. Nice to have before you submit the site to
   Google Business Profile / Search Console.
+
+---
+
+## Update — live on 24 Oct 2026
+
+Verified from outside the network, so this is not browser cache:
+
+| Check | Result |
+| --- | --- |
+| `glitz-glamour.com` A records | `185.199.108.153`, `.109.153`, `.110.153`, `.111.153` — all four GitHub Pages IPs |
+| `glitz-glamour.com` AAAA | none (fine) |
+| `glitz-glamour.com` CNAME | none (correct — apex must not be a CNAME) |
+| `www.glitz-glamour.com` | CNAME → `nuancestudios.github.io` → GitHub IPs, plus GitHub's IPv6 range |
+| Nameservers | `nse1–nse4.squarespacedns.com` (so edits in the Squarespace panel do apply) |
+| CAA at `www` | digicert / sectigo / letsencrypt — Let's Encrypt is allowed, so the certificate can issue |
+| `http://glitz-glamour.com` | serves the site |
+| `https://glitz-glamour.com` | serves the site, valid certificate |
+| `http://www.glitz-glamour.com` | redirects to `https://glitz-glamour.com` |
+
+**Conclusion:** DNS, domain attachment, certificate and the `www` redirect are all working. The Pages
+settings banner is stale. The one genuine outstanding item is **Enforce HTTPS**, which GitHub still reports as
+off — tick it in Settings → Pages once it is clickable, so plain `http://` visits auto-upgrade.
