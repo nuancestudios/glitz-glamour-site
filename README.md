@@ -26,6 +26,36 @@ The Academy course areas are deliberately described as *disciplines* rather than
 (which services/courses to feature first) was left unanswered. Named courses, durations, fees and certification
 should be added once the client supplies them.
 
+### Content revision — 28 Oct 2026
+
+A client revision pass, applied to four pages. The visual system was not touched; the new components reuse the
+existing palette and type scale.
+
+- **Home** — headline and introduction are client-supplied ("Where Beauty Meets Expertise." + the
+  salon-and-academy paragraph). The two pathways are now named **Explore the boutique salon** and
+  **Discover the Academy**, and each card carries an at-a-glance list of what that side covers, so the page
+  introduces the salon and the Academy equally instead of reading as a bridal site.
+- **Services** — headline kept. The list is now grouped: *Bridal & occasion*, *Haircuts, colour & styling*,
+  *Professional skin & hair treatments*, covering the eight client-listed services (bridal makeup, bridal
+  hairstyling, occasion & party makeup, haircuts / colour / hairstyling, Dermalogica, Davines, Schwarzkopf,
+  keratin / botox / nanoplastia). Precision haircuts are named as such rather than folded into "hairstyling".
+  Bridal makeup is described against skin, features, attire, ceremony and preference; bridal hairstyling
+  against consultation, preparation, attire and long wear. **No medical or guaranteed-result claims** —
+  treatments are described as cosmetic, outcomes are said to vary, and suitability is confirmed at
+  consultation.
+- **Academy** — reframed as a dedicated professional training institute: headline
+  "Learn the Art. Master the Technique. Build Your Career.", five course categories (professional makeup,
+  hairdressing, hair colour theory, hairstyling, beauty therapy — "beauty therapy" and "hairdressing" are the
+  terms an Academy graduate uses in her Google review) and four formats that separate **foundation courses,
+  professional upskilling, masterclasses and one-to-one mentoring**. Formats are levels, not named courses —
+  durations, fees and certification still wait on G6.
+- **Testimonials** — the one quote on the page that is *not* a customer review is now boxed and labelled
+  **Founder's reply · written by the salon — not a customer review**. Reviewer spelling is preserved verbatim,
+  including where a reviewer writes the salon's or Academy's name differently ("Gltz n glamour academy n
+  Butique salon", "Boutique Saloon", "Guild and Glamour Academy"); each of those quotes carries a
+  "quoted as written" note so the spelling does not read as our error. The earlier inline `[sic]` was removed
+  in favour of that note.
+
 ### Testimonials
 
 Built from the 103 public Google reviews of *Glitz & Glamour Academy and Boutique Salon* (4.9 ★). Quotes are
