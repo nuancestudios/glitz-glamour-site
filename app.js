@@ -29,15 +29,15 @@ let toastTimer;
 
 const titles = {
   home: 'Glitz & Glamour Academy & Boutique Salon — Kakoly Sengupta',
-  academy: 'The Academy — Glitz & Glamour Academy & Boutique Salon',
-  services: 'Boutique Salon Services — Glitz & Glamour Academy & Boutique Salon',
+  academy: 'The Academy — Professional Beauty Training — Glitz & Glamour',
+  services: 'Boutique Salon Services — Bridal, Hair, Colour & Skin — Glitz & Glamour',
   testimonials: 'Google Reviews — Glitz & Glamour Academy & Boutique Salon',
   contact: 'Contact & Enquiries — Glitz & Glamour Academy & Boutique Salon'
 };
 const descriptions = {
-  home: 'Glitz & Glamour Academy & Boutique Salon is a premium beauty and professional education destination in Kolkata — luxury services, expert training, by appointment.',
-  academy: 'Professional beauty education in Kolkata: makeup artistry, hairdressing, hair colour theory and professional beauty techniques, taught by Kakoly Sengupta.',
-  services: 'Bridal makeup, bridal hairstyling, occasion makeup, hairstyling and Dermalogica and Davines salon services in Santoshpur, Kolkata. By appointment.',
+  home: 'Where beauty meets expertise. Glitz & Glamour brings together personalised luxury beauty services and professional beauty education in Santoshpur, Kolkata.',
+  academy: 'A professional beauty training institute in Kolkata: professional makeup, hairdressing, hair colour theory, hairstyling and beauty therapy — from beginner courses to masterclasses and one-to-one mentoring.',
+  services: 'Bridal makeup and hairstyling, occasion makeup, precision haircuts, hair colour and styling, Dermalogica skin treatments, Davines and Schwarzkopf colour, and keratin, botox and nanoplastia. By appointment, Santoshpur, Kolkata.',
   testimonials: '4.9 stars from 103 Google reviews of Glitz & Glamour Academy & Boutique Salon — brides, salon regulars and Academy students, in their own words.',
   contact: 'Book a salon appointment or enquire about a course. WhatsApp, telephone and email for Glitz & Glamour Academy & Boutique Salon, Santoshpur, Kolkata.'
 };
@@ -81,30 +81,30 @@ function home(){return `
 <div class="page-wrap">
   <section class="home-hero">
     <div class="hero-copy">
-      <div class="eyebrow">Kolkata · By appointment</div>
-      <h1><span>Luxury services.</span><span class="script">Expert training.</span></h1>
-      <p>A premium beauty and professional education destination in Kolkata — bringing together the artistry of beauty, the science of skin and hair, and the excellence of professional training.</p>
+      <div class="eyebrow">Boutique salon &amp; professional academy · Kolkata</div>
+      <h1><span>Where Beauty</span><span class="script">Meets Expertise.</span></h1>
+      <p>Glitz &amp; Glamour brings together personalised luxury beauty services and professional beauty education. From refined bridal artistry and advanced skin and hair services to hands-on industry training, every experience is guided by expertise, precision and individual attention.</p>
       <div class="hero-actions"><a class="button" href="#/contact" data-category-link="Salon">Book a salon appointment <span class="arrow">${ic('arrow')}</span></a><a class="text-link" href="#/academy">Explore the Academy <span>${ic('arrow')}</span></a></div>
       <div class="hero-facts"><div class="fact"><strong>30+</strong><small>years in beauty</small></div><div class="fact"><strong>Level 4</strong><small>City &amp; Guilds · London</small></div><div class="fact"><strong>Dermalogica</strong><small>specialist</small></div></div>
     </div>
-    <div class="hero-art" data-tilt>${image('./public/images/bridal-editorial.jpg','Bridal makeup and hair by Glitz & Glamour','',{w:928,h:1152,eager:true})}<div class="art-label">Bridal artistry</div><div class="art-index">01 — THE BRIDAL EDIT</div><div class="seal">${ic('aster','seal-mark')}<span>True luxury<br>lies in<br><i>expertise</i></span></div></div>
+    <div class="hero-art" data-tilt>${image('./public/images/bridal-editorial.jpg','Bridal makeup and hair by Glitz & Glamour','',{w:928,h:1152,eager:true})}<div class="art-label">Bridal artistry · salon work</div><div class="art-index">01 — SALON &amp; ACADEMY</div><div class="seal">${ic('aster','seal-mark')}<span>True luxury<br>lies in<br><i>expertise</i></span></div></div>
   </section>
-  <div class="hero-marquee"><div class="marquee-track"><span>Bridal artistry <i>${ic('aster')}</i> Dermalogica skincare <i>${ic('aster')}</i> Davines haircare <i>${ic('aster')}</i> Professional education <i>${ic('aster')}</i> Bridal artistry <i>${ic('aster')}</i> Dermalogica skincare <i>${ic('aster')}</i> Davines haircare <i>${ic('aster')}</i> Professional education <i>${ic('aster')}</i></span><span aria-hidden="true">Bridal artistry <i>${ic('aster')}</i> Dermalogica skincare <i>${ic('aster')}</i> Davines haircare <i>${ic('aster')}</i> Professional education <i>${ic('aster')}</i> Bridal artistry <i>${ic('aster')}</i> Dermalogica skincare <i>${ic('aster')}</i> Davines haircare <i>${ic('aster')}</i> Professional education <i>${ic('aster')}</i></span></div></div>
+  <div class="hero-marquee"><div class="marquee-track"><span>Bridal artistry <i>${ic('aster')}</i> Precision haircuts <i>${ic('aster')}</i> Dermalogica skin <i>${ic('aster')}</i> Davines &amp; Schwarzkopf colour <i>${ic('aster')}</i> Professional education <i>${ic('aster')}</i> Bridal artistry <i>${ic('aster')}</i> Precision haircuts <i>${ic('aster')}</i> Dermalogica skin <i>${ic('aster')}</i> Davines &amp; Schwarzkopf colour <i>${ic('aster')}</i> Professional education <i>${ic('aster')}</i></span><span aria-hidden="true">Bridal artistry <i>${ic('aster')}</i> Precision haircuts <i>${ic('aster')}</i> Dermalogica skin <i>${ic('aster')}</i> Davines &amp; Schwarzkopf colour <i>${ic('aster')}</i> Professional education <i>${ic('aster')}</i> Bridal artistry <i>${ic('aster')}</i> Precision haircuts <i>${ic('aster')}</i> Dermalogica skin <i>${ic('aster')}</i> Davines &amp; Schwarzkopf colour <i>${ic('aster')}</i> Professional education <i>${ic('aster')}</i></span></div></div>
 
   <section class="section offers">
-    <div class="section-heading"><div><div class="eyebrow">One destination. Two expressions of excellence.</div><h2>Two ways in.<br><span class="script">One standard.</span></h2></div><p>A boutique salon and a professional academy, under one roof in Santoshpur. Both built on personalised attention, technical expertise and understated luxury.</p></div>
+    <div class="section-heading"><div><div class="eyebrow">One destination. Two expressions of excellence.</div><h2>Two ways in.<br><span class="script">One standard.</span></h2></div><p>A boutique salon and a professional beauty academy, under one roof in Santoshpur. Both built on personalised attention, technical expertise and understated luxury.</p></div>
     <div class="offer-grid offer-grid--two">
-      <a href="#/services" class="offer-card"><div class="card-top"><div class="num">01 / For yourself</div></div><div class="card-bottom"><div><h3>Boutique Salon</h3><p>A thoughtfully curated range of premium skin, hair and makeup services — advanced Dermalogica skincare treatments, Davines professional haircare and colour, customised hair transformations and sophisticated makeup artistry.</p><span class="text-link text-link--plain">Explore salon services <span>${ic('arrow')}</span></span></div><span class="circle-arrow">${ic('arrow')}</span></div></a>
-      <a href="#/academy" class="offer-card"><div class="card-top"><div class="num">02 / For your next chapter</div></div><div class="card-bottom"><div><h3>The Academy</h3><p>Structured education, practical demonstrations, personalised mentoring and industry-focused training in makeup artistry, hairdressing, hair colour theory and professional beauty techniques.</p><span class="text-link text-link--plain">Explore the Academy <span>${ic('arrow')}</span></span></div><span class="circle-arrow">${ic('arrow')}</span></div></a>
+      <a href="#/services" class="offer-card"><div class="card-top"><div class="num">01 / For yourself</div></div><div class="card-bottom"><div><h3>Boutique Salon</h3><p>A curated range of premium skin, hair and makeup services, by appointment. Bridal and occasion artistry, precision haircuts, professional colour, advanced Dermalogica skin treatments, and Davines and Schwarzkopf haircare and treatments.</p><ul class="card-points"><li>Bridal makeup</li><li>Bridal hairstyling</li><li>Occasion &amp; party makeup</li><li>Haircuts · colour · styling</li><li>Dermalogica skin</li><li>Davines &amp; Schwarzkopf</li><li>Keratin · Botox · Nanoplastia</li></ul><span class="pathway-label">Explore the boutique salon ${ic('arrow')}</span></div><span class="circle-arrow">${ic('arrow')}</span></div></a>
+      <a href="#/academy" class="offer-card"><div class="card-top"><div class="num">02 / For your career</div></div><div class="card-bottom"><div><h3>The Academy</h3><p>A dedicated professional training institute for aspiring and practising beauty professionals — structured courses, demonstration-led classes, supervised hands-on practice and one-to-one mentoring with a working educator.</p><ul class="card-points"><li>Professional makeup</li><li>Hairdressing</li><li>Hair colour theory</li><li>Hairstyling</li><li>Beauty therapy</li><li>Beginner to masterclass</li><li>1-to-1 mentoring</li></ul><span class="pathway-label">Discover the Academy ${ic('arrow')}</span></div><span class="circle-arrow">${ic('arrow')}</span></div></a>
     </div>
-    <p class="section-note">Bridal makeup and bridal hairstyling sit at the heart of the boutique salon. <a class="text-link" href="#/contact" data-category-link="Bridal">Plan your bridal look <span>${ic('arrow')}</span></a></p>
+    <p class="section-note">Bridal artistry sits at the heart of the boutique salon. The Academy trains the professionals who work behind the chair. <a class="text-link" href="#/contact" data-category-link="Bridal">Plan your bridal look <span>${ic('arrow')}</span></a></p>
   </section>
 
   <section class="section"><div class="story-band"><div class="story-photo">${image('./public/images/academy-class-square.jpg','A makeup educator demonstrating a technique on a model')}<div class="caption">The founder</div></div><div class="story-text"><div class="eyebrow">The founder</div><h2>Technical excellence.<br><span class="script">Individual attention.</span></h2><p>Kakoly Sengupta is an experienced beauty professional, makeup artist and educator with over 30 years of experience in the beauty and wellness industry. Her professional credentials include a City &amp; Guilds Level 4 Licentiateship in Hairdressing (City &amp; Guilds, London), Teacher’s Training from Vidal Sassoon, London; and specialist expertise in professional makeup artistry from London Makeup Academy, London.</p><p>As a Dermalogica Specialist, she brings a science-based approach to professional skincare, combining technical knowledge with personalised treatment protocols. Her experience spans luxury salon services, bridal and editorial-inspired makeup artistry, professional hair colour techniques, beauty education and individual mentoring.</p><div class="pullquote">“True luxury lies in expertise, individuality and attention to detail.”</div><a class="text-link" href="#/academy">Read her credentials <span>${ic('arrow')}</span></a></div></div></section>
 
-  <section class="academy-feature academy-feature--photo"><div class="feature-image">${image('./public/images/academy-touchup.jpg','A makeup artist working on a client by hand at a dressing table, lit from behind')}<span class="image-credit">The Academy</span></div><div class="feature-copy"><div class="eyebrow">Glitz &amp; Glamour Academy</div><h2>Not just <i>how.</i><br>Also <i>why.</i></h2><p>Our academy is dedicated to nurturing aspiring and practising beauty professionals through structured education, practical demonstrations, personalised mentoring and industry-focused training. The teaching approach combines scientific understanding, technical precision and individual mentoring — so students develop confidence in their own professional abilities.</p><a class="button" href="#/academy">Explore the Academy <span class="arrow">${ic('arrow')}</span></a></div></section>
+  <section class="academy-feature academy-feature--photo"><div class="feature-image">${image('./public/images/academy-touchup.jpg','A makeup artist working on a client by hand at a dressing table, lit from behind')}<span class="image-credit">The Academy</span></div><div class="feature-copy"><div class="eyebrow">Glitz &amp; Glamour Academy</div><h2>Not just <i>how.</i><br>Also <i>why.</i></h2><p>The Academy is a dedicated training institute — not a service on a salon menu. Aspiring and practising professionals learn through structured education, live demonstration, supervised hands-on practice and personalised mentoring, from beginner foundation courses to professional upskilling, masterclasses and one-to-one mentoring.</p><a class="button" href="#/academy">Explore the Academy <span class="arrow">${ic('arrow')}</span></a></div></section>
 
-  <div class="stat-strip"><div><strong>30+</strong><span>years of experience</span></div><div><strong>Level 4</strong><span>City &amp; Guilds · London</span></div><div><strong>Dermalogica</strong><span>specialist</span></div><div><strong>Kolkata</strong><span>Santoshpur, by appointment</span></div></div>
+  <div class="stat-strip"><div><strong>30+</strong><span>years of experience</span></div><div><strong>Level 4</strong><span>City &amp; Guilds · London</span></div><div><strong>Vidal Sassoon</strong><span>Teacher’s Training · London</span></div><div><strong>103</strong><span>Google reviews · 4.9 ★</span></div></div>
 
   <section class="section"><div class="section-heading"><div><div class="eyebrow">Appointments &amp; admissions</div><h2>Tell us what you<br><span class="script">have in mind.</span></h2></div><a class="button" href="#/contact">Start an enquiry <span class="arrow">${ic('arrow')}</span></a></div><p class="prose">Salon visits and academy consultations are preferably arranged by prior appointment. All enquiries are handled personally by our team, who will confirm availability, fees and the next step with you directly.</p></section>
 </div>`}
@@ -113,66 +113,120 @@ function home(){return `
    ACADEMY  (Q2, Q10, Q11, Q12, Q9)
    ========================================================================== */
 const courseAreas = [
-  ['01','Makeup artistry','Professional makeup artistry, taught through practical demonstration and hands-on practice rather than theory alone.'],
-  ['02','Hairdressing','Professional hairdressing technique, built from the fundamentals up to salon-ready practice.'],
-  ['03','Hair colour theory','The theory behind professional hair colour, with individual mentoring on application.'],
-  ['04','Professional beauty techniques','Industry-focused beauty techniques, with the scientific understanding behind each one.']
+  ['01','Professional makeup','Makeup artistry taught the way it is practised: skin preparation, base and undertone matching, correction, definition and finish — for bridal, occasion and everyday clients.'],
+  ['02','Hairdressing','Professional hairdressing from the ground up — tools and sectioning, cutting fundamentals, blow-drying and finishing — through to salon-ready practice on live models.'],
+  ['03','Hair colour theory','The theory behind professional colour: the colour wheel, levels and tones, formulation, grey coverage and the reasoning behind a result — then supervised practice in applying it.'],
+  ['04','Hairstyling','Occasion, bridal and editorial styling — back-combing, padding, pinning, texture and long-wear structure, with the finishing detail that reads well in photographs.'],
+  ['05','Beauty therapy','Professional beauty therapy practice: consultation, skin and hair care, hygiene and product knowledge, and the standards expected of a working therapist in a professional salon.']
+];
+
+/* Four ways to train. Q8 (course names) is still unanswered, so these are
+   levels and formats rather than named courses with durations and fees. */
+const courseFormats = [
+  ['Foundation courses','Starting from zero','For beginners and career changers. Structured modules that build the fundamentals — consultation, hygiene, tools, product knowledge and basic technique — before any supervised practice.'],
+  ['Professional upskilling','Already working','For practising professionals adding a discipline, refining speed and finish, or bringing their technique up to current salon standards.'],
+  ['Masterclasses','One subject, in depth','Short, focused sessions on a single subject — bridal finish, colour correction, advanced styling — demonstrated by a working educator, with time to ask questions.'],
+  ['One-to-one mentoring','Entirely yours','Individual mentoring shaped around what you want to learn, at your own pace, with direct feedback on your own work rather than a fixed syllabus.']
 ];
 
 function academy(){return `<div class="page-wrap">
-  <section class="page-hero"><div class="breadcrumb">Home <span>/</span> Academy</div><div class="eyebrow">Glitz &amp; Glamour Academy</div><h1>A craft worth learning.<br><em>A career worth building.</em></h1><p>Structured education, practical demonstrations, personalised mentoring and industry-focused training — led by Kakoly Sengupta, with over 30 years in the beauty and wellness industry.</p></section>
+  <section class="page-hero"><div class="breadcrumb">Home <span>/</span> Academy</div><div class="eyebrow">Glitz &amp; Glamour Academy · Professional training</div><h1>Learn the Art.<br><em>Master the Technique.</em><br>Build Your Career.</h1><p>A professional beauty training institute in Santoshpur, Kolkata — structured courses, demonstration-led classes and supervised hands-on practice for aspiring and practising beauty professionals, led by Kakoly Sengupta.</p>
+    <div class="hero-actions"><a class="button" href="#/contact" data-category-link="Academy">Enquire about a course <span class="arrow">${ic('arrow')}</span></a><a class="text-link" href="#/services">See the boutique salon <span>${ic('arrow')}</span></a></div>
+  </section>
 
-  <section class="section"><div class="academy-intro"><div><div class="eyebrow">The Academy</div><h2>Professional education,<br>built on <span class="script">practice.</span></h2><p>Glitz &amp; Glamour Academy is dedicated to nurturing aspiring and practising beauty professionals through structured education, practical demonstrations, personalised mentoring and industry-focused training in makeup artistry, hairdressing, hair colour theory and professional beauty techniques.</p><p>Founder and educator Kakoly Sengupta holds a City &amp; Guilds Level 4 Licentiateship in Hairdressing (City &amp; Guilds, London) and Teacher’s Training from Vidal Sassoon, London. Her teaching combines scientific understanding, technical precision, practical demonstration and individual mentoring.</p><div class="credential-stack"><div class="credential"><b>30+</b><span>years of professional experience</span></div><div class="credential"><b>Level 4</b><span>City &amp; Guilds Licentiateship · London</span></div><div class="credential"><b>Vidal Sassoon</b><span>Teacher’s Training · London</span></div><div class="credential"><b>Dermalogica</b><span>Specialist · science-based skincare</span></div></div></div><div class="academy-image">${image('./public/images/academy-class.jpg','A makeup educator demonstrating a technique on a model')}<div class="image-stamp">Learning, by doing</div></div></div></section>
+  <section class="section"><div class="academy-intro"><div><div class="eyebrow">The Academy</div><h2>A training institute,<br>built on <span class="script">practice.</span></h2><p>Glitz &amp; Glamour Academy is a dedicated professional training institute — separate in purpose from the boutique salon, and held to the same standard. Aspiring and practising beauty professionals are taught through structured education, live practical demonstration, supervised hands-on practice and personalised mentoring.</p><p>Founder and lead educator Kakoly Sengupta holds a City &amp; Guilds Level 4 Licentiateship in Hairdressing (City &amp; Guilds, London), Teacher’s Training from Vidal Sassoon, London, and specialist training in professional makeup artistry from London Makeup Academy, London. Her teaching combines scientific understanding, technical precision, practical demonstration and individual mentoring.</p><div class="credential-stack"><div class="credential"><b>30+</b><span>years of professional experience</span></div><div class="credential"><b>Level 4</b><span>City &amp; Guilds Licentiateship · London</span></div><div class="credential"><b>Vidal Sassoon</b><span>Teacher’s Training · London</span></div><div class="credential"><b>Dermalogica</b><span>Specialist · science-based skincare</span></div></div></div><div class="academy-image">${image('./public/images/academy-class.jpg','A makeup educator demonstrating a technique on a model')}<div class="image-stamp">Learning, by doing</div></div></div></section>
 
-  <section class="section course-section"><div class="section-heading"><div><div class="eyebrow">What you learn</div><h2>Four disciplines.<br><span class="script">One standard.</span></h2></div><p>Training across the core disciplines of professional beauty. Current batches, eligibility, fees and certification are confirmed directly with the Academy.</p></div><div class="course-grid">${courseAreas.map(c=>`<article class="course-card"><span class="course-num">${c[0]} / DISCIPLINE</span><h3>${c[1]}</h3><p>${c[2]}</p><button type="button" data-enquire="${c[1]}">Ask about this course ${ic('arrow')}</button></article>`).join('')}</div></section>
+  <div class="stat-strip"><div><strong>Demonstration</strong><span>led, then practised</span></div><div><strong>Hands-on</strong><span>supervised practice</span></div><div><strong>1-to-1</strong><span>mentoring available</span></div><div><strong>Online</strong><span>selected programmes</span></div></div>
+
+  <section class="section course-section"><div class="section-heading"><div><div class="eyebrow">What you learn</div><h2>Five disciplines.<br><span class="script">One standard.</span></h2></div><p>Training across the core disciplines of professional beauty. Current batches, eligibility, duration, fees and certification are confirmed directly with the Academy.</p></div><div class="course-grid">${courseAreas.map(c=>`<article class="course-card"><span class="course-num">${c[0]} / DISCIPLINE</span><h3>${c[1]}</h3><p>${c[2]}</p><button type="button" data-enquire="${c[1]}">Ask about this course ${ic('arrow')}</button></article>`).join('')}</div></section>
+
+  <section class="section section--tight"><div class="section-heading"><div><div class="eyebrow">How you can train</div><h2>Four ways in.<br><span class="script">Your level, your pace.</span></h2></div><p>Whether you are starting from zero, adding a discipline or refining a technique you already use, there is a format that fits. Tell us where you are and we will point you to it.</p></div>
+    <div class="format-grid">${courseFormats.map(f=>`<article class="format-card"><div class="format-top"><span class="format-level">${f[1]}</span></div><h3>${f[0]}</h3><p>${f[2]}</p><button type="button" data-enquire="${f[0]}">Ask about ${f[0].toLowerCase()} ${ic('arrow')}</button></article>`).join('')}</div>
+    <p class="course-footnote">Beginner foundation courses, professional upskilling, masterclasses and one-to-one mentoring can be taken in person at Santoshpur; selected educational programmes are also offered online. Batch dates and fees are confirmed personally by the Academy.</p>
+  </section>
 
   <section class="section section--tight"><div class="two-col">
-    <div class="col-card"><div class="eyebrow">Who it is for</div><h3>Aspiring and practising professionals</h3><p>Our academy welcomes aspiring and practising beauty professionals from Kolkata, across West Bengal and other parts of India. We offer in-person professional training as well as selected online educational programmes.</p></div>
-    <div class="col-card"><div class="eyebrow">How we teach</div><h3>Understanding, not imitation</h3><p>The aim is to help students understand not just how a technique works, but why it works — so they leave as independent, knowledgeable and confident professionals rather than people who simply reproduce techniques.</p></div>
+    <div class="col-card"><div class="eyebrow">Who it is for</div><h3>Aspiring and practising professionals</h3><p>The Academy welcomes students from Kolkata, across West Bengal and from other parts of India — those beginning a career in beauty, and those already working who want to formalise or extend what they can do.</p></div>
+    <div class="col-card"><div class="eyebrow">How we teach</div><h3>Understanding, not imitation</h3><p>The aim is to help students understand not just how a technique works, but why it works — so they leave as independent, knowledgeable and confident professionals rather than people who simply reproduce a look they were shown.</p></div>
+    <div class="col-card"><div class="eyebrow">Where it can lead</div><h3>Professional practice</h3><p>Students go on to salon work, bridal and freelance artistry, and to teaching and mentoring themselves. Guidance on course suitability and professional development is part of every admission conversation.</p></div>
   </div></section>
 
   <section class="section section--tight"><div class="section-heading"><div><div class="eyebrow">Admissions</div><h2>How a course<br><span class="script">becomes a place.</span></h2></div><p>All admissions are handled personally by the Academy. There is no automated enrolment.</p></div>
     <div class="steps">${[
-      ['01','Enquire','Reach us by WhatsApp, telephone or the enquiry form. Tell us which discipline interests you and what you would like to know.'],
+      ['01','Enquire','Reach us by WhatsApp, telephone or the enquiry form. Tell us which discipline interests you, your current level and what you would like to know.'],
       ['02','Talk it through','Course information, syllabus, duration, fees, training format and upcoming batch availability are explained personally. Students may speak directly with the academy educator for guidance on course suitability and professional development.'],
       ['03','Confirm your place','Admission is confirmed once you select the course, complete the required registration or payment formalities, and receive confirmation from the Academy.']
     ].map(s=>`<div class="step"><span class="step-num">${s[0]}</span><h3>${s[1]}</h3><p>${s[2]}</p></div>`).join('')}</div>
   </section>
 
-  <section class="section section--tight"><div class="course-enquire"><div><h3>Not sure which discipline fits?</h3><p>Tell us what you want to learn. We’ll help you find the right starting point.</p></div><a class="button" href="#/contact" data-category-link="Academy">Enquire about a course <span class="arrow">${ic('arrow')}</span></a></div></section>
+  <section class="section section--tight"><div class="course-enquire"><div><h3>Not sure which discipline fits?</h3><p>Tell us what you want to learn and where you are starting from. We’ll help you find the right level and format.</p></div><a class="button" href="#/contact" data-category-link="Academy">Enquire about a course <span class="arrow">${ic('arrow')}</span></a></div></section>
 </div>`}
 
 /* ==========================================================================
    SERVICES  (Q3, Q2, Q9, Q12, Q13)
    ========================================================================== */
-const services = [
-  {num:'01',title:'Bridal makeup',cat:'Bridal',
-   desc:'Sophisticated makeup artistry for your wedding day, shaped around your features, your outfit and your ceremony.',
-   detail:'Bridal enquiries should include your name, event date, location and the services you need. A consultation may be recommended before the booking is confirmed. Bridal and special-event work outside the salon is considered on prior consultation, subject to availability, location and applicable travel charges.'},
-  {num:'02',title:'Bridal hairstyling',cat:'Bridal',
-   desc:'Bridal hair planned alongside your makeup, so the whole look holds together from the first photograph to the last.',
-   detail:'Booked with bridal makeup or on its own. Share your event date, getting-ready location and the hair look you have in mind, and we will confirm availability and timing directly.'},
-  {num:'03',title:'Occasion & party makeup',cat:'Bridal',
-   desc:'Makeup for engagements, celebrations, festive occasions and the days worth dressing up for.',
-   detail:'A polished, personal look for your event. Tell us the occasion, date and start time, and whether you would like makeup, hairstyling or both.'},
-  {num:'04',title:'Hairstyling',cat:'Salon',
-   desc:'Styling from a fresh everyday finish to occasion hair, with customised hair transformations in the salon chair.',
-   detail:'Appointment time and service suitability are confirmed after a short consultation, so the finish suits your hair and the occasion.'},
-  {num:'05',title:'Dermalogica skin treatments',cat:'Salon',
-   desc:'Advanced Dermalogica skincare treatments, bringing a science-based approach to professional skincare.',
-   detail:'Kakoly is a Dermalogica Specialist, combining technical knowledge with personalised treatment protocols. Tell us what you would like to address and the salon will advise on suitable treatments and appointment slots.'},
-  {num:'06',title:'Davines haircare &amp; colour',cat:'Salon',
-   desc:'Davines professional haircare and colour services, including customised hair transformations.',
-   detail:'For a colour transformation, a consultation is recommended before the service is confirmed. Share your current hair length, the change you have in mind and any reference images.'}
+/* Services are grouped so the range reads at a glance: bridal and occasion
+   artistry, cut and colour, then the professional skin and hair houses.
+   `enq` is the exact wording used in the enquiry form's dropdown, so a
+   "Enquire about this service" click pre-selects the right option. */
+const serviceGroups = [
+  {
+    eyebrow:'Group 01 — Bridal &amp; occasion artistry',
+    name:'Bridal &amp; occasion',
+    note:'Makeup and hair designed around you — your skin, your features, your attire, your ceremony and how you want to look, rather than a fixed signature style.',
+    items:[
+      {num:'01',title:'Bridal makeup',cat:'Bridal',enq:'Bridal makeup',
+       desc:'Makeup for your wedding day, designed around your skin, your features, your attire, your ceremony and your own preferences.',
+       detail:'Your look is built in consultation: skin preparation, base and texture, eye definition and lip, balanced against the outfit, the jewellery, the lighting and the timings of the day. A trial and consultation may be recommended before the booking is confirmed. Bridal and special-event work outside the salon is considered on prior consultation, subject to availability, location and applicable travel charges.'},
+      {num:'02',title:'Bridal hairstyling',cat:'Bridal',enq:'Bridal hairstyling',
+       desc:'Bridal hair planned with your makeup — beginning with a consultation and hair preparation, styled to suit your attire, and built to last.',
+       detail:'The consultation covers your hair type and condition, any preparation your hair needs beforehand, and how the style will sit with your dupatta, veil, jewellery and venue. Long-wear styling is planned for a full day of ceremonies and photography. Timing, trials and any preparation appointments are confirmed with you directly.'},
+      {num:'03',title:'Occasion &amp; party makeup',cat:'Bridal',enq:'Occasion / party makeup',
+       desc:'Makeup for engagements, receptions, festive occasions, sangeets and every other day worth dressing up for.',
+       detail:'Tell us the occasion, date, start time and whether you would like makeup, hairstyling or both, and we will confirm availability and timings. The look is designed to suit the event, your outfit and the light you will be photographed in.'}
+    ]
+  },
+  {
+    eyebrow:'Group 02 — Haircuts, colour &amp; styling',
+    name:'Haircuts, colour &amp; styling',
+    note:'Precision cutting, professional colour and finishing — every appointment begins with a short consultation on your hair and how you actually wear it.',
+    items:[
+      {num:'04',title:'Haircuts, hair colour &amp; hairstyling',cat:'Salon',enq:'Haircut &amp; styling',
+       desc:'Precision haircuts shaped to your hair type, face shape and routine — together with professional hair colour and hairstyling for everyday and occasion.',
+       detail:'Cutting is the foundation: a haircut is planned around your hair’s texture, density and growth pattern, and around how much time you want to spend styling it, so it works on an ordinary morning and not only on the day you leave the salon. Colour and styling can be booked with it or on their own, and your stylist will advise on what is realistic in one sitting and what is better planned across two.'},
+      {num:'05',title:'Keratin / Botox / Nanoplastia',cat:'Salon',enq:'Keratin / Botox / Nanoplastia',
+       desc:'Professional smoothing and hair-reconstruction services — keratin, hair botox and nanoplastia — recommended only after a consultation on your hair and scalp.',
+       detail:'Suitability, the service that fits your hair, and the aftercare it involves are discussed and confirmed before anything is booked, so you know exactly what the service means and how to maintain it. Every head of hair responds differently and results vary with hair type, condition and aftercare; we will tell you honestly what to expect rather than promise a particular outcome.'}
+    ]
+  },
+  {
+    eyebrow:'Group 03 — Professional skin &amp; hair treatments',
+    name:'Professional skin &amp; hair treatments',
+    note:'Consultation-led treatments from the professional houses we work with — Dermalogica for skin, Davines and Schwarzkopf for hair.',
+    items:[
+      {num:'06',title:'Dermalogica professional skin treatments',cat:'Salon',enq:'Dermalogica skin treatment',
+       desc:'Professional Dermalogica skin treatments — a facial programme built around a skin consultation, your skin on the day, and what you would like to work on.',
+       detail:'Kakoly is a Dermalogica Specialist, and treatment begins with a consultation rather than a fixed menu: we look at your skin, talk through your routine and your concerns, then recommend a professional treatment and a home-care plan suited to you. Where a course of treatments is likely to help more than a single visit, we will say so. These are cosmetic skin treatments, not medical care — we do not diagnose or treat skin conditions, and will suggest a dermatologist where that is the right next step.'},
+      {num:'07',title:'Davines haircare, hair colour &amp; treatments',cat:'Salon',enq:'Davines haircare &amp; colour',
+       desc:'Davines professional haircare, colour and treatments — root colour, global colour, highlights and balayage, with the hair and scalp services that support them.',
+       detail:'Colour work is planned after a consultation: we assess your hair and scalp, discuss the root touch-up, global colour, highlights or balayage you have in mind, and agree how often it will need maintaining. Davines professional hair and scalp services are also available on their own, including care for a dry, sensitised or oily scalp, and we will recommend aftercare to protect the colour you have chosen.'},
+      {num:'08',title:'Schwarzkopf colour &amp; treatment',cat:'Salon',enq:'Schwarzkopf colour &amp; treatment',
+       desc:'Schwarzkopf professional colour and treatment services — chosen where the Schwarzkopf system suits your hair, your colour goal and the upkeep you want.',
+       detail:'We work with more than one professional colour house, so the service can be matched to your hair rather than the other way around. Your stylist will advise on which system, developer and aftercare suit the result you are after, and will explain the upkeep before you commit to it.'}
+    ]
+  }
 ];
+
+function serviceRow(s){return `<div class="service-row-wrap"><div class="service-row"><span class="row-no">${s.num}</span><h3>${s.title}</h3><p>${s.desc}</p><button type="button" class="circle-arrow service-toggle" aria-label="More about ${s.title}" data-service="${s.num}" aria-expanded="false" aria-controls="extra-${s.num}">${ic('arrow','icon-open')}${ic('minus','icon-close')}</button></div><div class="service-extra" id="extra-${s.num}" data-extra="${s.num}">${s.detail} <button type="button" class="text-link service-extra-link" data-enquire="${s.enq||s.title}" data-category="${s.cat}">Enquire about this service ${ic('arrow')}</button></div></div>`}
+
 function servicesPage(){return `<div class="page-wrap">
   <section class="page-hero"><div class="breadcrumb">Home <span>/</span> Services</div><div class="eyebrow">Boutique Salon</div><h1>Luxury services,<br><em>by appointment.</em></h1><p>A thoughtfully curated range of premium skin, hair and makeup services. Every service is designed around individual beauty needs, with a commitment to quality, precision and an exceptional client experience.</p></section>
 
   <section class="section"><div class="service-intro"><div><div class="eyebrow">Services at Glitz &amp; Glamour</div><h2>Made for the moment.<br><span class="script">Made for you.</span></h2></div><div class="service-note">“We focus on enhancing individual beauty rather than following trends blindly. Attention to detail and maintaining the integrity of skin and hair are central to our work.”</div></div>
-  <div class="service-list">${services.map(s=>`<div class="service-row-wrap"><div class="service-row"><span class="row-no">${s.num}</span><h3>${s.title}</h3><p>${s.desc}</p><button type="button" class="circle-arrow service-toggle" aria-label="More about ${s.title}" data-service="${s.num}" aria-expanded="false" aria-controls="extra-${s.num}">${ic('arrow','icon-open')}${ic('minus','icon-close')}</button></div><div class="service-extra" id="extra-${s.num}" data-extra="${s.num}">${s.detail} <button type="button" class="text-link service-extra-link" data-enquire="${s.title}" data-category="${s.cat}">Enquire about this service ${ic('arrow')}</button></div></div>`).join('')}</div>
-  <div class="service-bottom"><div><h3>Your date, your plans.</h3><p>For bridal, salon and makeup bookings, begin with a short enquiry. We’ll confirm pricing and availability with you personally.</p></div><a href="#/contact" class="button" data-category-link="Salon">Enquire about a service <span class="arrow">${ic('arrow')}</span></a></div></section>
+  <div class="service-list">${serviceGroups.map(g=>`<div class="service-group"><div class="service-group-head"><div class="eyebrow">${g.eyebrow}</div><h3>${g.name}</h3><p>${g.note}</p></div>${g.items.map(serviceRow).join('')}</div>`).join('')}</div>
+  <div class="service-bottom"><div><h3>Not sure which service fits?</h3><p>Describe what you have in mind and we will tell you what we would recommend, how long it takes and what it costs. Every booking begins with a conversation, not a price list.</p></div><a href="#/contact" class="button" data-category-link="Salon">Enquire about a service <span class="arrow">${ic('arrow')}</span></a></div></section>
 
-  <section class="section section--tight"><div class="course-enquire"><div><h3>Thinking about the Academy?</h3><p>Professional training in makeup artistry, hairdressing, hair colour theory and beauty techniques.</p></div><a class="button" href="#/academy">Explore the Academy <span class="arrow">${ic('arrow')}</span></a></div></section>
+  <section class="section section--tight"><div class="course-enquire"><div><h3>Thinking about the Academy?</h3><p>A dedicated professional training institute: professional makeup, hairdressing, hair colour theory, hairstyling and beauty therapy — from beginner courses to masterclasses.</p></div><a class="button" href="#/academy">Explore the Academy <span class="arrow">${ic('arrow')}</span></a></div></section>
 </div>`}
 
 /* ==========================================================================
@@ -200,7 +254,8 @@ const reviews = [
   },
   {
     name:'ANAMIKA BASU', when:'4 months ago', group:'Salon &amp; hair',
-    text:'My experience at Glitz & Glamour Beauty Parlour was nothing short of wonderful. From the moment I walked in, I was welcomed with warmth, professionalism, and genuine care.'
+    text:'My experience at Glitz & Glamour Beauty Parlour was nothing short of wonderful. From the moment I walked in, I was welcomed with warmth, professionalism, and genuine care.',
+    quoteNote:'Quoted as written — the reviewer’s own name for the salon is unchanged.'
   },
   {
     name:'Debarati Ghosh', when:'8 months ago', group:'Salon &amp; hair',
@@ -208,11 +263,13 @@ const reviews = [
   },
   {
     name:'Uttamzzz', when:'9 months ago', group:'Academy &amp; students',
-    text:'Gltz n glamour academy n Butique salon is truly amazing. I completed my training in Hair Dressing, Beauty Therapy, and Fashion Makeup from this academy, and I have been a pass-out since 2008.'
+    text:'Gltz n glamour academy n Butique salon is truly amazing. I completed my training in Hair Dressing, Beauty Therapy, and Fashion Makeup from this academy, and I have been a pass-out since 2008.',
+    quoteNote:'Quoted as written — the reviewer’s spelling is unchanged.'
   },
   {
     name:'Swagata Chatterjee', when:'7 months ago', group:'Academy &amp; students',
-    text:'A big thanks to Glitz and Glamour Academy and Boutique Saloon for their amazing services and encouragement. The team is extremely skilled, friendly, and always ready to guide and support.'
+    text:'A big thanks to Glitz and Glamour Academy and Boutique Saloon for their amazing services and encouragement. The team is extremely skilled, friendly, and always ready to guide and support.',
+    quoteNote:'Quoted as written — “Saloon” is the reviewer’s spelling.'
   },
   {
     name:'Rituparna Chandra', when:'6 months ago', group:'Long-standing clients',
@@ -225,6 +282,7 @@ function reviewCard(r){
   return `<article class="review-card${r.featured?' featured':''}" data-group="${r.group}">
     <div class="review-top"><span class="stars" role="img" aria-label="Rated 5 out of 5 stars on Google">${stars(5)}</span><span class="review-topic">${r.group}</span></div>
     <blockquote>${r.text}</blockquote>
+    ${r.quoteNote?`<p class="quote-as-written">${r.quoteNote}</p>`:''}
     <footer class="review-who"><span class="review-avatar" aria-hidden="true">${initials}</span><div><b>${r.name}</b><small>Google review · ${r.when}</small></div></footer>
   </article>`;
 }
@@ -245,8 +303,11 @@ function testimonials(){return `<div class="page-wrap">
       <div class="eyebrow">Where the reviews begin</div>
       <h2>The bridal chair.<br><span class="script">The calm morning.</span></h2>
       <p>Bridal work is the heart of the boutique salon — makeup and hair planned around the ceremony, the outfit, the photographs and the person wearing it all. Brides are usually the first to write, and they tend to remember two things: the look holding up through a long day, and how calm it felt getting there.</p>
-      <div class="pullquote">“It was truly an honour to be a part of your special journey and to style you for such important moments of your wedding.”</div>
-      <p class="quote-credit">Kakoly Sengupta, replying to a bride’s Google review</p>
+      <div class="founder-reply">
+        <div class="reply-label"><span class="tag"><i></i>Founder’s reply</span><span class="reply-note">Written by the salon — not a customer review</span></div>
+        <blockquote>“It was truly an honour to be a part of your special journey and to style you for such important moments of your wedding.”</blockquote>
+        <cite>Kakoly Sengupta, founder of Glitz &amp; Glamour, replying to a bride’s Google review</cite>
+      </div>
       <a class="text-link" href="#/contact" data-category-link="Bridal">Plan your bridal look <span>${ic('arrow')}</span></a>
     </div>
   </div></section>
@@ -257,7 +318,7 @@ function testimonials(){return `<div class="page-wrap">
       <div class="tools-note">Showing 8 of 103 reviews. The rest — including the ones written in Bengali — are on Google.</div>
     </div>
     <div class="review-wall">${reviews.map(reviewCard).join('')}</div>
-    <div class="note-box"><b>How these are published.</b> Quotes are reproduced from public Google reviews of Glitz &amp; Glamour Academy &amp; Boutique Salon, trimmed with an ellipsis where a review continues, and grouped by topic for reading. Names, star ratings and dates are unchanged. <a class="text-link" href="${googlePlace}" target="_blank" rel="noreferrer">Read the full reviews on Google <span>${ic('arrow')}</span></a></div>
+    <div class="note-box"><b>How these are published.</b> Quotes are reproduced from public Google reviews of Glitz &amp; Glamour Academy &amp; Boutique Salon, trimmed with an ellipsis where a review continues, and grouped by topic for reading. Names, star ratings and dates are unchanged, and every quote keeps the reviewer’s own spelling — including where a reviewer writes the salon or Academy name differently. The one quote on this page that is <b>not</b> a customer review is labelled as a founder’s reply. <a class="text-link" href="${googlePlace}" target="_blank" rel="noreferrer">Read the full reviews on Google <span>${ic('arrow')}</span></a></div>
   </section>
   <section class="section themes-section">
     <div class="section-heading"><div><div class="eyebrow">What gets mentioned most</div><h2>The words that<br>keep <span class="script">coming up.</span></h2></div><p>Google groups our reviews into topics. Each number is how many reviews mention it.</p></div>
@@ -268,9 +329,10 @@ function testimonials(){return `<div class="page-wrap">
     <div class="feature-copy">
       <div class="eyebrow">From the Academy</div>
       <h2>Some students write<br>back <i>years later.</i></h2>
-      <blockquote class="academy-quote">“At Guild and Glamour Academy [sic], I learned makeup and hairdressing, but beyond the skills, I gained something even more precious. Whenever we found ourselves stuck in life’s challenges, Kakoli Di was always there with her wise advice…”</blockquote>
+      <blockquote class="academy-quote">“At Guild and Glamour Academy, I learned makeup and hairdressing, but beyond the skills, I gained something even more precious. Whenever we found ourselves stuck in life’s challenges, Kakoli Di was always there with her wise advice…”</blockquote>
       <cite>Kaberi D. · Google review · a year ago</cite>
-      <p>Glitz &amp; Glamour Academy trains aspiring and practising beauty professionals through structured education, practical demonstration, personalised mentoring and industry-focused training — in small groups, with a working educator at the front of the room.</p>
+      <p class="quote-as-written quote-as-written--light">Quoted as written — “Guild and Glamour Academy” is the reviewer’s own spelling of the name, left unchanged.</p>
+      <p>Glitz &amp; Glamour Academy is a dedicated professional training institute — structured courses in professional makeup, hairdressing, hair colour theory, hairstyling and beauty therapy, taught through live demonstration, supervised hands-on practice and personalised mentoring, from beginner level to masterclasses.</p>
       <a class="button" href="#/academy">Explore the Academy <span class="arrow">${ic('arrow')}</span></a>
     </div>
   </section>
@@ -278,7 +340,7 @@ function testimonials(){return `<div class="page-wrap">
     <div class="section-heading"><div><div class="eyebrow">Your turn</div><h2>Come for the work.<br><span class="script">Leave your own review.</span></h2></div><a class="button" href="#/contact">Start an enquiry <span class="arrow">${ic('arrow')}</span></a></div>
     <p class="prose">Bridal, salon or Academy — tell us what you have in mind and we’ll point you to the right conversation. After your appointment, you’re welcome to add your voice on Google.</p>
     <div class="cta-links"><a class="text-link" href="${googlePlace}" target="_blank" rel="noreferrer">Read all 103 Google reviews <span>${ic('arrow')}</span></a><a class="text-link" href="${googlePlace}" target="_blank" rel="noreferrer">Write your review on Google <span>${ic('arrow')}</span></a></div>
-    <p class="fine-print">Review quotes are excerpts from public Google reviews of Glitz &amp; Glamour Academy and Boutique Salon, published with the reviewer names shown on Google.</p>
+    <p class="fine-print">Review quotes are excerpts from public Google reviews of Glitz &amp; Glamour Academy and Boutique Salon, published with the reviewer names shown on Google and with each reviewer’s spelling preserved exactly as written.</p>
   </section>
 </div>`}
 
@@ -286,9 +348,9 @@ function testimonials(){return `<div class="page-wrap">
    CONTACT  (Q9, Q12, Q13)
    ========================================================================== */
 const categoryOptions = {
-  Bridal:['Bridal makeup','Bridal hairstyling','Bridal makeup & hairstyling','Occasion / party makeup','Other bridal enquiry'],
-  Salon:['Dermalogica skin treatment','Davines haircare & colour','Haircut & styling','Hair transformation','Occasion hairstyling','Other salon service'],
-  Academy:['Makeup artistry','Hairdressing','Hair colour theory','Professional beauty techniques','Online programme','Other course enquiry']
+  Bridal:['Bridal makeup','Bridal hairstyling','Bridal makeup & hairstyling','Occasion / party makeup','Occasion hairstyling','Other bridal enquiry'],
+  Salon:['Haircut & styling','Hair colour','Occasion hairstyling','Dermalogica skin treatment','Davines haircare & colour','Schwarzkopf colour & treatment','Keratin / Botox / Nanoplastia','Other salon service'],
+  Academy:['Professional makeup','Hairdressing','Hair colour theory','Hairstyling','Beauty therapy','Foundation courses','Professional upskilling','Masterclasses','One-to-one mentoring','Other course enquiry']
 };
 
 function contact(){return `<div class="page-wrap"><div class="contact-hero"><section class="page-hero"><div class="breadcrumb breadcrumb--light">Home <span>/</span> Contact &amp; Enquiries</div><div class="eyebrow">One destination. Two expressions of excellence.</div><h1>One enquiry.<br><em>Handled personally.</em></h1><p>Tell us whether you are booking the boutique salon or enquiring about a course. All enquiries are handled personally by our team.</p></section></div>
@@ -365,7 +427,7 @@ function setupTestimonials(){
   }));
 }
 function setupReveal(){
-  const items=document.querySelectorAll('.section-heading,.story-band,.academy-intro,.course-card,.service-row-wrap,.booking-form,.booking-aside,.map-panel,.step,.col-card,.process-col');
+  const items=document.querySelectorAll('.section-heading,.story-band,.academy-intro,.course-card,.format-card,.service-group,.service-row-wrap,.booking-form,.booking-aside,.map-panel,.step,.col-card,.process-col');
   if(!('IntersectionObserver' in window)){items.forEach(x=>x.classList.add('visible'));return;}
   const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}}),{threshold:.08});
   items.forEach((el,i)=>{el.classList.add('reveal');el.style.transitionDelay=(i%4)*55+'ms';obs.observe(el)});
