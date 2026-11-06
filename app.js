@@ -31,6 +31,7 @@ const titles = {
   home: 'Glitz & Glamour Academy & Boutique Salon — Kakoly Sengupta',
   academy: 'The Academy — Professional Beauty Training — Glitz & Glamour',
   services: 'Boutique Salon Services — Bridal, Hair, Colour & Skin — Glitz & Glamour',
+  gallery: 'Bridal Gallery — Makeup & Hair by Kakoly Sengupta — Glitz & Glamour',
   testimonials: 'Google Reviews — Glitz & Glamour Academy & Boutique Salon',
   contact: 'Contact & Enquiries — Glitz & Glamour Academy & Boutique Salon'
 };
@@ -38,14 +39,15 @@ const descriptions = {
   home: 'Where beauty meets expertise. Glitz & Glamour brings together personalised luxury beauty services and professional beauty education in Santoshpur, Kolkata.',
   academy: 'A professional beauty training institute in Kolkata: professional makeup, hairdressing, hair colour theory, hairstyling and beauty therapy — from beginner courses to masterclasses and one-to-one mentoring.',
   services: 'Bridal makeup and hairstyling, occasion makeup, precision haircuts, hair colour and styling, Dermalogica skin treatments, Davines and Schwarzkopf colour, and keratin, botox and nanoplastia. By appointment, Santoshpur, Kolkata.',
+  gallery: 'Explore bridal makeup, hairstyling and editorial looks by Kakoly Sengupta at Glitz & Glamour in Santoshpur, Kolkata. View the full bridal portfolio and plan your own look.',
   testimonials: '4.9 stars from 103 Google reviews of Glitz & Glamour Academy & Boutique Salon — brides, salon regulars and Academy students, in their own words.',
   contact: 'Book a salon appointment or enquire about a course. WhatsApp, telephone and email for Glitz & Glamour Academy & Boutique Salon, Santoshpur, Kolkata.'
 };
 
 function route(){
   const key = (location.hash.replace(/^#\/?/, '').split('?')[0] || 'home').toLowerCase();
-  if(key==='portfolio') return 'testimonials';
-  return ['home','academy','services','testimonials','contact'].includes(key) ? key : 'home';
+  if(key==='portfolio') return 'gallery';
+  return ['home','academy','services','gallery','testimonials','contact'].includes(key) ? key : 'home';
 }
 function goContact(category, value=''){
   currentCategory = category || 'Bridal';
@@ -74,6 +76,72 @@ function image(src, alt, cls='', opts={}){
 function ic(name,cls=''){ return `<svg class="icon ${cls}" aria-hidden="true" focusable="false"><use href="#i-${name}"></use></svg>`; }
 const stars=n=>Array.from({length:n},()=>ic('star','icon--star')).join('');
 
+/* Client-supplied bridal work. Keep the full frame in the lightbox; the
+   card's object-position only controls its smaller gallery thumbnail. */
+const bridalPhotos = [
+  {
+    src:'./public/images/bridal-gallery/classic-red-bride.webp', w:933, h:1400,
+    title:'Classic in red', category:'Bridal makeup', position:'50% 20%',
+    alt:'Bride in a red and gold sari with traditional gold jewellery, a nose ring and red lip makeup'
+  },
+  {
+    src:'./public/images/bridal-gallery/bridal-finishing-touch.webp', w:640, h:1315,
+    title:'The finishing touch', category:'Behind the scenes', position:'50% 20%',
+    alt:'Makeup artist applying lip colour to a bride wearing pink and gold during a behind-the-scenes appointment'
+  },
+  {
+    src:'./public/images/bridal-gallery/monochrome-bridal-portrait.webp', w:1064, h:1400,
+    title:'Timeless monochrome', category:'Bridal editorial', position:'50% 20%',
+    alt:'Black and white bridal portrait showing winged eyeliner, a jewelled veil and statement necklace'
+  },
+  {
+    src:'./public/images/bridal-gallery/champagne-reception-look.webp', w:885, h:1400,
+    title:'Champagne glow', category:'Occasion and bridal', position:'50% 20%',
+    alt:'Smiling woman in a champagne sari with silver embellishments, a crystal choker and soft glam makeup'
+  },
+  {
+    src:'./public/images/bridal-gallery/emerald-bridal-editorial.webp', w:1063, h:1400,
+    title:'Emerald editorial', category:'Hair and makeup', position:'50% 20%',
+    alt:'Bridal editorial portrait in emerald green with winged eyeliner, pink lip colour and gold jewellery'
+  },
+  {
+    src:'./public/images/bridal-gallery/red-gold-bride.webp', w:1050, h:1400,
+    title:'Before the ceremony', category:'Bridal makeup', position:'50% 20%',
+    alt:'Bride in red and gold looking down, wearing pink eye makeup, a red lip and a white forehead design'
+  },
+  {
+    src:'./public/images/bridal-gallery/traditional-bengali-bride.webp', w:933, h:1400,
+    title:'Bengali tradition', category:'Bridal makeup', position:'50% 10%',
+    alt:'Traditional Bengali bride in a red sari, white topor and gold jewellery'
+  },
+  {
+    src:'./public/images/bridal-gallery/magenta-bridal-look.webp', w:982, h:1400,
+    title:'Magenta and gold', category:'Hair and makeup', position:'50% 15%',
+    alt:'Bride in a magenta embroidered outfit with a decorated side braid, gold jewellery and soft pink makeup'
+  },
+  {
+    src:'./public/images/bridal-gallery/blue-bridal-look.webp', w:933, h:1400,
+    title:'A study in blue', category:'Bridal makeup', position:'50% 15%',
+    alt:'Bride in royal blue with silver jewellery, a navy veil and soft smoky eye makeup'
+  },
+  {
+    src:'./public/images/bridal-gallery/gold-bridal-portrait.webp', w:1089, h:1400,
+    title:'Gilded detail', category:'Bridal editorial', position:'50% 20%',
+    alt:'Gold-themed bridal portrait with dramatic eye makeup, red lips, a nose ring and layered gold jewellery'
+  },
+  {
+    src:'./public/images/bridal-gallery/gold-bridal-editorial.webp', w:933, h:1400,
+    title:'Golden muse', category:'Hair and makeup', position:'50% 0%',
+    alt:'Gold bridal editorial look with an embroidered blouse and skirt, red roses and traditional jewellery'
+  },
+  {
+    src:'./public/images/bridal-gallery/emerald-bride.webp', w:861, h:958,
+    title:'Emerald glow', category:'Bridal makeup', position:'50% 50%',
+    alt:'Smiling bride in emerald green and gold with soft glam makeup, green jewellery accents and a delicate nose ring'
+  }
+];
+function bridalImage(photo){return image(photo.src,photo.alt,'',{w:photo.w,h:photo.h});}
+
 /* ==========================================================================
    HOME
    ========================================================================== */
@@ -98,6 +166,11 @@ function home(){return `
       <a href="#/academy" class="offer-card"><div class="card-top"><div class="num">02 / For your career</div></div><div class="card-bottom"><div><h3>The Academy</h3><p>A dedicated professional training institute for aspiring and practising beauty professionals — structured courses, demonstration-led classes, supervised hands-on practice and one-to-one mentoring with a working educator.</p><ul class="card-points"><li>Professional makeup</li><li>Hairdressing</li><li>Hair colour theory</li><li>Hairstyling</li><li>Beauty therapy</li><li>Beginner to masterclass</li><li>1-to-1 mentoring</li></ul><span class="pathway-label">Discover the Academy ${ic('arrow')}</span></div><span class="circle-arrow">${ic('arrow')}</span></div></a>
     </div>
     <p class="section-note">Bridal artistry sits at the heart of the boutique salon. The Academy trains the professionals who work behind the chair. <a class="text-link" href="#/contact" data-category-link="Bridal">Plan your bridal look <span>${ic('arrow')}</span></a></p>
+  </section>
+
+  <section class="section bridal-preview">
+    <div class="section-heading"><div><div class="eyebrow">The bridal portfolio</div><h2>Bridal artistry.<br><span class="script">Made personal.</span></h2></div><div><p>Explore a selection of bridal makeup, hairstyling and editorial looks by Kakoly Sengupta — from traditional reds to contemporary colour and gold.</p><a class="text-link" href="#/gallery">View the bridal gallery <span>${ic('arrow')}</span></a></div></div>
+    <div class="bridal-preview-grid">${[bridalPhotos[0],bridalPhotos[6],bridalPhotos[9]].map(photo=>`<a class="bridal-preview-card" href="#/gallery" style="--photo-position:${photo.position}" aria-label="View ${photo.title} in the bridal gallery"><span class="bridal-preview-photo">${bridalImage(photo)}</span><span class="bridal-preview-caption"><span><small>${photo.category}</small><b>${photo.title}</b></span>${ic('arrow')}</span></a>`).join('')}</div>
   </section>
 
   <section class="section"><div class="story-band"><div class="story-photo">${image('./public/images/academy-class-square.jpg','A makeup educator demonstrating a technique on a model')}<div class="caption">The founder</div></div><div class="story-text"><div class="eyebrow">The founder</div><h2>Technical excellence.<br><span class="script">Individual attention.</span></h2><p>Kakoly Sengupta is an experienced beauty professional, makeup artist and educator with over 30 years of experience in the beauty and wellness industry. Her professional credentials include a City &amp; Guilds Level 4 Licentiateship in Hairdressing (City &amp; Guilds, London), Teacher’s Training from Vidal Sassoon, London; and specialist expertise in professional makeup artistry from London Makeup Academy, London.</p><p>As a Dermalogica Specialist, she brings a science-based approach to professional skincare, combining technical knowledge with personalised treatment protocols. Her experience spans luxury salon services, bridal and editorial-inspired makeup artistry, professional hair colour techniques, beauty education and individual mentoring.</p><div class="pullquote">“True luxury lies in expertise, individuality and attention to detail.”</div><a class="text-link" href="#/academy">Read her credentials <span>${ic('arrow')}</span></a></div></div></section>
@@ -228,6 +301,31 @@ function servicesPage(){return `<div class="page-wrap">
 
   <section class="section section--tight"><div class="course-enquire"><div><h3>Thinking about the Academy?</h3><p>A dedicated professional training institute: professional makeup, hairdressing, hair colour theory, hairstyling and beauty therapy — from beginner courses to masterclasses.</p></div><a class="button" href="#/academy">Explore the Academy <span class="arrow">${ic('arrow')}</span></a></div></section>
 </div>`}
+
+/* ==========================================================================
+   BRIDAL GALLERY
+   ========================================================================== */
+function bridalCard(photo,index){
+  const number=String(index+1).padStart(2,'0');
+  return `<figure class="bridal-card"><button type="button" data-gallery-index="${index}" aria-label="Open ${photo.title}, photograph ${index+1} of ${bridalPhotos.length}, in the full-screen viewer"><span class="bridal-card-photo" style="--photo-position:${photo.position}">${bridalImage(photo)}<span class="bridal-card-view">View full size ${ic('expand')}</span></span><span class="bridal-card-meta"><span class="bridal-card-name"><small>${photo.category}</small><b>${photo.title}</b></span><span class="bridal-card-no">${number} / ${bridalPhotos.length}</span></span></button></figure>`;
+}
+
+function bridalGallery(){return `<div class="page-wrap">
+  <section class="page-hero"><div class="breadcrumb">Home <span>/</span> Bridal Gallery</div><div class="eyebrow">Selected work · Makeup and hair by Kakoly Sengupta</div><h1>Bridal artistry,<br><em>in every detail.</em></h1><p>Explore a selection of bridal makeup, hairstyling and editorial looks. Select any photograph to see the full image, then bring your favourite references to a consultation for a look that feels like you.</p><div class="hero-actions"><a class="button" href="#/contact" data-category-link="Bridal">Plan your bridal look <span class="arrow">${ic('arrow')}</span></a><a class="text-link" href="#/services">Explore bridal services <span>${ic('arrow')}</span></a></div></section>
+  <div class="stat-strip"><div><strong>12</strong><span>selected photographs</span></div><div><strong>Makeup &amp; hair</strong><span>by Kakoly Sengupta</span></div><div><strong>Traditional + editorial</strong><span>individual artistry</span></div><div><strong>Full-screen</strong><span>select any photograph</span></div></div>
+  <section class="section bridal-gallery-section"><div class="section-heading"><div><div class="eyebrow">The portfolio</div><h2>A glimpse of<br><span class="script">the bridal chair.</span></h2></div><p>Traditional ceremony looks, contemporary colour and finishing touches from behind the scenes. Select a photograph to open the full-size viewer.</p></div>
+    <div class="bridal-gallery-grid">${bridalPhotos.map(bridalCard).join('')}</div>
+    <p class="gallery-note">These photographs show previous makeup and hairstyling work. Your own look is planned individually around your features, attire, ceremony and preferences.</p>
+  </section>
+  <section class="section section--tight"><div class="course-enquire"><div><h3>See something you love?</h3><p>Save a reference and tell us what you have in mind. We’ll plan the details with you in consultation.</p></div><a class="button" href="#/contact" data-category-link="Bridal">Start a bridal enquiry <span class="arrow">${ic('arrow')}</span></a></div></section>
+</div>
+<dialog class="bridal-lightbox" id="bridal-lightbox" aria-labelledby="lightbox-title">
+  <div class="lightbox-shell">
+    <div class="lightbox-top"><span>Glitz &amp; Glamour · Bridal artistry</span><button type="button" class="lightbox-close" data-lightbox-close aria-label="Close full-screen viewer">Close ${ic('close')}</button></div>
+    <div class="lightbox-stage"><button type="button" class="lightbox-nav lightbox-prev" data-lightbox-prev aria-label="Previous photograph">${ic('chevron')}</button><div class="lightbox-image-wrap" data-lightbox-dismiss><img id="lightbox-image" src="${bridalPhotos[0].src}" alt="${bridalPhotos[0].alt}" width="${bridalPhotos[0].w}" height="${bridalPhotos[0].h}" decoding="async"></div><button type="button" class="lightbox-nav lightbox-next" data-lightbox-next aria-label="Next photograph">${ic('chevron')}</button></div>
+    <div class="lightbox-footer"><div><small id="lightbox-category">${bridalPhotos[0].category}</small><b id="lightbox-title">${bridalPhotos[0].title}</b></div><span id="lightbox-count" aria-live="polite">01 / ${bridalPhotos.length}</span></div>
+  </div>
+</dialog>`}
 
 /* ==========================================================================
    TESTIMONIALS
@@ -372,7 +470,8 @@ function contact(){return `<div class="page-wrap"><div class="contact-hero"><sec
    ========================================================================== */
 function render(){
   const page = route();
-  const views={home,academy,services:servicesPage,testimonials,contact};
+  document.body.classList.remove('lightbox-open');
+  const views={home,academy,services:servicesPage,gallery:bridalGallery,testimonials,contact};
   app.innerHTML=views[page]();
   document.title=titles[page];
   const meta=document.querySelector('meta[name="description"]');
@@ -380,6 +479,7 @@ function render(){
   document.querySelectorAll('.main-nav a').forEach(a=>a.classList.toggle('active',a.dataset.route===page));
   menu.classList.remove('open');menuToggle.setAttribute('aria-expanded','false');menuToggle.setAttribute('aria-label','Open menu');
   if(page==='contact') setupContact();
+  if(page==='gallery') setupGallery();
   if(page==='testimonials') setupTestimonials();
   setupReveal();setupTilt();
   window.scrollTo({top:0,behavior:'smooth'});
@@ -419,6 +519,64 @@ function setupContact(){
   const date=document.querySelector('#date'); if(date)date.min=new Date().toISOString().slice(0,10);
 }
 
+let activeGalleryIndex = 0;
+let galleryReturnFocus = null;
+function updateGalleryViewer(){
+  const photo=bridalPhotos[activeGalleryIndex];
+  const viewer=document.querySelector('#lightbox-image');
+  if(!viewer)return;
+  viewer.src=photo.src;
+  viewer.alt=photo.alt;
+  viewer.width=photo.w;
+  viewer.height=photo.h;
+  document.querySelector('#lightbox-title').textContent=photo.title;
+  document.querySelector('#lightbox-category').textContent=photo.category;
+  document.querySelector('#lightbox-count').textContent=`${String(activeGalleryIndex+1).padStart(2,'0')} / ${bridalPhotos.length}`;
+}
+function changeGalleryPhoto(index){
+  activeGalleryIndex=(index+bridalPhotos.length)%bridalPhotos.length;
+  updateGalleryViewer();
+}
+function openGallery(index,trigger){
+  const dialog=document.querySelector('#bridal-lightbox');
+  if(!dialog)return;
+  activeGalleryIndex=index;
+  galleryReturnFocus=trigger;
+  updateGalleryViewer();
+  if(!dialog.hasAttribute('open')){
+    if(typeof dialog.showModal==='function')dialog.showModal();
+    else dialog.setAttribute('open','');
+  }
+  document.body.classList.add('lightbox-open');
+  dialog.querySelector('[data-lightbox-close]').focus();
+}
+function closeGallery(){
+  const dialog=document.querySelector('#bridal-lightbox');
+  if(!dialog||!dialog.hasAttribute('open'))return;
+  if(typeof dialog.close==='function')dialog.close();
+  else dialog.removeAttribute('open');
+  document.body.classList.remove('lightbox-open');
+  const returnTarget=galleryReturnFocus;
+  galleryReturnFocus=null;
+  if(returnTarget&&returnTarget.isConnected)returnTarget.focus();
+}
+function setupGallery(){
+  const dialog=document.querySelector('#bridal-lightbox');
+  if(!dialog)return;
+  document.querySelectorAll('[data-gallery-index]').forEach(btn=>btn.addEventListener('click',()=>openGallery(Number(btn.dataset.galleryIndex),btn)));
+  dialog.querySelector('[data-lightbox-close]').addEventListener('click',closeGallery);
+  dialog.querySelector('[data-lightbox-prev]').addEventListener('click',()=>changeGalleryPhoto(activeGalleryIndex-1));
+  dialog.querySelector('[data-lightbox-next]').addEventListener('click',()=>changeGalleryPhoto(activeGalleryIndex+1));
+  dialog.addEventListener('cancel',e=>{e.preventDefault();closeGallery();});
+  dialog.addEventListener('click',e=>{if(e.target.hasAttribute('data-lightbox-dismiss'))closeGallery();});
+  dialog.addEventListener('keydown',e=>{
+    if(e.key==='ArrowLeft'){e.preventDefault();changeGalleryPhoto(activeGalleryIndex-1);}
+    if(e.key==='ArrowRight'){e.preventDefault();changeGalleryPhoto(activeGalleryIndex+1);}
+    if(e.key==='Home'){e.preventDefault();changeGalleryPhoto(0);}
+    if(e.key==='End'){e.preventDefault();changeGalleryPhoto(bridalPhotos.length-1);}
+  });
+}
+
 function setupTestimonials(){
   document.querySelectorAll('[data-review-filter]').forEach(btn=>btn.addEventListener('click',()=>{
     document.querySelectorAll('[data-review-filter]').forEach(b=>b.classList.toggle('active',b===btn));
@@ -427,7 +585,7 @@ function setupTestimonials(){
   }));
 }
 function setupReveal(){
-  const items=document.querySelectorAll('.section-heading,.story-band,.academy-intro,.course-card,.format-card,.service-group,.service-row-wrap,.booking-form,.booking-aside,.map-panel,.step,.col-card,.process-col');
+  const items=document.querySelectorAll('.section-heading,.story-band,.academy-intro,.course-card,.format-card,.service-group,.service-row-wrap,.booking-form,.booking-aside,.map-panel,.step,.col-card,.process-col,.bridal-preview-card,.bridal-card');
   if(!('IntersectionObserver' in window)){items.forEach(x=>x.classList.add('visible'));return;}
   const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}}),{threshold:.08});
   items.forEach((el,i)=>{el.classList.add('reveal');el.style.transitionDelay=(i%4)*55+'ms';obs.observe(el)});

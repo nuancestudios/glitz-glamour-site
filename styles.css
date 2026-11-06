@@ -2,7 +2,7 @@
 :root{--paper:#f6f0e9;--paper-2:#efe6dc;--ink:#2d2022;--wine:#5a1f32;--wine-deep:#381322;--rose:#d6b7ad;--rose-soft:#e8d6cd;--gold:#b58c5c;--sage:#737b6c;--line:rgba(69,45,43,.18);--muted:#796d69;--serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',Arial,sans-serif;--max:1240px}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit}button,a{-webkit-tap-highlight-color:transparent}button{cursor:pointer}.scroll-progress{height:2px;position:fixed;z-index:99;inset:0 0 auto;background:transparent}.scroll-progress span{display:block;height:100%;width:0;background:var(--gold)}.topline{height:31px;background:var(--wine-deep);color:#f5e7dc;display:flex;align-items:center;justify-content:space-between;padding:0 max(calc((100vw - var(--max))/2),24px);font-size:9px;letter-spacing:.13em;text-transform:uppercase}.topline a{color:#e7c7a2}.topline a .icon{width:12px;height:12px;margin-left:5px}
 .to-short{display:none}
-.topline a .to-long,.topline a .to-short{margin:0;font-size:inherit}.site-header{height:82px;padding:0 max(calc((100vw - var(--max))/2),24px);display:flex;align-items:center;justify-content:space-between;background:rgba(246,240,233,.94);backdrop-filter:blur(12px);position:sticky;top:0;z-index:30;border-bottom:1px solid rgba(70,43,42,.10)}.brand{display:flex;align-items:center;gap:12px;flex:none}.brand-mark{width:42px;height:42px;flex:none;display:block;border-radius:50%;object-fit:cover;box-shadow:0 0 0 1px rgba(181,140,92,.6),0 2px 8px #3813221f}.brand-name{display:flex;flex-direction:column;line-height:1.2;letter-spacing:.13em}.brand-name b{font-weight:600;font-size:11px}.brand-name i{color:var(--gold);font-family:var(--serif);font-size:14px}.brand-name small{font-size:8px;color:var(--muted);letter-spacing:.14em;margin-top:5px}.main-nav{display:flex;gap:32px;align-items:center;margin-left:auto;margin-right:36px}.main-nav a{font-size:11px;color:#6e605d;position:relative;transition:color .2s}.main-nav a:after{content:'';position:absolute;height:1px;bottom:-9px;left:0;width:0;background:var(--wine);transition:width .25s}.main-nav a:hover,.main-nav a.active{color:var(--wine)}.main-nav a:hover:after,.main-nav a.active:after{width:100%}.nav-cta{font-size:10px;letter-spacing:.06em;text-transform:uppercase;background:var(--wine);color:#fff5ec;padding:13px 17px;transition:background .2s,transform .2s}.nav-cta:hover{background:var(--wine-deep);transform:translateY(-2px)}.nav-cta span{padding-left:10px;color:#dfba8a}.menu-toggle{display:none;border:0;background:none;width:40px;height:40px}.menu-toggle span{display:block;width:22px;height:1px;background:var(--wine);margin:6px auto}
+.topline a .to-long,.topline a .to-short{margin:0;font-size:inherit}.site-header{height:82px;padding:0 max(calc((100vw - var(--max))/2),24px);display:flex;align-items:center;justify-content:space-between;background:rgba(246,240,233,.94);backdrop-filter:blur(12px);position:sticky;top:0;z-index:30;border-bottom:1px solid rgba(70,43,42,.10)}.brand{display:flex;align-items:center;gap:12px;flex:none}.brand-mark{width:42px;height:42px;flex:none;display:block;border-radius:50%;object-fit:cover;box-shadow:0 0 0 1px rgba(181,140,92,.6),0 2px 8px #3813221f}.brand-name{display:flex;flex-direction:column;line-height:1.2;letter-spacing:.13em}.brand-name b{font-weight:600;font-size:11px}.brand-name i{color:var(--gold);font-family:var(--serif);font-size:14px}.brand-name small{font-size:8px;color:var(--muted);letter-spacing:.14em;margin-top:5px}.main-nav{display:flex;gap:27px;align-items:center;margin-left:auto;margin-right:28px}.main-nav a{font-size:11px;color:#6e605d;position:relative;transition:color .2s}.main-nav a:after{content:'';position:absolute;height:1px;bottom:-9px;left:0;width:0;background:var(--wine);transition:width .25s}.main-nav a:hover,.main-nav a.active{color:var(--wine)}.main-nav a:hover:after,.main-nav a.active:after{width:100%}.nav-cta{font-size:10px;letter-spacing:.06em;text-transform:uppercase;background:var(--wine);color:#fff5ec;padding:13px 17px;transition:background .2s,transform .2s}.nav-cta:hover{background:var(--wine-deep);transform:translateY(-2px)}.nav-cta span{padding-left:10px;color:#dfba8a}.menu-toggle{display:none;border:0;background:none;width:40px;height:40px}.menu-toggle span{display:block;width:22px;height:1px;background:var(--wine);margin:6px auto}
 #app{min-height:55vh}.page-wrap{animation:page-in .6s cubic-bezier(.2,.7,.2,1) both}@keyframes page-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}.eyebrow{font-size:9px;letter-spacing:.21em;text-transform:uppercase;color:var(--gold);display:flex;gap:11px;align-items:center}.eyebrow:before{content:'';width:28px;height:1px;background:currentColor}.serif{font-family:var(--serif);font-weight:400}.script{font-family:var(--serif);font-weight:400;font-style:italic;color:var(--wine)}.section{padding:104px max(calc((100vw - var(--max))/2),24px)}.section-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:43px}.section-heading h2{font:400 clamp(34px,4vw,54px)/1.08 var(--serif);margin:14px 0 0;letter-spacing:-.035em;max-width:640px}.section-heading p{color:var(--muted);max-width:370px;font-size:13px;margin:0}.tag{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--wine);border:1px solid rgba(90,31,50,.3);padding:7px 10px;display:inline-flex;align-items:center;gap:8px}.tag i{width:5px;height:5px;border-radius:50%;background:var(--gold)}.button{display:inline-flex;align-items:center;justify-content:center;gap:28px;min-height:49px;padding:0 19px;background:var(--wine);color:#fff6eb;text-transform:uppercase;letter-spacing:.1em;font-size:9px;border:1px solid var(--wine);transition:all .25s}.button:hover{transform:translateY(-3px);background:var(--wine-deep);box-shadow:0 12px 22px #38132220}.button.light{background:transparent;color:var(--wine)}.button.light:hover{background:var(--wine);color:white}.button .arrow{font-size:16px;color:#dfba8a}.text-link{display:inline-flex;align-items:center;gap:9px;color:var(--wine);font-size:11px;border-bottom:1px solid var(--gold);padding-bottom:4px}.text-link span{transition:transform .2s}.text-link:hover span{transform:translate(3px,-3px)}
 /* Home */
 .home-hero{min-height:650px;padding:53px max(calc((100vw - var(--max))/2),24px) 64px;display:grid;grid-template-columns:1.03fr .97fr;align-items:center;gap:7%;position:relative;overflow:hidden}.home-hero:after{content:'G';font:clamp(340px,48vw,710px)/.8 var(--serif);position:absolute;color:rgba(90,31,50,.035);right:-20px;bottom:-142px;pointer-events:none}.hero-copy{position:relative;z-index:2;padding:22px 0}.hero-copy .eyebrow{margin-bottom:28px}.hero-copy h1{font:400 clamp(42px,5vw,68px)/.98 var(--serif);letter-spacing:-.055em;margin:0 0 24px;max-width:660px}.hero-copy h1 span{display:block}.hero-copy h1 .script{font-size:.94em;letter-spacing:-.05em;margin-left:26px}.hero-copy>p{font-size:14px;line-height:1.85;color:#756765;max-width:430px;margin:0 0 29px}.hero-actions{display:flex;align-items:center;gap:23px;flex-wrap:wrap}.hero-facts{display:flex;align-items:center;flex-wrap:wrap;gap:16px 18px;margin-top:48px}.fact{border-left:1px solid var(--gold);padding-left:13px;line-height:1.25}.fact strong{display:block;font:400 25px/1.1 var(--serif);color:var(--wine)}.fact small{display:block;font-size:8px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:5px}.hero-art{height:min(590px,68vw);min-height:460px;position:relative;z-index:1;padding:0 25px 24px 0}.hero-art:before{content:'';position:absolute;inset:28px 0 0 31px;border:1px solid var(--gold);z-index:-1}.hero-art img{width:100%;height:100%;object-fit:cover;object-position:50% 25%;display:block;filter:saturate(.85)}.art-label{position:absolute;bottom:37px;left:0;background:var(--paper);padding:12px 15px;font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--wine)}.art-index{position:absolute;right:-6px;top:34px;writing-mode:vertical-rl;font-size:9px;letter-spacing:.18em;color:var(--wine)}.seal{width:116px;height:116px;border-radius:50%;background:var(--wine);color:#f5e8da;position:absolute;right:-29px;bottom:55px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-align:center;padding:14px;font:italic 14px/1.2 var(--serif);transform:rotate(9deg);box-shadow:0 10px 30px #38132233}.seal-mark{width:14px;height:14px;color:#d6b17f;flex:none}.hero-marquee{background:var(--wine);color:#f4e9df;white-space:nowrap;overflow:hidden;padding:13px 0;font:italic 19px var(--serif);letter-spacing:.04em}.marquee-track{display:flex;width:max-content;animation:marquee 34s linear infinite}.marquee-track span{padding:0 28px}.marquee-track i{font-style:normal;color:#d9b989;font-size:12px}@keyframes marquee{to{transform:translateX(-50%)}}
@@ -531,3 +531,109 @@ input[type="date"]{min-height:50px;background:#f8f3ed;border:1px solid #d7c8bb;p
 /* The home hero paragraph is longer now that it introduces both sides of
    the business; give it a little more measure so it stays a tidy block. */
 .home-hero .hero-copy>p{max-width:475px}
+
+/* ==========================================================================
+   BRIDAL GALLERY — client portfolio, home preview and full-screen viewer
+   ========================================================================== */
+.bridal-preview{background:var(--paper-2)}
+.bridal-preview .section-heading>div:last-child{max-width:390px}
+.bridal-preview .section-heading p{max-width:none;margin:0 0 18px}
+.bridal-preview-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.bridal-preview-card{display:block;min-width:0;background:#fbf6f0;border:1px solid var(--line);transition:transform .3s,box-shadow .3s}
+.bridal-preview-card:nth-child(even){background:#f1e7dd}
+.bridal-preview-photo{display:block;aspect-ratio:4/5;overflow:hidden;background:#e7d8cb}
+.bridal-preview-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:var(--photo-position,50% 25%);filter:saturate(.94);transition:transform .55s ease,filter .3s}
+.bridal-preview-caption{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:18px 20px}
+.bridal-preview-caption small{display:block;font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-ink)}
+.bridal-preview-caption b{display:block;margin-top:4px;font:400 24px/1.15 var(--serif);letter-spacing:-.025em;color:var(--wine)}
+.bridal-preview-caption>.icon{width:17px;height:17px;flex:none;color:var(--gold-ink);transition:transform .2s}
+.bridal-gallery-section{padding-bottom:72px}
+.bridal-gallery-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px 16px}
+.bridal-card{min-width:0;margin:0;background:#fbf6f0;border:1px solid var(--line);transition:transform .3s,box-shadow .3s}
+.bridal-card:nth-child(even){background:#f1e7dd}
+.bridal-card>button{display:block;width:100%;margin:0;padding:0;border:0;background:transparent;color:inherit;text-align:left}
+.bridal-card>button:focus-visible{outline:2px solid var(--wine);outline-offset:4px}
+.bridal-card-photo{position:relative;display:block;aspect-ratio:4/5;overflow:hidden;background:#e7d8cb}
+.bridal-card-photo:after{content:'';position:absolute;inset:0;border:1px solid rgba(255,255,255,.12);pointer-events:none}
+.bridal-card-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:var(--photo-position,50% 25%);filter:saturate(.96);transition:transform .55s ease,filter .3s}
+.bridal-card-view{position:absolute;right:12px;bottom:12px;display:inline-flex;align-items:center;gap:8px;padding:9px 11px;background:rgba(246,240,233,.95);color:var(--wine);font-size:8px;letter-spacing:.11em;text-transform:uppercase;opacity:0;transform:translateY(5px);transition:opacity .2s,transform .2s}
+.bridal-card-view .icon{width:14px;height:14px}
+.bridal-card-meta{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding:17px 18px 18px}
+.bridal-card-name small{display:block;font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-ink)}
+.bridal-card-name b{display:block;margin-top:4px;font:400 23px/1.15 var(--serif);letter-spacing:-.025em;color:var(--wine)}
+.bridal-card-no{flex:none;font:italic 11px/1.4 var(--serif);color:var(--gold-ink);white-space:nowrap}
+.gallery-note{margin:30px 0 0;padding:17px 20px;background:#eee3d8;border-left:2px solid var(--gold);font-size:10px;line-height:1.75;color:var(--muted)}
+@media(hover:hover){
+  .bridal-preview-card:hover,.bridal-card:hover{transform:translateY(-4px);box-shadow:0 14px 28px #38132214}
+  .bridal-preview-card:hover img,.bridal-card>button:hover img{transform:scale(1.025);filter:saturate(1)}
+  .bridal-preview-card:hover .bridal-preview-caption>.icon{transform:translate(3px,-3px)}
+  .bridal-card>button:hover .bridal-card-view,.bridal-card>button:focus-visible .bridal-card-view{opacity:1;transform:none}
+}
+@media(hover:none){
+  .bridal-card-view{opacity:1;transform:none;width:38px;height:38px;justify-content:center;padding:0;border-radius:50%;font-size:0}
+  .bridal-card-view .icon{width:16px;height:16px}
+}
+
+/* Native dialog supplies focus trapping, Escape semantics and a backdrop. */
+body.lightbox-open{overflow:hidden}
+.bridal-lightbox{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;background:#1f1017;color:#f6ede4;overflow:hidden}
+.bridal-lightbox::backdrop{background:#1f1017}
+.lightbox-shell{display:flex;flex-direction:column;gap:15px;width:100%;height:100%;height:100dvh;padding:20px 28px 22px}
+.lightbox-top,.lightbox-footer{display:flex;align-items:center;justify-content:space-between;gap:20px;flex:none}
+.lightbox-top{padding-bottom:13px;border-bottom:1px solid rgba(241,230,220,.2)}
+.lightbox-top>span{font-size:8px;letter-spacing:.17em;text-transform:uppercase;color:#d1ae80}
+.lightbox-close{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;padding:0 13px;border:1px solid rgba(241,230,220,.35);background:transparent;color:#f6ede4;font-size:9px;letter-spacing:.12em;text-transform:uppercase}
+.lightbox-close .icon{width:15px;height:15px}
+.lightbox-close:hover{background:#f6ede4;color:var(--wine-deep)}
+.lightbox-stage{display:grid;grid-template-columns:58px minmax(0,1fr) 58px;align-items:center;flex:1;min-height:0}
+.lightbox-image-wrap{display:flex;align-items:center;justify-content:center;min-width:0;min-height:0;height:100%;overflow:hidden;cursor:zoom-out}
+.lightbox-image-wrap img{display:block;width:auto;height:auto;max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 18px 60px #0007;user-select:none}
+.lightbox-nav{display:grid;place-items:center;width:48px;height:48px;padding:0;border:1px solid rgba(241,230,220,.35);border-radius:50%;background:transparent;color:#f6ede4;justify-self:center;transition:background .2s,color .2s}
+.lightbox-nav:hover{background:#f6ede4;color:var(--wine-deep)}
+.lightbox-nav .icon{width:20px;height:20px}
+.lightbox-next .icon{transform:rotate(180deg)}
+.lightbox-footer{padding-top:13px;border-top:1px solid rgba(241,230,220,.2)}
+.lightbox-footer small{display:block;font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:#d1ae80}
+.lightbox-footer b{display:block;margin-top:3px;font:400 25px/1.15 var(--serif);color:#f6ede4}
+#lightbox-count{flex:none;font:italic 14px/1 var(--serif);color:#d1ae80}
+.lightbox-close:focus-visible,.lightbox-nav:focus-visible{outline:2px solid #dfba8a;outline-offset:3px}
+
+@media(max-width:950px){
+  .main-nav{gap:15px;margin-right:15px}
+  .bridal-card-meta{padding:15px 14px 16px}
+  .bridal-card-name b{font-size:20px}
+  .bridal-card-no{font-size:10px}
+}
+@media(max-width:720px){
+  .bridal-preview-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .bridal-preview-card:first-child{grid-column:1/-1}
+  .bridal-preview-card:first-child .bridal-preview-photo{aspect-ratio:4/3}
+  .bridal-preview-caption{padding:14px 13px}
+  .bridal-preview-caption small{font-size:7px}
+  .bridal-preview-caption b{font-size:20px}
+  .bridal-gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 11px}
+  .bridal-card-meta{align-items:flex-start;padding:13px 12px 14px}
+  .bridal-card-name small{font-size:7px;letter-spacing:.1em}
+  .bridal-card-name b{font-size:19px}
+  .bridal-card-no{display:none}
+  .gallery-note{padding:15px 16px}
+  .lightbox-shell{gap:11px;padding:calc(12px + env(safe-area-inset-top,0px)) 13px calc(13px + env(safe-area-inset-bottom,0px))}
+  .lightbox-top{gap:10px}
+  .lightbox-top>span{max-width:190px;font-size:7px;line-height:1.6}
+  .lightbox-stage{grid-template-columns:1fr 1fr;grid-template-rows:minmax(0,1fr) 46px;gap:10px}
+  .lightbox-image-wrap{grid-column:1/-1;grid-row:1}
+  .lightbox-nav{grid-row:2;width:48px;height:44px;border-radius:0}
+  .lightbox-prev{grid-column:1;justify-self:end}
+  .lightbox-next{grid-column:2;justify-self:start}
+  .lightbox-footer b{font-size:21px}
+}
+@media(max-width:380px){
+  .bridal-gallery-grid{grid-template-columns:1fr;gap:22px}
+  .bridal-card-meta{padding:16px}
+  .bridal-card-name b{font-size:23px}
+  .bridal-preview-caption b{font-size:17px}
+  .bridal-preview-caption>.icon{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .bridal-preview-photo img,.bridal-card-photo img{transition:none}
+}
