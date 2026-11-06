@@ -5,7 +5,7 @@ Static site for GitHub Pages. Uses relative asset paths, so it works at a GitHub
 
 ## Pages
 
-Home · Academy · Services · Testimonials · Contact. (The old `#/portfolio` link still works — it now opens the Testimonials page.)
+Home · Academy · Services · Bridal Gallery · Testimonials · Contact. (The old `#/portfolio` link still works — it now opens the Bridal Gallery.)
 
 ## Where the copy comes from
 
@@ -55,6 +55,14 @@ existing palette and type scale.
   Butique salon", "Boutique Saloon", "Guild and Glamour Academy"); each of those quotes carries a
   "quoted as written" note so the spelling does not read as our error. The earlier inline `[sic]` was removed
   in favour of that note.
+
+### Bridal gallery
+
+The main navigation includes a dedicated **Bridal Gallery** at `#/gallery`, with a three-photo preview on Home. The
+12 client-supplied photographs are optimized WebP files in `public/images/bridal-gallery/`; their full aspect ratios
+are preserved in the accessible full-screen viewer. To add or replace a photograph, put the optimized file in that
+folder and edit its entry in the `bridalPhotos` array near the top of `app.js` (source, intrinsic width/height,
+caption, alt text and thumbnail focal position). The old `#/portfolio` URL opens this gallery.
 
 ### Testimonials
 
